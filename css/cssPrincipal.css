@@ -1,0 +1,376 @@
+/*CSS Universal*/
+* {
+    margin: 0px;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.poppins-black {
+    font-family: "Poppins", serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+* h1 {
+    color: white;
+    background-color: black;
+    border-top: solid rgba(225, 76, 7, 1);
+    font-size: 2.5vw;
+    text-align: center;
+}
+
+/*CSS Menu*/
+.menu {
+    position: sticky;
+    top: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style: none;
+    line-height: 10px;
+    line-break: strict;
+    background-color: rgba(2, 18, 38, 1);
+    padding: 15px 10px 15px 10px;
+    align-items: center;
+    z-index: 1;
+}
+
+.menu img {
+    max-width: 10%;
+    height: auto;
+    padding-top: 0px;
+}
+
+.menu a:not(.dropdown-menu ul li a) {
+    position: relative;
+    text-decoration: none;
+    color: whitesmoke;
+    background-color: rgba(2, 18, 38, 1);
+    background-image: none;
+    padding: 0px 10px 0px 10px;
+    font-size: 1.13vw;
+    font-weight: bold;
+}
+
+.menu li {
+    background-color: rgba(2, 18, 38, 1);
+    font-family: 'Playfair Display', serif;
+}
+
+#botLoginMenu,
+#botSignupMenu {
+    display: inline-flex;
+    background-color: rgba(7, 52, 94, 1);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1vw;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(225, 76, 7, 0.4);
+    margin: auto;
+    border-top: solid rgba(225, 76, 7, 0.7);
+}
+
+#botLoginMenu:hover,
+#botSignupMenu:hover {
+    background-color: rgba(7, 52, 94, 0.7);
+    cursor: pointer;
+}
+
+.menu ul li:not(:nth-last-child(-n+2)):not(.dropdown-menu ul li) a:hover {
+    transition: transform 0.3s ease;
+    color: whitesmoke;
+    padding: 3vw 10px 3vw 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    background-color: rgba(7, 52, 94, 0.7);
+}
+
+/*Dropdown menu*/
+#adminButton {
+    display: none;
+}
+
+#forumButton {
+    display: none;
+}
+
+.menu li.dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+.show-admin #adminButton {
+    display: flex;
+}
+
+.show-forum #forumButton {
+    display: flex;
+}
+
+#userDropdown {
+    display: none;
+}
+
+#loginSignupButtons {
+    display: block;
+}
+
+#profileDropdownLink {
+    cursor: pointer;
+    padding: 0;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    max-width: 12vw;
+    max-height: 20vh;
+    background-color: rgba(2, 18, 38, 1);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    margin-top: 0;
+}
+
+.dropdown-menu ul {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.dropdown-menu li {
+    padding: 0.4vh 0.8vw;
+    margin: 1.5vh 0px;
+    list-style: none;
+    display: flex;
+}
+
+.dropdown-menu li a {
+    display: flex;
+    align-items: center;
+    background-color: rgba(2, 18, 38, 1);
+    font-family: 'Playfair Display', serif;
+    position: relative;
+    text-decoration: none;
+    color: black;
+    font-size: 1vw;
+    font-weight: bold;
+    text-align: center;
+}
+
+.dropdown-menu ul li a:hover {
+    transition: transform 0.5s ease-out;
+    color: whitesmoke;
+    padding: 1vh 0.5vw 1vh 0.5vw;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    background-color: rgba(176, 23, 31, 0.7);
+}
+
+/* Show the dropdown when the profile picture is hovered */
+.profile-pictureMenu:hover .dropdown-menu {
+    display: flex;
+}
+
+/*Profile Picture*/
+.profile-pictureMenu {
+    position: relative;
+    margin-bottom: 0.1vh;
+}
+
+.profile-pictureMenu img {
+    max-width: 10vh;
+    max-height: 10vh;
+    border-radius: 90%;
+    margin-left: 1vw;
+}
+
+.menu .profile-pictureMenu {
+    text-align: center;
+}
+
+.menu .profile-pictureMenu figure {
+    text-align: center;
+}
+
+.menu .profile-pictureMenu figcaption {
+    font-size: 1vw;
+    margin-top: 2vh;
+    position: relative;
+    z-index: 1;
+}
+
+/*CSS clase image*/
+.image {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin: auto;
+    background-color: black;
+    align-items: center;
+}
+
+.imageHijo {
+    width: auto;
+    padding-left: 50px;
+    padding-right: 20px;
+    padding-bottom: 50px;
+    padding-top: 30px;
+    text-align: center;
+    color: white;
+    background-color: black;
+    flex: 1;
+}
+
+.image img {
+    max-width: 30%;
+    height: auto;
+    background-color: black;
+    box-shadow: 5px 0px 10px rgba(176, 23, 31, 0.7);
+}
+
+/*CSS clase imageV2*/
+.imageV2 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin: auto;
+    background-color: rgba(79, 65, 60, 1);
+    align-items: center;
+    border-top: solid rgba(176, 23, 31, 0.7);
+}
+
+.imageHijoV2 {
+    width: auto;
+    padding-left: 50px;
+    padding-right: 20px;
+    padding-bottom: 50px;
+    padding-top: 30px;
+    text-align: center;
+    color: white;
+    background-color: rgba(79, 65, 60, 1);
+    flex: 1;
+}
+
+.imageV2 img {
+    max-width: 30%;
+    height: auto;
+    background-color: rgba(79, 65, 60, 1);
+    box-shadow: 5px 0px 10px rgba(176, 23, 31, 0.7);
+}
+
+/*Button CSS*/
+
+/*CSS Footer*/
+.footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgba(2, 18, 38, 1);
+    align-items: center;
+    border-top: solid rgba(225, 76, 7, 0.7);
+}
+
+.footerHijo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: auto;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+    background-color: rgba(2, 18, 38, 1);
+    flex: 1;
+}
+
+.footerHijo p {
+    font-size: 1.1vw;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(2, 18, 38, 1);
+    color: white;
+    padding-bottom: 0px;
+    align-self: center;
+}
+
+.footer img {
+    max-width: 15%;
+    height: auto;
+    align-self: center;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+
+}
+
+/* Styling for the toast notification */
+.toast {
+    position: fixed;
+    top: 70vh;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: rgba(79, 65, 60, 0.9);
+    /* Custom background color */
+    color: #fff;
+    font-size: 1.4vw;
+    border-radius: 5px;
+    display: none;
+    z-index: 9999;
+    /* Ensure the toast is above other elements */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Add a subtle box shadow */
+    animation: fadeOut 3s ease-in-out;
+    /* Add a fade-out animation */
+}
+
+/* Add a fade-out animation for the toast */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@media all and (max-width:600px) {
+
+    * h1 {
+        font-size: 6vw;
+    }
+
+    .menu a {
+        font-size: 2.5vw;
+    }
+
+    .menu img {
+        max-width: 45%;
+        height: auto;
+    }
+
+    .image img,
+    .imageV2 img {
+        max-width: 70%;
+    }
+
+    .footer p {
+        font-size: 2.2vw;
+        padding-top: 1vw;
+        padding-bottom: 1vw;
+    }
+
+    .footer img {
+        max-width: 40%;
+        padding-top: 2vw;
+        padding-bottom: 2vw;
+    }
+}
