@@ -91,12 +91,51 @@
         </div>
     </section>
 
+    <!-- Seccion de Empleos -->
+    <section class="vacancies-section">
+        <h2>Vacantes Disponibles</h2>
+        <div class="vacancies-container">
+            <!-- Objeto de Prueba -->
+            <div class="vacancy-card" onclick="openVacancyDetail(this)">
+                <h3>Desarrollador de Juegos</h3>
+                <img src="../imagenes/developer.jpeg" alt="Thumbnail de Vacante" class="vacancy-thumbnail">
+                <p>Únete a nuestro equipo como Desarrollador de Juegos y ayuda a crear experiencias únicas.</p>
+                <ul class="vacancy-requirements">
+                    <li>Experiencia en Unity</li>
+                    <li>Conocimiento de C#</li>
+                </ul>
+            </div>
+            <!-- Objeto de Prueba -->
+            <div class="vacancy-card" onclick="openVacancyDetail(this)">
+                <h3>Artista 3D</h3>
+                <img src="../imagenes/3dartist.jpeg" alt="Thumbnail de Vacante" class="vacancy-thumbnail">
+                <p>Buscamos un Artista 3D para diseñar personajes y escenarios para juegos.</p>
+                <ul class="vacancy-requirements">
+                    <li>Conocimiento en modelado 3D</li>
+                    <li>Manejo de Blender o Maya</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ventana de detalle de empleo -->
+    <div class="vacancy-modal" id="vacancyModal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeVacancyDetail()">&times;</span>
+            <h3 id="modal-title"></h3>
+            <img id="modal-thumbnail" alt="Vacancy Thumbnail">
+            <p id="modal-description"></p>
+            <ul id="modal-requirements"></ul>
+            <button id="apply-button" onclick="redirectToApply()">Aplicar</button>
+        </div>
+    </div>
+
 
     <div class="toast" id="toastMessage"></div>
 
     <script src="../javascript/menu.js"></script>
     <script src="../javascript/imageMenu.js"></script>
-    <script src="benefitsScript.js"></script>
+    <script src="../javascript/benefitsScript.js"></script>
 
     <div class="toast" id="toastMessage"></div>
 

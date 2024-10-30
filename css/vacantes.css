@@ -112,6 +112,95 @@ body {
     background-color: #e2eaf1;
 }
 
+/* Seccion de empleos */
+.vacancies-section {
+    padding: 40px 20px;
+    background-color: whitesmoke;
+    border-top: solid rgba(225, 76, 7, 1);
+}
+
+.vacancies-section h2 {
+    text-align: center;
+    font-size: 2vw;
+    color: rgba(225, 76, 7, 1);
+    padding-bottom: 20px;
+}
+
+.vacancies-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.vacancy-card {
+    background-color: rgba(255,255,255,0.5);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.vacancy-card h3 {
+    padding-bottom: 5px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.vacancy-card p {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.vacancy-card ul {
+    text-align: center;
+    list-style-type: none;
+}
+
+.vacancy-card:hover {
+    transform: translateY(-5px);
+}
+
+.vacancy-thumbnail {
+    display: block;
+    width: 30%;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+/* Detallado Empleos */
+.vacancy-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    text-align: center;
+}
+
+.modal-content img {
+    width: 40%;
+}
+
+.close-button {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
 /* Responsivo */
 @media (max-width: 600px) {
 
@@ -161,5 +250,13 @@ body {
 
     .benefits-container {
         flex-direction: column;
+    }
+
+    .vacancies-container {
+        grid-template-columns: 1fr;
+    }
+
+    .vacancies-section h2 {
+        font-size: 6vw;
     }
 }
