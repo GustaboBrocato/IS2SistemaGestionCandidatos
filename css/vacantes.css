@@ -1,0 +1,165 @@
+/* Estilos Generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    margin: 0;
+    background-color: #f9f9f9;
+}
+
+/* Banner */
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row; /* Display content in a row */
+    padding: 40px 10px;
+    text-align: left; /* Align text to the left */
+    background-color: rgba(7, 52, 94, 1);
+    color: whitesmoke;
+    background-image: url(../imagenes/gaming2.png);
+    overflow: hidden;
+    height: 200px;
+}
+
+.banner-content {
+    display: flex;
+    flex-direction: row;
+    max-width: auto;
+    padding: 0px 20px;
+}
+
+.banner-contentIMG {
+    padding-right: 20px;
+}
+
+.banner-contentCnt {
+    padding-left: 20px;
+    margin: auto auto;
+}
+
+.banner-content h1 {
+    font-size: 1.5vw;
+    margin-bottom: 10px;
+    background-color: rgba(2, 18, 38, 1);
+    margin: 0px;
+    padding-top: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-left: solid rgba(225, 76, 7, 1);
+    border-right: solid rgba(225, 76, 7, 1);
+}
+
+.banner-content p {
+    font-size: 1vw;
+    margin-bottom: 20px;
+    background-color: rgba(2, 18, 38, 1);
+    padding-bottom: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-bottom: solid rgba(225, 76, 7, 1);
+    border-left: solid rgba(225, 76, 7, 1);
+    border-right: solid rgba(225, 76, 7, 1);
+}
+
+.banner-image {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    opacity: 0.8;
+    border-radius: 10px;
+    margin-top: 10px;
+    transition: transform 0.3s ease-in-out;
+    padding-bottom: 10px;
+}
+
+.banner-image:hover {
+    transform: scale(1.05);
+}
+
+/* Beneficios */
+.benefits-section {
+    padding: 40px 20px;
+    background-color: rgba(7,52,94, 1);
+    border-top: solid rgba(225, 76, 7, 1);
+}
+
+.benefits-section h2 {
+    text-align: center;
+    font-size: 2vw;
+    color: rgba(225, 76, 7, 1);
+    padding-bottom: 20px;
+}
+
+.benefits-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.benefit-card {
+    background-color: whitesmoke;
+    width: 200px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    background-color: #e2eaf1;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+
+    .banner {
+        flex-direction: column;
+        text-align: center;
+        height: auto;
+        padding: 20px 20px;
+    }
+
+    .banner-content {
+        flex-direction: column;
+    }
+
+    .banner-contentIMG {
+        margin: auto auto;
+        align-items: center;
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+    .banner-contentCnt {
+        margin: auto auto;
+        padding-left: 0px;
+    }
+
+    .banner-content h1 {
+        font-size: 5vw;
+    }
+
+    .banner-content p {
+        padding-top: 10px;
+        font-size: 3.2vw;
+    }
+
+    .banner-image {
+        width: 80%;
+    }
+
+    .benefits-container {
+        align-items: center;
+    }
+
+    .benefits-section h2 {
+        font-size: 6vw;
+    }
+
+    .benefits-container {
+        flex-direction: column;
+    }
+}
