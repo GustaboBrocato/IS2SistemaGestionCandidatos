@@ -1,0 +1,118 @@
+/*CSS Banner*/
+.banner {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: center;
+    background-color: rgb(2, 3, 56); 
+    margin: auto;
+    
+    align-items: center;
+}
+
+.bannerHijo {
+    width: auto;
+    padding-left: 50px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-top: 30px;
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    flex: 1;
+}
+
+.bannerHijo h2 {
+    font-size: 2.8vw;
+    font-weight: bold;
+    text-align: center;
+}
+
+.bannerHijo p {
+    font-size: 1.5vw;
+    text-align: center;
+    padding: 20px 10px 20px 10px;
+}
+
+/*CSS Filler*/
+.filler {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    width: 100%;
+    content: '';
+    background-image: url(../Imagenes/fondojuego.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgb(2, 1, 41);
+    animation: falling-roses-animation 6s linear 1;
+}
+
+.filler h2 {
+    font-size: 3vw;
+    font-weight: bold;
+    text-align: center;
+    color: whitesmoke;
+    text-shadow: 4px 0 rgba(225, 76, 7, 1), -2px 0 rgba(3, 4, 75), 0 2px rgba(3, 4, 75), 0 -2px rgba(3, 4, 75);
+    color: whitesmoke;
+    background-color: rgba(0, 0, 0, 0);
+    margin-top: 200px;
+    margin-bottom: 200px;
+}
+
+@keyframes falling-roses-animation {
+    0% {
+        background-position: 0 60vh;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+
+@media all and (max-width:600px) {
+
+    .filler {
+        height: 20vh;
+        animation: falling-roses-animation 6s linear 1;
+    }
+
+    @keyframes falling-roses-animation {
+        0% {
+            background-position: 0 25vh;
+        }
+
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    .banner {
+        flex-direction: column;
+    }
+
+    .banner img{
+        max-width: 0;
+    }
+
+    .bannerHijo {
+        padding-left: 2vw;
+        padding-right: 2vw;
+    }
+
+    .bannerHijo h2 {
+        font-size: 4.5vw;
+    }
+
+    .bannerHijo p {
+        font-size: 2.8vw;
+        max-width: 100%;
+        text-align: justify;
+    }
+}
