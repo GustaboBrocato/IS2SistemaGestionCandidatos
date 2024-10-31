@@ -1,0 +1,38 @@
+.contenedor{
+    background-image: url(../Imagenes/Prueba2.jpeg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 1em;
+    padding-top: 1vw;
+    padding-bottom: 2vw;
+    padding: 100px;
+    text-align: center justify;
+    max-width: 100%;
+}
+
+
+img{
+    width: 100px;
+    height: 100px;
+}
+
+
+
+p{
+    color:white;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+}
+
+
+
+h2{
+    color: white;
+    font-size: 4em;
+    text-shadow: 2px 0 rgba(225, 76, 7, 0.7)
+}
+
+
+
