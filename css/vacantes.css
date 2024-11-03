@@ -117,6 +117,22 @@ body {
     padding: 40px 20px;
     background-color: whitesmoke;
     border-top: solid rgba(225, 76, 7, 1);
+    z-index: 0;
+    position: relative;
+}
+
+.vacancies-section::before {
+    content: "";
+    background-image: url(../imagenes/backgroundVacancies1.jpeg);
+    background-size:contain;
+    background-position:center;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
 }
 
 .vacancies-section h2 {
@@ -124,6 +140,10 @@ body {
     font-size: 2vw;
     color: rgba(225, 76, 7, 1);
     padding-bottom: 20px;
+    padding-top: 20px;
+    background-color: rgba(2, 18, 38, 1);
+    border: solid rgba(225, 76, 7, 1);
+    margin-bottom: 20px;
 }
 
 .vacancies-container {
@@ -133,10 +153,10 @@ body {
 }
 
 .vacancy-card {
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.8);
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     cursor: pointer;
     transition: transform 0.3s ease;
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Vacantes</title>
+    <title>Agregar Vacante</title>
     <meta charset="UTF-8">
     <meta name="Description"
         content="Proyecto para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos para Recursos Humanos.">
@@ -16,11 +16,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../Imagenes/faviconit/favicon-60.png">
-    <link rel="stylesheet" type="text/css" href="../css/vacantes.css">
+    <link rel="stylesheet" type="text/css" href="../css/agregarVacante.css">
     <link rel="stylesheet" type="text/css" href="../css/cssPrincipal.css">
 </head>
 
 <body>
+    <!--Menu-->
     <div class="menu" style="border-bottom: solid rgba(225,76,7, 1);">
         <img src="../Imagenes/gaming_plus_logo.png">
         <ul class="menu">
@@ -54,88 +55,51 @@
         </ul>
     </div>
 
-    <!-- Banner de Bienvenida -->
-    <header class="banner">
-        <div class="banner-content">
-            <div class="banner-contentIMG">
-                <img src="../imagenes/Empleos1.jpeg" alt="Imagen de bienvenida" class="banner-image">
-            </div>
-            <div class="banner-contentCnt">
-                <h1>Únete a Nuestro Equipo y Ayúdanos a Crear Experiencias Únicas</h1>
-                <p>Descubre oportunidades para crecer, aprender y ser parte de una empresa que valora la creatividad y
-                    el trabajo en equipo.</p>
-            </div>
-        </div>
-    </header>
-
-    <!-- Sección de Beneficios -->
-    <section class="benefits-section">
-        <h2>Beneficios de Trabajar con Nosotros</h2>
-        <div class="benefits-container">
-            <div class="benefit-card">
-                <h3>Crecimiento Profesional</h3>
-                <p>Capacitaciones continuas para desarrollar tus habilidades.</p>
-            </div>
-            <div class="benefit-card">
-                <h3>Ambiente de Trabajo</h3>
-                <p>Colaborativo y dinámico, donde la creatividad es esencial.</p>
-            </div>
-            <div class="benefit-card">
-                <h3>Flexibilidad</h3>
-                <p>Equilibrio entre trabajo y vida personal.</p>
-            </div>
-            <div class="benefit-card">
-                <h3>Proyectos Emocionantes</h3>
-                <p>Oportunidades para crear en un ambiente desafiante y creativo.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seccion de Empleos -->
-    <section class="vacancies-section">
-        <h2>Vacantes Disponibles</h2>
-        <div class="vacancies-container">
-            <!-- Objeto de Prueba -->
-            <div class="vacancy-card" onclick="openVacancyDetail(this)">
-                <h3>Desarrollador de Juegos</h3>
-                <img src="../imagenes/developer.jpeg" alt="Thumbnail de Vacante" class="vacancy-thumbnail">
-                <p>Únete a nuestro equipo como Desarrollador de Juegos y ayuda a crear experiencias únicas.</p>
-                <ul class="vacancy-requirements">
-                    <li>Experiencia en Unity</li>
-                    <li>Conocimiento de C#</li>
-                </ul>
-            </div>
-            <!-- Objeto de Prueba -->
-            <div class="vacancy-card" onclick="openVacancyDetail(this)">
-                <h3>Artista 3D</h3>
-                <img src="../imagenes/3dartist.jpeg" alt="Thumbnail de Vacante" class="vacancy-thumbnail">
-                <p>Buscamos un Artista 3D para diseñar personajes y escenarios para juegos.</p>
-                <ul class="vacancy-requirements">
-                    <li>Conocimiento en modelado 3D</li>
-                    <li>Manejo de Blender o Maya</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Ventana de detalle de empleo -->
-    <div class="vacancy-modal" id="vacancyModal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeVacancyDetail()">&times;</span>
-            <h3 id="modal-title"></h3>
-            <img id="modal-thumbnail" alt="Vacancy Thumbnail">
-            <p id="modal-description"></p>
-            <ul id="modal-requirements"></ul>
-            <button id="apply-button" onclick="redirectToApply()">Aplicar</button>
-        </div>
+    <!-- Banner -->
+    <div class="banner">
+        <h1>Agregar Vacante</h1>
     </div>
 
+    <!-- Formulario de vacante -->
+    <div class="vacancy-form-container">
+        <form id="vacancyForm">
+            <label for="titulo">Título</label>
+            <input type="text" id="titulo" name="titulo" required>
+
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+
+            <label for="remuneracion">Remuneración</label>
+            <input type="text" id="remuneracion" name="remuneracion" required>
+
+            <label for="departamento">Departamento</label>
+            <input type="text" id="departamento" name="departamento" required>
+
+            <label for="ubicacion">Ubicación</label>
+            <input type="text" id="ubicacion" name="ubicacion" required>
+
+            <label for="imageSelect">Imagen</label>
+            <select id="imageSelect" name="imageSelect" required>
+                <option value="" data-image="">Seleccione una imagen</option>
+                <option value="image1.png" data-image="../Imagenes/developer2.jpeg">Artista 3D</option>
+                <option value="image2.png" data-image="../Imagenes/developer.jpeg">Desarrollador 1</option>
+                <option value="image3.png" data-image="../Imagenes/3dartist.jpeg">Desarrollador 2</option>
+            </select>
+
+            <button type="submit">Agregar Vacante</button>
+        </form>
+    </div>
+
+    <!-- Vista Previa/Thumbnail -->
+    <div id="thumbnailContainer">
+        <img id="thumbnail" src="" alt="Vista Previa de Imagen">
+    </div>
 
     <div class="toast" id="toastMessage"></div>
-
     <script src="../javascript/menu.js"></script>
     <script src="../javascript/imageMenu.js"></script>
-    <script src="../javascript/benefitsScript.js"></script>
+    <script src="../javascript/upload_vacancy.js"></script>
+
 
     <footer>
         <div class="footer">
@@ -152,7 +116,6 @@
             </div>
         </div>
     </footer>
-
 </body>
 
 </html>
