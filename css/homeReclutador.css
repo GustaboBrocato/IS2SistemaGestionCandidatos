@@ -1,0 +1,162 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Envoltura Contenido Principal */
+.main-content {
+    flex: 1; /* Para que tome el espacio que sobre */
+    display: flex;
+    justify-content: center;
+}
+
+/* Contenedor del Panel */
+.dashboard-container {
+    width: 100%;
+    max-width: 2600px;
+    background-color: rgba(7, 52, 94, 1);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+/* Titulo de Panel */
+.dashboard-container h1 {
+    font-size: 3vw;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 0 rgba(225, 76, 7, 0.7), -2px 0 rgba(225, 76, 7, 0.4), 0 2px rgba(225, 76, 7, 0.7), 0 -2px rgba(225, 76, 7, 0.4);
+    color: whitesmoke;
+    border-bottom: solid rgba(225, 76, 7, 1);
+    border-top: none;
+    background-color: transparent;
+    position: relative;
+    z-index: 0;
+}
+
+.dashboard-container h1::before {
+    content: '';
+    background-image: url(../imagenes/gaming2.png);
+    background-size:auto;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+/* Secciones de Dashboard/Panel */
+.dashboard-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* Tarjetas del Panel */
+.dashboard-card {
+    background-color: rgba(255,255,255,0.8);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-card h2 {
+    font-size: 1.3vw;
+    color: black;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-card p {
+    font-size: 0.9vw;
+    margin-bottom: 1rem;
+    color: black;
+}
+
+.dashboard-card a.dashboard-link {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    background-color: rgba(225, 76, 7, 1);
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.dashboard-card a.dashboard-link:hover {
+    background-color: rgba(176, 23, 31, 1);
+}
+
+/* Effecto para las tarjetas */
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Pantallas de Telefono */
+@media (max-width: 600px) {
+    .dashboard-container h1 {
+        font-size: 6vw;
+    }
+
+    .dashboard-card h2 {
+        font-size: 5vw;
+    }
+
+    .dashboard-card p {
+        font-size: 3vw;
+    }
+
+    .dashboard-card a.dashboard-link {
+        font-size: 3vw;
+    }
+}
+
+/* Pantallas de Tablet (768 x 1024 ipad)/(800 x 1280 android)*/
+@media (min-width: 601px) and (max-width: 900px) {
+    .dashboard-container h1 {
+        font-size: 4.5vw;
+    }
+
+    .dashboard-card h2 {
+        font-size: 2.5vw;
+    }
+
+    .dashboard-card p {
+        font-size: 1.7vw;
+    }
+
+    .dashboard-section {
+        margin-top: 5vh;
+        margin-bottom: 20px;
+    }
+}
+
+/* Pantallas para Laptops pequeñas (1024 x 768)*/
+@media (min-width: 901px) and (max-width: 1200px) {
+    .dashboard-container h1 {
+        font-size: 4vw;
+    }
+
+    .dashboard-section {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .dashboard-card h2 {
+        font-size: 2.5vw;
+    }
+
+    .dashboard-card p {
+        font-size: 1.5vw;
+    }
+}

@@ -16,12 +16,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../Imagenes/faviconit/favicon-60.png">
-    <link rel="stylesheet" type="text/css" href="../css/agregarVacante.css">
+    <link rel="stylesheet" type="text/css" href="../css/homeReclutador.css">
     <link rel="stylesheet" type="text/css" href="../css/cssPrincipal.css">
 </head>
 
 <body>
-    <!--Menu-->
+    <!-- Menu -->
     <div class="menu" style="border-bottom: solid rgba(225,76,7, 1);">
         <img src="../Imagenes/gaming_plus_logo.png">
         <ul class="menu">
@@ -55,57 +55,49 @@
         </ul>
     </div>
 
-    <!-- Envoltura para organizar mejor -->
     <main class="main-content">
-
-        <!-- Banner -->
-        <div class="banner">
-            <h1>Agregar Vacante</h1>
+        <!-- Dashboard/Panel de Reclutador -->
+        <div class="dashboard-container">
+            <h1>Panel de Reclutador</h1>
+            <div class="dashboard-section">
+                <div class="dashboard-card">
+                    <h2>Perfil</h2>
+                    <p>Accede y edita tu información de perfil.</p>
+                    <a href="profile.html" class="dashboard-link">Ir a Perfil</a>
+                </div>
+                <div class="dashboard-card">
+                    <h2>Agregar Nueva Vacante</h2>
+                    <p>Crea y publica una nueva vacante.</p>
+                    <a href="agregarVacante.html" class="dashboard-link">Agregar Vacante</a>
+                </div>
+                <div class="dashboard-card">
+                    <h2>Aplicaciones</h2>
+                    <p>Ver y gestionar solicitudes de candidatos.</p>
+                    <a href="applications.html" class="dashboard-link">Ver Aplicaciones</a>
+                </div>
+                <div class="dashboard-card">
+                    <h2>Evaluaciones</h2>
+                    <p>Rastrear evaluaciones de candidatos.</p>
+                    <a href="evaluations.html" class="dashboard-link">Ver Evaluaciones</a>
+                </div>
+                <div class="dashboard-card">
+                    <h2>Entrevistas</h2>
+                    <p>Planificar y gestionar entrevistas.</p>
+                    <a href="interviews.html" class="dashboard-link">Administrar Entrevistas</a>
+                </div>
+                <div class="dashboard-card">
+                    <h2>Estadísticas</h2>
+                    <p>Revisar estadísticas de contratación.</p>
+                    <a href="statistics.html" class="dashboard-link">Ver Estadísticas</a>
+                </div>
+                <div class="dashboard-card">
+                    <h2>Buscar Candidatos</h2>
+                    <p>Buscar candidatos en la base de datos.</p>
+                    <a href="search.html" class="dashboard-link">Buscar Candidatos</a>
+                </div>
+            </div>
         </div>
-
-        <!-- Formulario de vacante -->
-        <div class="vacancy-form-container">
-            <form id="vacancyForm">
-                <label for="titulo">Título</label>
-                <input type="text" id="titulo" name="titulo" required>
-
-                <label for="descripcion">Descripción</label>
-                <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
-
-                <label for="remuneracion">Remuneración</label>
-                <input type="text" id="remuneracion" name="remuneracion" required>
-
-                <label for="departamento">Departamento</label>
-                <input type="text" id="departamento" name="departamento" required>
-
-                <label for="ubicacion">Ubicación</label>
-                <input type="text" id="ubicacion" name="ubicacion" required>
-
-                <label for="imageSelect">Imagen</label>
-                <select id="imageSelect" name="imageSelect" required>
-                    <option value="" data-image="">Seleccione una imagen</option>
-                    <option value="image1.png" data-image="../Imagenes/developer2.jpeg">Artista 3D</option>
-                    <option value="image2.png" data-image="../Imagenes/developer.jpeg">Desarrollador 1</option>
-                    <option value="image3.png" data-image="../Imagenes/3dartist.jpeg">Desarrollador 2</option>
-                </select>
-
-                <button type="submit">Agregar Vacante</button>
-            </form>
-        </div>
-
-        <!-- Vista Previa/Thumbnail -->
-        <div id="thumbnailContainer">
-            <img id="thumbnail" src="" alt="Vista Previa de Imagen">
-        </div>
-
     </main>
-
-
-
-    <div class="toast" id="toastMessage"></div>
-    <script src="../javascript/menu.js"></script>
-    <script src="../javascript/imageMenu.js"></script>
-    <script src="../javascript/upload_vacancy.js"></script>
 
 
     <footer>

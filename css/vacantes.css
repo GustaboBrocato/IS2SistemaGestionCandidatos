@@ -221,7 +221,7 @@ body {
     cursor: pointer;
 }
 
-/* Responsivo */
+/* Pantallas de Telefono */
 @media (max-width: 600px) {
 
     .banner {
@@ -278,5 +278,26 @@ body {
 
     .vacancies-section h2 {
         font-size: 6vw;
+    }
+}
+
+/* Pantallas de Tablet (768 x 1024 ipad)/(800 x 1280 android)*/
+@media (min-width: 601px) and (max-width: 900px) {
+    .banner-content h1 {
+        font-size: 3.3vw;
+    }
+
+    .banner-content p {
+        padding-top: 10px;
+        font-size: 1.8vw;
+        text-align: center;
+    }
+
+    .benefits-section h2 {
+        font-size: 3.3vw;
+    }
+
+    .vacancies-section h2 {
+        font-size: 3.3vw;
     }
 }
