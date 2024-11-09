@@ -2,21 +2,21 @@
 <html lang="en">
 
 <head>
-    <title>Contratación de Talento - Gaming Plus</title>
+    <title>Perfil del Reclutador</title>
     <meta charset="UTF-8">
     <meta name="Description"
         content="Proyecto para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos para Recursos Humanos.">
     <meta name="Author"
         content="Gustavo Brocato #202010030250, Enil Lopez Cruz #201610070128, Sarahy Espinal Colindres #202120060225, Jair Jared Duron Hernandez #201910060039">
     <meta name="keyword" content="HR, Gestion Candidatos, Recursos Humanos, UTH, Ingenieria Software">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../Imagenes/faviconit/favicon-60.png">
-    <link rel="stylesheet" type="text/css" href="../css/paginaPrincipal.css">
+    <link rel="stylesheet" type="text/css" href="../css/perfilReclutador.css">
     <link rel="stylesheet" type="text/css" href="../css/cssPrincipal.css">
 </head>
 
@@ -52,40 +52,46 @@
         </ul>
     </div>
 
-    <div class="filler">
-        <h2>Únete a Nuestro Equipo de Gaming Plus</h2>
-    </div>
-
-    <div class="banner">
-        <img src="../Imagenes/bannerhijo.png">
-        <div class="bannerHijo">
-            <h2>Construye el Futuro de los Videojuegos</h2>
-            <p>En nuestra empresa, estamos buscando a los mejores talentos para unirse a nuestro equipo creativo y apasionado. Si eres un desarrollador, artista o diseñador con ganas de innovar y llevar los videojuegos al siguiente nivel, ¡este es tu lugar!</p>
-            <p>Ofrecemos un ambiente de trabajo dinámico, proyectos emocionantes y oportunidades de crecimiento profesional. No pierdas la oportunidad de ser parte de nuestra misión de crear experiencias de juego inolvidables.</p>
+    <!-- Perfil de Reclutador -->
+    <main class="main-content">
+        <div class="profile-container">
+            <div class="profile-card">
+                <div class="profile-picture-container">
+                    <img id="recruiterProfilePicture" src="../imagenes/Default_Profile.png" alt="Recruiter Profile Picture">
+                    <button id="changePictureButton" title="Cambiar Foto">
+                        <img src="../imagenes/cambiarImagen.png" alt="Edit Icon">
+                    </button>
+                    <input type="file" id="uploadPictureInput" accept="image/*" style="display:none;">
+                </div>
+                <div class="profile-info">
+                    <h2 id="recruiterName">Nombre del Reclutador</h2>
+                    <p id="employeeId">ID de Empleado: #12345</p>
+                    <div class="profile-email">
+                        <p id="recruiterEmail">Correo: recruiter@example.com</p>
+                        <button id="editEmailButton" class="btn-small">Editar Correo</button>
+                    </div>
+                    <button id="changePasswordButton" class="btn-primary">Cambiar Contraseña</button>
+                </div>
+            </div>
         </div>
-        <img src="../Imagenes/fondobannerhijo.png">
-    </div>
+    </main>
 
     <div class="toast" id="toastMessage"></div>
-
     <script src="../javascript/menu.js"></script>
+    <script src="../javascript/upload_image.js"></script>
+    <script src="../javascript/perfilUsuario.js"></script>
 
+    <!-- Footer -->
     <footer>
         <div class="footer">
             <div class="footerHijo">
-                <p>
-                    Diseñado por el grupo #1 de la clase Ingeniería de Software 2.
-
-                </p>
+                <p>Diseñado por el grupo #1 de la clase Ingeniería de Software 2.</p>
                 <img src="../Imagenes/Logo_UTH_2009.png">
-                <p>
-                    Proyecto Estudiantil para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos
-                    para Recursos Humanos.
-                </p>
+                <p>Proyecto Estudiantil para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos para
+                    Recursos Humanos.</p>
             </div>
         </div>
     </footer>
-
 </body>
 
 </html>

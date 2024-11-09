@@ -154,7 +154,7 @@
     font-family: 'Playfair Display', serif;
     position: relative;
     text-decoration: none;
-    color: black;
+    color: whitesmoke;
     font-size: 1vw;
     font-weight: bold;
     text-align: center;
@@ -165,7 +165,7 @@
     color: whitesmoke;
     padding: 1vh 0.5vw 1vh 0.5vw;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    background-color: rgba(176, 23, 31, 0.7);
+    background-color: rgba(7, 52, 94, 0.7);
 }
 
 /* Show the dropdown when the profile picture is hovered */

@@ -1,6 +1,16 @@
 /*CSS Universal*/
-body {
+html, body {
     background-color: rgba(7, 52, 94, 1);
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    height: 100%;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 /*CSS Banner*/
@@ -13,9 +23,21 @@ body {
     margin: auto;
     background-color: rgba(7,52,94, 1);
     align-items: center;
-    background-image: url(../Imagenes/gaming2.png);
-    background-position: center;
-    background-size:contain;
+    position: relative;
+    z-index: 0;
+}
+
+.banner::before {
+    content: '';
+    background-image: url(../imagenes/gaming2.png);
+    background-size:auto;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
 }
 
 .banner img{
@@ -42,8 +64,6 @@ body {
     text-align: center;
     text-shadow: 2px 0 rgba(225, 76, 7, 0.7), -2px 0 rgba(225, 76, 7, 0.4), 0 2px rgba(225, 76, 7, 0.7), 0 -2px rgba(225, 76, 7, 0.4);
     color: whitesmoke;
-    background-color: black;
-    background: rgba(0,0,0,0.2);
 }
 
 
@@ -119,7 +139,7 @@ body {
     right: 10px;
 }
 
-
+/*Pantallas de Telefono*/
 @media all and (max-width:600px) {
 
 
@@ -146,5 +166,35 @@ body {
 
     .carousel-item img {
         max-width: 70%;
+    }
+}
+
+/* Pantallas de Tablet (768 x 1024 ipad)/(800 x 1280 android)*/
+@media (min-width: 601px) and (max-width: 900px) {
+    .carousel-item h3 {
+        font-size: 6vw;
+    }
+
+    .carousel-item .description {
+        font-size: 2.5vw;
+    }
+
+    .banner h2 {
+        font-size: 6vw;
+    }
+}
+
+/* Pantallas para Laptops pequeñas (1024 x 768)*/
+@media (min-width: 901px) and (max-width: 1200px) {
+    .carousel-item h3 {
+        font-size: 6vw;
+    }
+
+    .carousel-item .description {
+        font-size: 1.8vw;
+    }
+
+    .banner img {
+        max-width: 40%;
     }
 }

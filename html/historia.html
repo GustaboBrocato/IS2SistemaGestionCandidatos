@@ -19,28 +19,26 @@
     <link rel="stylesheet" type="text/css" href="../css/cssPrincipal.css">
     <link rel="stylesheet" href="../css/historia.css">
 
-    
+
 </head>
 
 <body>
-    <div class="menu">
+    <!-- Menu -->
+    <div class="menu" style="border-bottom: solid rgba(225,76,7, 1);">
         <img src="../Imagenes/gaming_plus_logo.png">
         <ul class="menu">
-            <li><a href="index.html" target="_self">Inicio</a></li>
-            <li><a href="historia.html" target="_self">Historia</a></li> 
-            <li><a href="proyectos.html" target="_self">Portafolio</a></li>
-            <li><a href="vacantes.html" target="_self">Vacantes</a></li>
+            <li><a id="navHome" href="index.html" target="_self">Inicio</a></li>
+            <li><a id="navHistoria" href="historia.html" target="_self">Historia</a></li>
+            <li><a id="navProyectos" href="proyectos.html" target="_self">Portafolio</a></li>
+            <li><a id="navVacantes" href="vacantes.html" target="_self">Empleos</a></li>
             <li id="userDropdown" style="display: none;">
                 <a href="#" id="profileDropdownLink">
                     <div class="profile-pictureMenu">
-                        <img id="profilePicture" src="http://127.0.0.1:3001/uploads/Default_Profile.png"
-                            alt="Profile Picture">
+                        <img id="profilePicture" src="../imagenes/Default_Profile.png" alt="Profile Picture">
                         <figcaption id="caption" name="caption"></figcaption>
                         <div class="dropdown-menu">
                             <ul class="dropDownMenu" id="profileDropdown">
-                                <li><a href="profile.html">Profile</a></li>
-                                <li id="itemAdmin"><a href="settings.html" id="adminButton">Settings</a></li>
-                                <li id="itemForum"><a href="forum.html" id="forumButton">Forum</a></li>
+                                <li><a id="navPerfil" href="profile.html">Perfil</a></li>
                                 <li><a href="#" id="logoutButton">Logout</a></li>
                             </ul>
                         </div>
@@ -56,7 +54,7 @@
         </ul>
     </div>
 
-    <div class = "banner">
+    <div class="banner">
         <!--<div class = "bannerHijo">
         <h2></h2>
         </div>
@@ -67,23 +65,44 @@
     </div>
 
     <div class="contenedor">
-        <center>
-            <img src="../Imagenes/boton-de-encendido (1).png">
+
+        <center><img src="../Imagenes/boton-de-encendido (1).png">
             <h2>NUESTRA HISTORIA</h2>
-        </center> 
-    
+        </center>
+
         <p>
             Gaming Plus nació de la pasión y determinación de un grupo de estudiantes en Honduras.
             A pesar de tener conocimientos limitados en desarrollo de videojuegos, compartían un
             sueño común: crear algo especial que pudiera entretener a las personas y mostrar lo
-            que podían lograr. Con ganas de superarse y aprender.
-            
-            <br>El inicio no fue sencillo. Cada miembro del equipo trabajaba desde su habitación, compartiendo 
-            ideas y habilidades. Comenzaron con lo básico: conceptos simples, diseños rudimentarios 
-            y mecánicas básicas. Sus primeras reuniones consistían en aprender sobre tecnología y diseño, 
+            que podían lograr. Con ganas de superarse y aprender.<br>
+
+            <br>El inicio no fue sencillo. Cada miembro del equipo trabajaba desde su habitación, compartiendo
+            ideas y habilidades. Comenzaron con lo básico: conceptos simples, diseños rudimentarios
+            y mecánicas básicas. Sus primeras reuniones consistían en aprender sobre tecnología y diseño,
             mientras intentaban darle forma a lo que sería su primer proyecto. No importaba que tuvieran pocas
-            herramientas; cada miembro aportaba lo mejor de sí, y en esas sesiones surgió un espíritu 
+            herramientas; cada miembro aportaba lo mejor de sí, y en esas sesiones surgió un espíritu
             de colaboración y creatividad que sería el alma de la empresa.<br>
+
+            <br>Con el tiempo, el equipo mejoró sus habilidades y lanzó su primer juego, un sencillo pero divertido
+            juego móvil casual que rápidamente capturó la atención de muchos jugadores.<br>
+
+            <br>Hoy, Gaming Plus sigue siendo un estudio joven, pero con grandes sueños y un equipo que ha
+            crecido junto con su conocimiento y experiencia. Su misión sigue siendo la misma: crear videojuegos
+            casuales accesibles y divertidos que permitan a las personas relajarse y disfrutar en cualquier momento.
+            Aunque su viaje apenas comienza, el espíritu de superación y creatividad que los formó
+            sigue guiando cada proyecto que emprenden. Nuestro equipo se rige por valores sólidos como la
+            creatividad, la colaboración, y el respeto hacia el jugador.<br>
+
+            <br>Creemos en la importancia de ofrecer contenido accesible y de alta calidad, que refleje nuestra
+            dedicación a la innovación. Cada miembro de Gaming Plus comparte el deseo de desafiarse a sí
+            mismo, siempre buscando maneras de integrar nuevas tecnologías y mecánicas en nuestros juegos
+            para sorprender y deleitar a nuestra comunidad. Aunque nuestro viaje apenas comienza, el espíritu
+            de superación y creatividad que nos formó sigue guiando cada proyecto que
+            emprendemos. Nuestro objetivo a futuro es expandir nuestras fronteras, explorando nuevos géneros,
+            plataformas
+            y colaboraciones globales. Creemos firmemente que, con dedicación, esfuerzo y una visión clara,
+            podremos llevar Gaming Plus a un nuevo nivel, posicionándonos como un referente en la industria
+            de los videojuegos casuales.<br>
 
             <br>Con el tiempo, el equipo mejoró sus habilidades y lanzó su primer juego, un sencillo pero divertido 
             juego móvil casual que rápidamente capturó la atención de muchos jugadores.<br>
@@ -132,10 +151,10 @@
     
 
     <footer>
-        <div class = "footer">
-            <div class = "footerHijo">
+        <div class="footer">
+            <div class="footerHijo">
                 <p>
-                    Diseñado por el grupo #1  de la clase Ingeniería de Software 2.
+                    Diseñado por el grupo #1 de la clase Ingeniería de Software 2.
                 </p>
 
                 <img src="../Imagenes/Logo_UTH_2009.png">
