@@ -125,3 +125,111 @@ html, body {
 .btn-primary:hover, .btn-small:hover {
     background-color: #c33b05;
 }
+
+/* CSS para Popups*/
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    max-width: 90%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Overlay Background */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 999;
+}
+
+/* Popup Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Popup Title */
+.popup h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* Input Fields */
+.popup input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Buttons */
+.popup button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    transition: background-color 0.2s;
+}
+
+/* Button Styles */
+#verifyPasswordButton,
+#sendVerificationCodeButton,
+#confirmEmailButton {
+    background-color: #3498db;
+    color: #fff;
+}
+
+#verifyPasswordButton:hover,
+#sendVerificationCodeButton:hover,
+#confirmEmailButton:hover {
+    background-color: #2980b9;
+}
+
+/* Cancel Button Styles */
+#closePasswordPopup,
+#closeEmailPopup,
+#closeCodePopup {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+#closePasswordPopup:hover,
+#closeEmailPopup:hover,
+#closeCodePopup:hover {
+    background-color: #c0392b;
+}
+
+/* Error Message */
+.error-message {
+    color: #e74c3c;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+

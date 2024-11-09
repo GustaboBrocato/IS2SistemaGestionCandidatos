@@ -57,7 +57,8 @@
         <div class="profile-container">
             <div class="profile-card">
                 <div class="profile-picture-container">
-                    <img id="recruiterProfilePicture" src="../imagenes/Default_Profile.png" alt="Recruiter Profile Picture">
+                    <img id="recruiterProfilePicture" src="../imagenes/Default_Profile.png"
+                        alt="Recruiter Profile Picture">
                     <button id="changePictureButton" title="Cambiar Foto">
                         <img src="../imagenes/cambiarImagen.png" alt="Edit Icon">
                     </button>
@@ -75,6 +76,30 @@
             </div>
         </div>
     </main>
+
+    <!-- Popup para verificar el password -->
+    <div id="passwordPopup" class="popup">
+        <h3>Verificación de Contraseña</h3>
+        <input type="password" id="passwordInput" placeholder="Ingrese su contraseña" required>
+        <button id="verifyPasswordButton">Verificar</button>
+        <button id="closePasswordPopup">Cancelar</button>
+    </div>
+
+    <!-- Popup para ingresar el nuevo correo electronico -->
+    <div id="emailPopup" class="popup">
+        <h3>Nuevo Correo Electrónico</h3>
+        <input type="email" id="newEmailInput" placeholder="Ingrese el nuevo correo" required>
+        <button id="sendVerificationCodeButton">Enviar Código</button>
+        <button id="closeEmailPopup">Cancelar</button>
+    </div>
+
+    <!-- Popup para ingresar el codigo de verificacion -->
+    <div id="codePopup" class="popup">
+        <h3>Ingrese el Código de Verificación</h3>
+        <input type="text" id="verificationCodeInput" placeholder="Código de Verificación" required>
+        <button id="confirmEmailButton">Confirmar</button>
+        <button id="closeCodePopup">Cancelar</button>
+    </div>
 
     <div class="toast" id="toastMessage"></div>
     <script src="../javascript/menu.js"></script>
