@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>AJUSTES</title>
+    <meta charset="UTF-8">
+    <meta name="Description"
+        content="Proyecto para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos para Recursos Humanos.">
+    <meta name="Author"
+        content="Gustavo Brocato #202010030250, Enil Lopez Cruz #201610070128, Sarahy Espinal Colindres #202120060225, Jair Jared Duron Hernandez #201910060039">
+    <meta name="keyword" content="HR, Gestion Candidatos, Recursos Humanos, UTH, Ingenieria Software">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../Imagenes/faviconit/favicon-60.png">
+    <link rel="stylesheet" type="text/css" href="../css/cssPrincipal.css">
+    <link rel="stylesheet" href="../css/ajustes.css">
+    
+
+</head>
+<body>
+
+    <div class="menu">
+        <img src="../Imagenes/gaming_plus_logo.png">
+        <ul class="menu">
+            <li><a href="index.html" target="_self">Inicio</a></li>
+            <li><a href="historia.html" target="_self">Historia</a></li> 
+            <li><a href="proyectos.html" target="_self">Portafolio</a></li>
+            <li><a href="vacantes.html" target="_self">Vacantes</a></li>
+            <li id="userDropdown" style="display: none;">
+                <a href="#" id="profileDropdownLink">
+                    <div class="profile-pictureMenu">
+                        <img id="profilePicture" src="http://127.0.0.1:3001/uploads/Default_Profile.png"
+                            alt="Profile Picture">
+                        <figcaption id="caption" name="caption"></figcaption>
+                        <div class="dropdown-menu">
+                            <ul class="dropDownMenu" id="profileDropdown">
+                                <li><a href="profile.html">Profile</a></li>
+                                <li id="itemAdmin"><a href="settings.html" id="adminButton">Settings</a></li>
+                                <li id="itemForum"><a href="forum.html" id="forumButton">Forum</a></li>
+                                <li><a href="#" id="logoutButton">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li id="loginSignupButtons">
+                <a href="login.html"><input name="botLoginMenu" id="botLoginMenu" type="button" title="LOGIN"
+                        value="LOGIN"></a>
+                <a href="signup.html"><input name="botSignupMenu" id="botSignupMenu" type="button" title="SIGNUP"
+                        value="SIGNUP"></a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="settings-container">
+        <div class="settings-box" id="settings-box">
+            <center>
+                <img src="../Imagenes/ajuste.png">
+                <h2>AJUSTES</h2>
+            </center> 
+            <ul>
+                <li>
+                    <label for="create-btn">Crear Rol</label>
+                    <button class="change-setting-btn" id="create-btn">Crear</button>
+                </li>
+                <!---<li>
+                    <label for="manage-btn">Administrar Roles</label>
+                    <button class="change-setting-btn" id="manage-btn">Adminitrar</button>
+                </li>-->
+                <li>
+                    <label for="update-btn">Adminitrar Usuario</label>
+                    <button class="change-setting-btn" id="update-btn">Administrar</button>
+                </li>
+                <!-- Add more settings tags and buttons here as needed -->
+            </ul>
+        </div>
+
+
+
+    <div class="modalContainer-createRole" id="modalContainer-createRole">
+        <div class="modal-content">
+            <!-- Form to create a new role -->
+            <h2>Crear Cuenta de Reclutador</h2>
+            <form id="createRoleForm">
+                <label for="roleName">ID de Empleado:</label>
+                <input type="text" id="IdEmpleador" required autocomplete="off" autofocus>
+
+                <label for="permisoMaster">Nombre de Empleado:</label>
+                <input type="text" id="NombreEmpleado" required autocomplete="off" autofocus>
+
+                <label for="permisoModerator">Correo:</label>
+                <input type="text" id="Correo" required autocomplete="off" autofocus>
+
+                <label for="permisoComment">Nombre Usuario:</label>
+                <input type="text" id="NombreUsuario" required autocomplete="off" autofocus>
+
+                <button type="submit" name="createRole" id="createRoleBtn" class="brown-btn">Crear Rol</button>
+
+            </form>
+            <button id="closeModalBtn" class="close-modal-btn">Cerrar</button>
+        </div>
+    </div>
+
+    
+
+
+
+        <script src="../javascript/ajustes.js"></script>
+</body>
+</html>
