@@ -1,0 +1,162 @@
+
+.settings-container {
+    background-image: url(../Imagenes/AjustesF.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+
+.settings-box {
+    background-color: rgba(88, 85, 85, 0.6);
+    
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    max-width: 400px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.settings-box button {
+    padding: 1vh 2vw;
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+    margin-left: 1.5vw;
+    background-color: rgb(28, 5, 92);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 0.8vw;
+    cursor: pointer;
+}
+
+.settings-box button:hover {
+    background-color: rgba(110, 90, 82, 1);
+    cursor: pointer;
+}
+
+/* Ajustar la visibilidad y el fondo del modal */
+.modalContainer-createRole,
+.modalContainer-roleTable,
+.modalContainer-userTable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 999;
+    visibility: hidden;
+}
+
+/* Mostrar modal */
+.modalContainer-createRole.show-modal,
+.modalContainer-roleTable.show-modal,
+.modalContainer-userTable.show-modal {
+    visibility: visible;
+}
+
+/* Estilo del contenido dentro del modal */
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.9); 
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 50%; 
+    max-width: 400px;  
+    text-align: left; 
+    display: flex;
+    flex-direction: column;
+}
+
+/* Etiquetas de los campos */
+.modal-content label {
+    font-size: 12px;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+/* Campos de entrada */
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+/* Botón de submit */
+.modal-content button[type="submit"] {
+    background-color: rgb(28, 5, 92);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: #073261; 
+}
+
+/* Botón de cerrar */
+.close-modal-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+
+
+/* Estilo de las imágenes en el modal */
+img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+}
+
+/* Botón de cerrar modal */
+.close-modal-btn {
+    background-color: rgba(176, 23, 31, 0.7);  
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* Efecto hover sobre el botón de cerrar */
+.close-modal-btn:hover {
+    background-color: rgba(176, 23, 31, 1);  
+}
+
+
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+
+
+h2 {
+    color: white;
+    font-size: 3em;
+    text-shadow: 2px 0 rgba(225, 76, 7, 0.7);
+}
+
