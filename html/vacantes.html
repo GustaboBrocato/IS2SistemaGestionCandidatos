@@ -21,24 +21,22 @@
 </head>
 
 <body>
+    <!-- Menu -->
     <div class="menu" style="border-bottom: solid rgba(225,76,7, 1);">
         <img src="../Imagenes/gaming_plus_logo.png">
         <ul class="menu">
-            <li><a href="index.html" target="_self">Inicio</a></li>
-            <li><a href="historia.html" target="_self">Historia</a></li>
-            <li><a href="proyectos.html" target="_self">Portafolio</a></li>
-            <li><a href="vacantes.html" target="_self">Empleos</a></li>
+            <li><a id="navHome" href="index.html" target="_self">Inicio</a></li>
+            <li><a id="navHistoria" href="historia.html" target="_self">Historia</a></li>
+            <li><a id="navProyectos" href="proyectos.html" target="_self">Portafolio</a></li>
+            <li><a id="navVacantes" href="vacantes.html" target="_self">Empleos</a></li>
             <li id="userDropdown" style="display: none;">
                 <a href="#" id="profileDropdownLink">
                     <div class="profile-pictureMenu">
-                        <img id="profilePicture" src="http://127.0.0.1:3001/uploads/Default_Profile.png"
-                            alt="Profile Picture">
+                        <img id="profilePicture" src="../imagenes/Default_Profile.png" alt="Profile Picture">
                         <figcaption id="caption" name="caption"></figcaption>
                         <div class="dropdown-menu">
                             <ul class="dropDownMenu" id="profileDropdown">
-                                <li><a href="profile.html">Profile</a></li>
-                                <li id="itemAdmin"><a href="settings.html" id="adminButton">Settings</a></li>
-                                <li id="itemForum"><a href="forum.html" id="forumButton">Forum</a></li>
+                                <li><a id="navPerfil" href="profile.html">Perfil</a></li>
                                 <li><a href="#" id="logoutButton">Logout</a></li>
                             </ul>
                         </div>
