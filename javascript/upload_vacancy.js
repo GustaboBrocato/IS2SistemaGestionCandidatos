@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const vacancyForm = document.getElementById('vacancyForm');
+    // Obtener informacion de perfil de usuario
+    const token = localStorage.getItem('token');
+    const form = document.getElementById('vacancyForm');
     const imageSelect = document.getElementById('imageSelect');
     const thumbnail = document.getElementById('thumbnail');
 
-    // Display image preview based on selected option
+    // Mostrar la imagen seleccionada
     imageSelect.addEventListener('change', () => {
         const selectedOption = imageSelect.options[imageSelect.selectedIndex];
         const imageUrl = selectedOption.getAttribute('data-image');
@@ -16,32 +18,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    vacancyForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+    // Funcion para enviar el formulario
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
 
         // Collect form data
-        const title = document.getElementById('titulo').value.trim();
-        const description = document.getElementById('descripcion').value.trim();
-        const remuneration = document.getElementById('remuneracion').value.trim();
-        const department = document.getElementById('departamento').value.trim();
-        const location = document.getElementById('ubicacion').value.trim();
-        const selectedImage = imageSelect.value.trim();
+        const formData = {
+            titulo: document.getElementById('titulo').value,
+            descripcion: document.getElementById('descripcion').value,
+            remuneracion: document.getElementById('remuneracion').value,
+            departamento: document.getElementById('departamento').value,
+            ubicacion: document.getElementById('ubicacion').value,
+            id_imagen: imageSelect.selectedIndex,
+        };
 
-        // Simple validation
-        if (!title || !description || !remuneration || !department || !location || !selectedImage) {
-            alert('Please fill in all fields.');
-            return;
+        try {
+            const response = await fetch('http://localhost:3000/api/vacancy/add-vacancy', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                alert('Vacante agregada exitosamente');
+                form.reset();
+                thumbnail.src = '';
+            } else {
+                alert(`Error: ${result.message}`);
+            }
+        } catch (error) {
+            console.error('Error al agregar la vacante:', error);
+            alert('Error al agregar la vacante.');
         }
-
-        alert(`Vacancy Uploaded:
-        - Title: ${title}
-        - Description: ${description}
-        - Remuneration: ${remuneration}
-        - Department: ${department}
-        - Location: ${location}
-        - Image: ${selectedImage}`);
-
-        vacancyForm.reset();
-        thumbnail.style.display = 'none'; // Hide thumbnail after reset
     });
 });

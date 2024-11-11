@@ -1,5 +1,6 @@
 /*CSS Universal*/
-html, body {
+html,
+body {
     background-color: rgba(7, 52, 94, 1);
     display: flex;
     flex-direction: column;
@@ -14,14 +15,14 @@ html, body {
 }
 
 /*CSS Banner*/
-.banner{
+.banner {
     display: flex;
     flex-direction: column;
     width: 100%;
     flex-wrap: nowrap;
-    justify-content:center;
+    justify-content: center;
     margin: auto;
-    background-color: rgba(7,52,94, 1);
+    background-color: rgba(7, 52, 94, 1);
     align-items: center;
     position: relative;
     z-index: 0;
@@ -30,7 +31,7 @@ html, body {
 .banner::before {
     content: '';
     background-image: url(../imagenes/gaming2.png);
-    background-size:auto;
+    background-size: auto;
     opacity: 0.7;
     position: absolute;
     top: 0;
@@ -40,14 +41,14 @@ html, body {
     z-index: -1;
 }
 
-.banner img{
+.banner img {
     width: 50%;
     height: auto;
     background-color: transparent;
     margin-top: -40px;
 }
 
-.bannerHijo{
+.bannerHijo {
     width: auto;
     padding-left: 0px;
     padding-right: 0px;
@@ -58,7 +59,7 @@ html, body {
     flex: 1 120px;
 }
 
-.bannerHijo h2{
+.bannerHijo h2 {
     font-size: 4vw;
     font-weight: bold;
     text-align: center;
@@ -69,8 +70,27 @@ html, body {
 
 
 /*CSS Carousel*/
+.main-content {
+    background-color: black;
+    position: relative;
+    z-index: 0;
+}
+
 .carousel-background {
-    background-color: rgba(7, 52, 94, 1);
+    background: none;
+}
+
+.main-content::before {
+    content: '';
+    background-image: url(../imagenes/backgroundPortafolio.jpeg);
+    background-size: contain;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
 }
 
 .carousel-container {
@@ -81,7 +101,7 @@ html, body {
     overflow: hidden;
     border: 2px solid rgba(225, 76, 7, 0.7);
     border-radius: 10px;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .carousel {
@@ -113,7 +133,7 @@ html, body {
 .carousel-item .description {
     display: none;
     margin-top: 10px;
-    color: whitesmoke;
+    color: black;
     font-size: 1vw;
 }
 
@@ -160,7 +180,7 @@ html, body {
         font-size: 5vw;
     }
 
-    .carousel-item .description{
+    .carousel-item .description {
         font-size: 2.5vw;
     }
 

@@ -92,27 +92,8 @@
     <!-- Seccion de Empleos -->
     <section class="vacancies-section">
         <h2>Vacantes Disponibles</h2>
-        <div class="vacancies-container">
-            <!-- Objeto de Prueba -->
-            <div class="vacancy-card" onclick="openVacancyDetail(this)">
-                <h3>Desarrollador de Juegos</h3>
-                <img src="../imagenes/developer.jpeg" alt="Thumbnail de Vacante" class="vacancy-thumbnail">
-                <p>Únete a nuestro equipo como Desarrollador de Juegos y ayuda a crear experiencias únicas.</p>
-                <ul class="vacancy-requirements">
-                    <li>Experiencia en Unity</li>
-                    <li>Conocimiento de C#</li>
-                </ul>
-            </div>
-            <!-- Objeto de Prueba -->
-            <div class="vacancy-card" onclick="openVacancyDetail(this)">
-                <h3>Artista 3D</h3>
-                <img src="../imagenes/3dartist.jpeg" alt="Thumbnail de Vacante" class="vacancy-thumbnail">
-                <p>Buscamos un Artista 3D para diseñar personajes y escenarios para juegos.</p>
-                <ul class="vacancy-requirements">
-                    <li>Conocimiento en modelado 3D</li>
-                    <li>Manejo de Blender o Maya</li>
-                </ul>
-            </div>
+        <div class="vacancies-container" id="vacanciesContainer">
+            <!-- Dynamic Content Will be Rendered Here -->
         </div>
     </section>
 
@@ -123,8 +104,12 @@
             <h3 id="modal-title"></h3>
             <img id="modal-thumbnail" alt="Vacancy Thumbnail">
             <p id="modal-description"></p>
-            <ul id="modal-requirements"></ul>
+            <p><strong>Remuneración:</strong> <span id="modal-remuneracion"></span></p>
+            <p><strong>Departamento:</strong> <span id="modal-departamento"></span></p>
+            <p><strong>Ubicación:</strong> <span id="modal-ubicacion"></span></p>
+            <p><strong>Fecha de Publicación:</strong> <span id="modal-fecha"></span></p>
             <button id="apply-button" onclick="redirectToApply()">Aplicar</button>
+            <button id="remove-button" style="display: none;" onclick="removeListing()">Eliminar Vacante</button>
         </div>
     </div>
 

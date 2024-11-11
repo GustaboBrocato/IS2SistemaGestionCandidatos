@@ -1,5 +1,6 @@
 /*html/body*/
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     display: flex;
@@ -8,7 +9,8 @@ html, body {
 
 /*Envoltura de contenido*/
 .main-content {
-    flex: 1; /* Para que tome el espacio que sobre */
+    flex: 1;
+    /* Para que tome el espacio que sobre */
     display: flex;
     justify-content: center;
     position: relative;
@@ -19,7 +21,7 @@ html, body {
 .main-content::before {
     content: '';
     background-image: url(../imagenes/backgroundRecruiter.jpeg);
-    background-size:cover;
+    background-size: cover;
     opacity: 0.7;
     position: absolute;
     top: 0;
@@ -29,7 +31,7 @@ html, body {
     z-index: -1;
 }
 
-/* Profile Container */
+/* Contenedo de perfil */
 .profile-container {
     display: flex;
     justify-content: center;
@@ -38,19 +40,19 @@ html, body {
     background-color: transparent;
 }
 
-/* Profile Card */
+/* Tarjeta de Perfil */
 .profile-card {
     background: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
+    max-width: 450px;
     width: 100%;
     text-align: center;
     border: 1px solid rgba(225, 76, 7, 1);
 }
 
-/* Profile Picture */
+/* Imagen de perfil */
 .profile-picture-container {
     position: relative;
 }
@@ -59,14 +61,14 @@ html, body {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: 3px solid #e14c07;
+    border: 3px solid rgba(225, 76, 7, 1);
     object-fit: cover;
 }
 
 #changePictureButton {
     position: absolute;
     bottom: 10px;
-    right: 60px;
+    right: 5.5vw;
     background: rgba(225, 76, 7, 1);
     border: none;
     border-radius: 50%;
@@ -103,7 +105,7 @@ html, body {
 .btn-small {
     padding: 5px 10px;
     font-size: 14px;
-    background-color: #e14c07;
+    background-color: rgba(225, 76, 7, 1);
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -115,14 +117,15 @@ html, body {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #e14c07;
+    background-color: rgba(225, 76, 7, 1);
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.btn-primary:hover, .btn-small:hover {
+.btn-primary:hover,
+.btn-small:hover {
     background-color: #c33b05;
 }
 
@@ -161,22 +164,23 @@ html, body {
         opacity: 0;
         transform: translate(-50%, -40%);
     }
+
     to {
         opacity: 1;
         transform: translate(-50%, -50%);
     }
 }
 
-/* Popup Title */
+/* Popup Titulo */
 .popup h3 {
     margin-bottom: 15px;
     font-size: 18px;
     text-align: center;
 }
 
-/* Input Fields */
+/* Campos Input */
 .popup input {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ddd;
@@ -184,7 +188,7 @@ html, body {
     font-size: 14px;
 }
 
-/* Buttons */
+/* Botones */
 .popup button {
     width: 100%;
     padding: 10px;
@@ -197,7 +201,7 @@ html, body {
     transition: background-color 0.2s;
 }
 
-/* Button Styles */
+/* Estilo de botones */
 #verifyPasswordButton,
 #sendVerificationCodeButton,
 #confirmEmailButton {
@@ -211,7 +215,7 @@ html, body {
     background-color: #2980b9;
 }
 
-/* Cancel Button Styles */
+/* Botones para cerrar */
 #closePasswordPopup,
 #closeEmailPopup,
 #closeCodePopup {
@@ -225,7 +229,7 @@ html, body {
     background-color: #c0392b;
 }
 
-/* Error Message */
+/* Mensaje de error */
 .error-message {
     color: #e74c3c;
     font-size: 14px;
@@ -233,3 +237,73 @@ html, body {
     margin-bottom: 10px;
 }
 
+/* Pantallas de Telefono */
+@media (max-width: 600px) {
+
+    .profile-container {
+        padding: 30px;
+    }
+
+    #recruiterProfilePicture {
+        width: 120px;
+        height: 120px;
+    }
+
+    #changePictureButton {
+        right: 12vw;
+    }
+
+    .profile-info p {
+        font-size: 14px;
+    }
+
+    .btn-small {
+        font-size: 10px;
+    }
+
+    .btn-primary {
+        font-size: 14px;
+    }
+}
+
+/* Pantallas de Tablet (768 x 1024 ipad)/(800 x 1280 android)*/
+@media (min-width: 601px) and (max-width: 900px) {
+    .profile-container {
+        padding: 30px;
+    }
+
+    .profile-card {
+        max-width: 600px;
+        width: 100%;
+    }
+
+    #recruiterProfilePicture {
+        width: 150px;
+        height: 150px;
+    }
+
+    #changePictureButton {
+        right: 12vw;
+    }
+
+    .profile-info p {
+        font-size: 20px;
+    }
+
+    .profile-info h2 {
+        font-size: 25px;
+    }
+
+    .btn-small {
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        font-size: 18px;
+    }
+}
+
+/* Pantallas para Laptops pequeñas (1024 x 768)*/
+@media (min-width: 901px) and (max-width: 1200px) {
+
+}
