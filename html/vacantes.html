@@ -103,13 +103,14 @@
             <span class="close-button" onclick="closeVacancyDetail()">&times;</span>
             <h3 id="modal-title"></h3>
             <img id="modal-thumbnail" alt="Vacancy Thumbnail">
-            <p id="modal-description"></p>
-            <p><strong>Remuneración:</strong> <span id="modal-remuneracion"></span></p>
-            <p><strong>Departamento:</strong> <span id="modal-departamento"></span></p>
-            <p><strong>Ubicación:</strong> <span id="modal-ubicacion"></span></p>
-            <p><strong>Fecha de Publicación:</strong> <span id="modal-fecha"></span></p>
+            <p id="modal-description-p"><strong>Descripción:</strong>  <span id="modal-description"></span></p>
+            <p id="modal-remuneracion-p"><strong>Remuneración:</strong> <span id="modal-remuneracion"></span></p>
+            <p id="modal-departamento-p"><strong>Departamento:</strong> <span id="modal-departamento"></span></p>
+            <p id="modal-ubicacion-p"><strong>Ubicación:</strong> <span id="modal-ubicacion"></span></p>
+            <p id="modal-fecha-p"><strong>Fecha de Publicación:</strong> <span id="modal-fecha"></span></p>
             <button id="apply-button" onclick="redirectToApply()">Aplicar</button>
             <button id="remove-button" style="display: none;" onclick="removeListing()">Eliminar Vacante</button>
+            <p id="modal-warning">¡Por favor inicia sesión o inscríbete para poder aplicar a la vacante!</p>
         </div>
     </div>
 
@@ -117,7 +118,6 @@
     <div class="toast" id="toastMessage"></div>
 
     <script src="../javascript/menu.js"></script>
-    <script src="../javascript/imageMenu.js"></script>
     <script src="../javascript/benefitsScript.js"></script>
 
     <footer>

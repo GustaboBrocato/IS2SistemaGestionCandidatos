@@ -11,9 +11,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row; /* Display content in a row */
+    flex-direction: row;
+    /* Display content in a row */
     padding: 40px 10px;
-    text-align: left; /* Align text to the left */
+    text-align: left;
+    /* Align text to the left */
     background-color: rgba(7, 52, 94, 1);
     color: whitesmoke;
     background-image: url(../imagenes/gaming2.png);
@@ -79,7 +81,7 @@ body {
 /* Beneficios */
 .benefits-section {
     padding: 40px 20px;
-    background-color: rgba(7,52,94, 1);
+    background-color: rgba(7, 52, 94, 1);
     border-top: solid rgba(225, 76, 7, 1);
 }
 
@@ -124,8 +126,8 @@ body {
 .vacancies-section::before {
     content: "";
     background-image: url(../imagenes/backgroundVacancies1.jpeg);
-    background-size:contain;
-    background-position:center;
+    background-size: contain;
+    background-position: center;
     opacity: 0.7;
     position: absolute;
     top: 0;
@@ -148,12 +150,13 @@ body {
 
 .vacancies-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 20px;
+    max-width: 2000px;
 }
 
 .vacancy-card {
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -204,15 +207,53 @@ body {
 }
 
 .modal-content {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
     padding: 20px;
     border-radius: 8px;
     max-width: 500px;
     text-align: center;
 }
 
+#modal-title {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.8vw;
+}
+
+#modal-description,
+#modal-description-p {
+    font-size: 1vw;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .modal-content img {
     width: 40%;
+}
+
+#remove-button {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px auto 10px auto;
+    transition: background-color 0.2s;
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+#remove-button:hover {
+    background-color: #c0392b;
+}
+
+#modal-warning {
+    margin-top: 10px;
+    color: rgba(225, 76, 7, 1) !important;
+    font-weight: bolder;
+    font-size: 0.8vw;
 }
 
 .close-button {
@@ -279,6 +320,24 @@ body {
     .vacancies-section h2 {
         font-size: 6vw;
     }
+
+    #modal-title {
+        font-size: 6vw;
+    }
+
+    #modal-description,
+    #modal-description-p {
+        font-size: 4vw;
+        margin-bottom: 20px;
+    }
+
+    #modal-warning {
+        font-size: 4vw;
+    }
+
+    #remove-button {
+        font-size: 14px;
+    }
 }
 
 /* Pantallas de Tablet (768 x 1024 ipad)/(800 x 1280 android)*/
@@ -299,5 +358,51 @@ body {
 
     .vacancies-section h2 {
         font-size: 3.3vw;
+    }
+
+    #modal-title {
+        font-size: 5vw;
+    }
+
+    #modal-description,
+    #modal-description-p,
+    #modal-remuneracion-p,
+    #modal-ubicacion-p,
+    #modal-fecha-p,
+    #modal-departamento-p {
+        font-size: 2.8vw;
+    }
+
+    #modal-warning {
+        font-size: 2.8vw;
+    }
+
+    #remove-button {
+        font-size: 2.8vw;
+    }
+}
+
+/* Pantallas para Laptops pequeñas (1024 x 768)*/
+@media (min-width: 901px) and (max-width: 1200px) {
+
+    #modal-title {
+        font-size: 4vw;
+    }
+
+    #modal-description,
+    #modal-description-p,
+    #modal-remuneracion-p,
+    #modal-ubicacion-p,
+    #modal-fecha-p,
+    #modal-departamento-p {
+        font-size: 2.8vw;
+    }
+
+    #modal-warning {
+        font-size: 2.6vw;
+    }
+
+    #remove-button {
+        font-size: 2.6vw;
     }
 }

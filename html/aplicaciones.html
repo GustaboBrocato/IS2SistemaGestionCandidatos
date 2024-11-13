@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Panel de Reclutador</title>
+    <title>Aplicaciones</title>
     <meta charset="UTF-8">
     <meta name="Description"
         content="Proyecto para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos para Recursos Humanos.">
@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../imagenes/faviconit/favicon-60.png">
-    <link rel="stylesheet" type="text/css" href="../css/homeReclutador.css">
+    <link rel="stylesheet" type="text/css" href="../css/aplicaciones.css">
     <link rel="stylesheet" type="text/css" href="../css/cssPrincipal.css">
 </head>
 
@@ -52,55 +52,29 @@
         </ul>
     </div>
 
-    <main class="main-content">
-        <!-- Dashboard/Panel de Reclutador -->
-        <div class="dashboard-container">
-            <h1>Panel de Reclutador</h1>
-            <div class="dashboard-section">
-                <div class="dashboard-card">
-                    <h2>Perfil</h2>
-                    <p>Accede y edita tu información de perfil.</p>
-                    <a href="perfilReclutador.html" class="dashboard-link">Ir a Perfil</a>
-                </div>
-                <div class="dashboard-card">
-                    <h2>Agregar Nueva Vacante</h2>
-                    <p>Crea y publica una nueva vacante.</p>
-                    <a href="agregarVacante.html" class="dashboard-link">Agregar Vacante</a>
-                </div>
-                <div class="dashboard-card">
-                    <h2>Aplicaciones</h2>
-                    <p>Ver y gestionar solicitudes de candidatos.</p>
-                    <a href="aplicaciones.html" class="dashboard-link">Ver Aplicaciones</a>
-                </div>
-                <div class="dashboard-card">
-                    <h2>Evaluaciones</h2>
-                    <p>Rastrear evaluaciones de candidatos.</p>
-                    <a href="evaluations.html" class="dashboard-link">Ver Evaluaciones</a>
-                </div>
-                <div class="dashboard-card">
-                    <h2>Entrevistas</h2>
-                    <p>Planificar y gestionar entrevistas.</p>
-                    <a href="interviews.html" class="dashboard-link">Administrar Entrevistas</a>
-                </div>
-                <div class="dashboard-card">
-                    <h2>Estadísticas</h2>
-                    <p>Revisar estadísticas de contratación.</p>
-                    <a href="statistics.html" class="dashboard-link">Ver Estadísticas</a>
-                </div>
-                <div class="dashboard-card">
-                    <h2>Buscar Candidatos</h2>
-                    <p>Buscar candidatos en la base de datos.</p>
-                    <a href="search.html" class="dashboard-link">Buscar Candidatos</a>
-                </div>
-            </div>
+    <!-- Seccion de Aplicaciones -->
+    <div class="applications-container">
+        <!-- Seccion para aplicaciones pendientes -->
+        <div id="pendingSection" class="application-section">
+            <h2>Aplicaciones Pendientes</h2>
+            <div class="application-cards" id="pendingApplications"></div>
         </div>
-    </main>
+
+        <!-- Sectiones dinamicas para cada vacante -->
+        <div id="vacancySections"></div>
+    </div>
+
+    <!-- Modal para informacion detallada de la aplicacion -->
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
 
     <div class="toast" id="toastMessage"></div>
-    <script src="../javascript/menu.js"></script>
-    <script src="../javascript/homeReclutador.js"></script>
 
-
+    <!-- Footer -->
     <footer>
         <div class="footer">
             <div class="footerHijo">
@@ -116,6 +90,9 @@
             </div>
         </div>
     </footer>
+
+    <script type="module" src="../javascript/aplicaciones.js"></script>
+    <script type="module" src="../javascript/menu.js"></script>
 </body>
 
 </html>

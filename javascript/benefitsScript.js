@@ -89,9 +89,20 @@ async function loadVacancies() {
 
 async function openVacancyDetail(vacancy) {
     const isReclutador = await checkUserRole("Reclutador");
+    const isUsuario = await checkUserRole("Usuario");
     const modal = document.getElementById('vacancyModal');
+    vacancyImage = null;
+
+    if (vacancy.id_imagen == 1){
+        vacancyImage = "developer2.jpeg";
+    } else if (vacancy.id_imagen == 2){
+        vacancyImage = "developer.jpeg";
+    } else {
+        vacancyImage = "3dartist.jpeg";
+    }
+
     document.getElementById('modal-title').innerText = vacancy.titulo;
-    document.getElementById('modal-thumbnail').src = `../imagenes/${vacancy.id_imagen || 'default.jpeg'}`;
+    document.getElementById('modal-thumbnail').src = `../imagenes/${vacancyImage}`;
     document.getElementById('modal-description').innerText = vacancy.descripcion;
     document.getElementById('modal-remuneracion').innerText = vacancy.remuneracion;
     document.getElementById('modal-departamento').innerText = vacancy.departamento;
@@ -100,14 +111,21 @@ async function openVacancyDetail(vacancy) {
 
     const applyButton = document.getElementById('apply-button');
     const removeButton = document.getElementById('remove-button');
+    const warning = document.getElementById('modal-warning');
 
     // Controla visibilidad de botones
     if (isReclutador) {
         applyButton.style.display = 'none';
         removeButton.style.display = 'block';
-    } else {
+        warning.style.display = 'none';
+    } else if (isUsuario) {
         applyButton.style.display = 'block';
         removeButton.style.display = 'none';
+        warning.style.display = 'none';
+    } else {
+        applyButton.style.display = 'none';
+        removeButton.style.display = 'none';
+        warning.style.display = 'block';
     }
 
     // Store vacancy ID for removal action
@@ -127,29 +145,35 @@ function redirectToApply() {
 // Funcion para cerrar una vacante (solo para Reclutadores)
 async function removeListing() {
     const id = document.getElementById('remove-button').dataset.vacancyId;
+    const token = localStorage.getItem('token');
+
+    // Confirmacion
+    const userConfirmed = confirm('¿Estás seguro de que deseas cerrar esta vacante? Esta acción no se puede deshacer.');
+
+    if (!userConfirmed) {
+        return;
+    }
 
     try {
         const response = await fetch(`http://localhost:3000/api/vacancy/delete`, {
-            method: 'DELETE',
+            method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,
-                'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(id),
+            body: JSON.stringify({ id: id }),
         });
+
         if (response.ok) {
-            alert('Vacancy removed successfully.');
+            alert('La vacante ha sido cerrada.');
             closeVacancyDetail();
             await loadVacancies(); // Refresh vacancies list
         } else {
-            alert('Error removing vacancy.');
+            const errorData = await response.json();
+            alert(`Error al cerrar la vacante: ${errorData.message || response.statusText}`);
         }
     } catch (error) {
-        console.error('Error removing vacancy:', error);
+        console.error('Error al cerrar la vacante:', error);
     }
 }
 
