@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contratación de Talento - Gaming Plus</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../Imagenes/faviconit/favicon-60.png">
+    <link rel="stylesheet" type="text/css" href="../css/perfil.css">
+    <link rel="stylesheet" type="text/css" href="../css/cssPrincipal.css">
+</head>
+
+<body class="perfil-page">
+    <!-- Header -->
+    <div class="menu" style="border-bottom: solid rgba(225, 76, 7, 1);">
+        <img src="../Imagenes/gaming_plus_logo.png">
+        <ul class="menu">
+            <li><a href="index.html" target="_self">Inicio</a></li>
+            <li><a href="novels.html" target="_self">Historia</a></li>
+            <li><a href="proyectos.html" target="_self">Portafolio</a></li>
+            <li><a href="characters.html" target="_self">Vacantes</a></li>
+            <li id="loginSignupButtons">
+                <a href="login.html"><input name="botLoginMenu" id="botLoginMenu" type="button" title="LOGIN" value="LOGIN"></a>
+                <a href="signup.html"><input name="botSignupMenu" id="botSignupMenu" type="button" title="SIGNUP" value="SIGNUP"></a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Profile Container -->
+    <div class="profile-container">
+        <div class="profile-box">
+            <!-- Profile Picture -->
+            <div class="profile-picture">
+                <img id="profileImage" src="http://127.0.0.1:3001/uploads/Default_Profile.png" alt="Profile Picture">
+                <button id="uploadBtn" class="update-btn">Cambiar imagen</button>
+                <input type="file" id="fileInput" style="display: none;" accept="image/*">
+            </div>
+
+            <!-- Profile Info -->
+            <div class="profile-info">
+                <div class="info-box">
+                    <p><strong>Usuario:</strong> <span id="username"></span></p>
+                    <p><strong>Primer Nombre:</strong> <span id="firstName"></span></p>
+                    <p><strong>Segundo Nombre:</strong> <span id="lastName"></span></p>
+                    <p><strong>Primer Apellido:</strong> <span id="primerapellido"></span></p>
+                    <p><strong>Segundo Apellido:</strong> <span id="segundoapellido"></span></p>
+                    <p><strong>Email:</strong> <span id="email"></span> 
+                        <button id="updateEmailBtn" class="update-btn">Actualizar Email</button>
+                    </p>
+                    <p><strong>Teléfono:</strong> <span id="telefono"></span></p>
+                    <p><strong>DNI:</strong> <span id="dni"></span></p>
+                    <p><strong>Currículum:</strong> <span id="curriculum"></span> 
+                        <button id="updateCVBtn" class="update-btn">Actualizar Currículum</button>
+                        <input type="file" id="fileInputCV" style="display: none;" accept=".pdf,.docx,.txt">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for updating email -->
+    <div id="modalEmail" class="modal-container">
+        <div class="modal-content">
+            <label for="newEmail">Nuevo Email:</label>
+            <input type="text" id="newEmail" name="newEmail" required autocomplete="off">
+            <button id="confirmUpdateEmailBtn" class="update-btn">Actualizar</button>
+            <button id="closeEmailModalBtn" class="close-modal-btn">Cerrar</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toastMessage"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer">
+            <div class="footerHijo">
+                <p>Diseñado por el grupo #1 de la clase Ingeniería de Software 2.</p>
+                <img src="../Imagenes/Logo_UTH_2009.png">
+                <p>Proyecto Estudiantil para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos para Recursos Humanos.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mostrar el input de imagen al hacer clic en "Cambiar imagen"
+        const uploadBtn = document.getElementById('uploadBtn');
+        const fileInput = document.getElementById('fileInput');
+        const profileImage = document.getElementById('profileImage');
+
+        uploadBtn.addEventListener('click', () => {
+            fileInput.click(); // Abre el selector de archivos
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    profileImage.src = reader.result; // Actualiza la imagen de perfil
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Mostrar el input de currículum al hacer clic en "Actualizar Currículum"
+        const updateCVBtn = document.getElementById('updateCVBtn');
+        const fileInputCV = document.getElementById('fileInputCV');
+        const curriculumText = document.getElementById('curriculum');
+
+        updateCVBtn.addEventListener('click', () => {
+            fileInputCV.click();  // Abre el selector de archivos
+        });
+
+        fileInputCV.addEventListener('change', (e) => {
+            const file = e.target.files[0];  // Obtenemos el archivo seleccionado
+            if (file) {
+                curriculumText.textContent = file.name;  // Muestra el nombre del archivo seleccionado
+            }
+        });
+
+        // Actualización de Email
+        const updateEmailBtn = document.getElementById('updateEmailBtn');
+        const modalEmail = document.getElementById('modalEmail');
+        const confirmUpdateEmailBtn = document.getElementById('confirmUpdateEmailBtn');
+        const closeEmailModalBtn = document.getElementById('closeEmailModalBtn');
+        const newEmailInput = document.getElementById('newEmail');
+
+        updateEmailBtn.addEventListener('click', () => {
+            modalEmail.style.display = 'flex'; // Abre el modal de actualización de email
+        });
+
+        closeEmailModalBtn.addEventListener('click', () => {
+            modalEmail.style.display = 'none'; // Cierra el modal
+        });
+
+        confirmUpdateEmailBtn.addEventListener('click', () => {
+            const newEmail = newEmailInput.value;
+            if (newEmail) {
+                document.getElementById('email').textContent = newEmail;
+                modalEmail.style.display = 'none'; // Cierra el modal
+            }
+        });
+    </script>
+</body>
+</html>
