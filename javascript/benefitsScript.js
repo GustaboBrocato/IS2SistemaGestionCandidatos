@@ -36,6 +36,28 @@ async function checkUserRole(requiredRole) {
     }
 }
 
+//Funcion para revisar si el ID de creador de la vacante concuerda con el usuario
+async function checkUserID(id) {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`http://localhost:3000/api/vacancy/checkUserID`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify({ usuarioID: id})
+        });
+
+        const data = await response.json();
+        return data.exists;
+    } catch (error) {
+        console.error('Error al revisar el ID de usuario:', error);
+        throw new Error('Error al revisar el ID de usuario.');
+    }
+}
+
+
 // Funcion para obtener las vacantes disponibles
 async function loadVacancies() {
     const vacanciesContainer = document.getElementById('vacanciesContainer');
@@ -48,10 +70,6 @@ async function loadVacancies() {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
             },
         });
         const vacancies = await response.json();
@@ -90,6 +108,7 @@ async function loadVacancies() {
 async function openVacancyDetail(vacancy) {
     const isReclutador = await checkUserRole("Reclutador");
     const isUsuario = await checkUserRole("Usuario");
+    const isCreator = await checkUserID(vacancy.idusuario);
     const modal = document.getElementById('vacancyModal');
     vacancyImage = null;
 
@@ -114,10 +133,15 @@ async function openVacancyDetail(vacancy) {
     const warning = document.getElementById('modal-warning');
 
     // Controla visibilidad de botones
-    if (isReclutador) {
+    if (isReclutador && isCreator) {
         applyButton.style.display = 'none';
         removeButton.style.display = 'block';
         warning.style.display = 'none';
+    } else if(isReclutador && !isCreator){
+        applyButton.style.display = 'none';
+        removeButton.style.display = 'none';
+        warning.style.display = 'block';
+        warning.textContent = '¡Esta vacante fue creada por otro reclutador o reclutadora!';
     } else if (isUsuario) {
         applyButton.style.display = 'block';
         removeButton.style.display = 'none';
@@ -126,6 +150,7 @@ async function openVacancyDetail(vacancy) {
         applyButton.style.display = 'none';
         removeButton.style.display = 'none';
         warning.style.display = 'block';
+        warning.textContent = '¡Por favor inicia sesión o inscríbete para poder aplicar a la vacante!';
     }
 
     // Store vacancy ID for removal action
