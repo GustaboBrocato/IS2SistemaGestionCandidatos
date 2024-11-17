@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Aplicaciones</title>
+    <title>Evaluaciones</title>
     <meta charset="UTF-8">
     <meta name="Description"
         content="Proyecto para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos para Recursos Humanos.">
@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../imagenes/faviconit/favicon-60.png">
-    <link rel="stylesheet" type="text/css" href="../css/aplicaciones.css">
+    <link rel="stylesheet" type="text/css" href="../css/evaluaciones.css">
     <link rel="stylesheet" type="text/css" href="../css/cssPrincipal.css">
 </head>
 
@@ -52,30 +52,32 @@
         </ul>
     </div>
 
-    <main class="main-content">
-        <!-- Seccion de Aplicaciones -->
-        <div class="applications-container">
-            <!-- Seccion para aplicaciones pendientes -->
-            <div id="pendingSection" class="application-section">
-                <h2>Aplicaciones Pendientes</h2>
-                <div class="application-cards" id="pendingApplications"></div>
-            </div>
-
-            <!-- Sectiones dinamicas para cada vacante -->
-            <div id="vacancySections"></div>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Vacantes Activas</h2>
+            <ul id="vacancyList"></ul>
         </div>
-    </main>
+        <div class="content">
+            <h2>Candidatos Aplicados</h2>
+            <div id="candidateCards" class="cards"></div>
+            <div id="charts" class="charts"></div>
+        </div>
+    </div>
 
-    <div id="applicationModal" class="modal">
+    <!-- Modal para evaluaciones -->
+    <div id="evaluationModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <div id="modalContent" class="modal-body"></div>
+            <span id="closeModal" class="close">&times;</span>
+            <h2>Evaluación del Candidato</h2>
+            <div id="evaluationForm"></div>
+            <button id="updateEvaluation">Guardar Evaluación</button>
         </div>
     </div>
 
     <div class="toast" id="toastMessage"></div>
 
-    <!-- Footer -->
+    <script src="../javascript/menu.js"></script>
+
     <footer>
         <div class="footer">
             <div class="footerHijo">
@@ -92,8 +94,7 @@
         </div>
     </footer>
 
-    <script type="module" src="../javascript/aplicaciones.js"></script>
-    <script type="module" src="../javascript/menu.js"></script>
+    <script src="../javascript/evaluaciones.js"></script>
 </body>
 
 </html>

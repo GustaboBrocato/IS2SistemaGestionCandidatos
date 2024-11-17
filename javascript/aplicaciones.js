@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const loggedIn = await isUserLoggedIn();
 
-    if(!loggedIn){
+    if (!loggedIn) {
         window.location.href = '/IS2SistemaGestionCandidatos/html/login.html';
     }
 
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <span class="tag">${application.estado}</span>
         `;
         // Para obtener la informacion detallada del candidato al dar click
-        card.addEventListener('click', () => openModal(application.idcandidato));
+        card.addEventListener('click', () => openModal(application.idcandidato, application.idestado, application.id, application.comentario));
         return card;
     }
 
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Funcion para mostrar los detalles del candidato en el modal
-    function renderCandidateDetails(data) {
+    function renderCandidateDetails(data, idestado, idapplication, comentario) {
         const { candidateDetails, skills, references } = data;
 
         // Nombre completo y edad
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Contenido del Modal
         modalContent.innerHTML = `
-            <img src="${candidateDetails.imagenperfil || '../imagenes/default-profile.png'}" alt="Profile Picture" style="width: 100px;">
+            <img src="${candidateDetails.imagenperfil || '../imagenes/Default_Profile.png'}" alt="Profile Picture">
             <h3>${fullName}</h3>
             <p><strong>Edad:</strong> ${age}</p>
             <p><strong>Correo:</strong> ${candidateDetails.correo}</p>
@@ -114,7 +114,72 @@ document.addEventListener("DOMContentLoaded", async () => {
             ${skillsHTML}
             <h4>Referencias:</h4>
             ${referencesHTML}
+            <div id="ultimocomentario"></div>
+            <div id="applicationActions"></div>
         `;
+
+        const applicationActions = document.getElementById('applicationActions');
+        const ultimoComentario = document.getElementById('ultimocomentario');
+
+        // Revisar el estado de la apliacion
+        if (idestado === 3) {
+            applicationActions.innerHTML = `
+            <button id="startProcessButton">Iniciar Proceso</button>
+        `;
+            const startProcessButton = document.getElementById('startProcessButton');
+            startProcessButton.addEventListener('click', async () => {
+                const response = await fetch(`http://localhost:3000/api/application/application-start`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+                    body: JSON.stringify({
+                        id: idapplication,
+                        email: candidateDetails.correo
+                    })
+                });
+
+                if (response.ok) {
+                    alert('Proceso iniciado con éxito.');
+                    location.reload(true);
+                } else {
+                    alert('Hubo un error al iniciar el proceso.');
+                }
+            });
+        } else if (idestado === 8) { // En Proceso
+            ultimoComentario.innerHTML = `
+            <p><strong>Último comentario:</strong> ${comentario}</p>
+            `;
+
+            applicationActions.innerHTML = `
+            <textarea id="commentField" placeholder="Agregar comentario"></textarea>
+            <button id="updateCommentButton">Actualizar Comentarios</button>
+        `;
+
+            const updateCommentButton = document.getElementById('updateCommentButton');
+            const commentField = document.getElementById('commentField');
+
+            updateCommentButton.addEventListener('click', async () => {
+                const newComment = commentField.value.trim();
+                if (newComment) {
+                    const response = await fetch(`http://localhost:3000/api/application/application-comment`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+                        body: JSON.stringify({
+                            comentario: newComment,
+                            id: idapplication
+                        })
+                    });
+
+                    if (response.ok) {
+                        alert('Comentario actualizado con éxito.');
+                        location.reload(true);
+                    } else {
+                        alert('Hubo un error al actualizar el comentario.');
+                    }
+                } else {
+                    alert('El comentario no puede estar vacío.');
+                }
+            });
+        }
 
         // Boton para el curriculo
         const viewCurriculumButton = document.getElementById('viewCurriculum');
@@ -131,10 +196,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Funcion para abrir el modal
-    async function openModal(candidateId) {
+    async function openModal(candidateId, idestado, idapplication, comentario) {
         const candidateData = await fetchCandidateDetails(candidateId);
         if (candidateData) {
-            renderCandidateDetails(candidateData);
+            renderCandidateDetails(candidateData, idestado, idapplication, comentario);
         } else {
             alert('Error al cargar los detalles del candidato.');
         }
@@ -151,7 +216,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
-    // Funcion principar para iniciar la pagina
+    // Funcion principal para iniciar la pagina
     async function initialize() {
         const { pending, dynamic } = await fetchApplications();
 
@@ -160,9 +225,44 @@ document.addEventListener("DOMContentLoaded", async () => {
             pendingApplications.appendChild(renderApplicationCard(application));
         });
 
-        // Aplicaciones en proceso
+        // Crear encabezado para las aplicaciones en proceso
+        const processHeader = document.createElement('h2');
+        processHeader.textContent = 'Aplicaciones en Proceso';
+        vacancySections.appendChild(processHeader);
+
+        // Organizar aplicaciones dinamicas por ID de vacante
+        const applicationsByVacancy = {};
+
         dynamic.forEach(application => {
-            vacancySections.appendChild(renderApplicationCard(application));
+            // Agrupar aplicaciones por ID de vacante
+            if (!applicationsByVacancy[application.vacancyname]) {
+                applicationsByVacancy[application.vacancyname] = [];
+            }
+            applicationsByVacancy[application.vacancyname].push(application);
+        });
+
+        // Renderizar aplicaciones organizadas
+        Object.keys(applicationsByVacancy).forEach(vacancyName => {
+            // Crear contenedor para cada grupo de aplicaciones por vacante
+            const vacancyTitleSection = document.createElement('div');
+            const vacancySection = document.createElement('div');
+            vacancyTitleSection.classList.add('vacancy-title-section');
+            vacancySection.classList.add('vacancy-section');
+
+            // Titulo de la vacante
+            const vacancyTitle = document.createElement('h3');
+            vacancyTitle.textContent = `Vacante: ${vacancyName}`;
+            vacancyTitle.id = 'vacancyTitle';
+            vacancyTitleSection.appendChild(vacancyTitle);
+
+            // Añadir aplicaciones a este contenedor
+            applicationsByVacancy[vacancyName].forEach(application => {
+                vacancySection.appendChild(renderApplicationCard(application));
+            });
+
+            // Agregar sección al contenedor principal
+            vacancySections.appendChild(vacancyTitleSection);
+            vacancySections.appendChild(vacancySection);
         });
     }
 
@@ -174,7 +274,7 @@ async function isUserLoggedIn() {
     try {
         // Obtiene el token del storage
         const token = localStorage.getItem('token');
-        
+
         if (!token) {
             // Si el token no existe el usuario no esta loggeado
             return false;
@@ -195,7 +295,7 @@ async function isUserLoggedIn() {
         if (response.ok) {
             // Usuario loggeado
             const data = await response.json();
-            
+
             return data.loggedIn;  // true or false
         } else {
             return false;
