@@ -1,0 +1,115 @@
+
+/* Diseño de la Página de Perfil */
+body.perfil-page {
+    background-image: url("../Imagenes/perfil2.png");
+    background-repeat: no-repeat;
+    background-size: contain;  
+    background-position: center center; 
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Caja de perfil*/
+.profile-box {
+    background-color: rgba(2, 18, 38, 0.7); 
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.profile-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagen de perfil */
+.profile-picture img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin-bottom: 20px;
+}
+
+.profile-info {
+    margin-top: 20px;
+}
+
+
+.info-box p {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.info-box strong {
+    color: white;
+}
+
+/* Botones */
+.update-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.update-btn:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el ratón */
+}
+
+#fileInputCV, #fileInput {
+    display: none;
+}
+
+/* Modal */
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Toast message */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 123, 255, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
+}
