@@ -42,6 +42,15 @@ body {
     margin-bottom: 20px;
 }
 
+.vacancy-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
 .application-section h2,
 #vacancySections h2 {
     text-align: center;
