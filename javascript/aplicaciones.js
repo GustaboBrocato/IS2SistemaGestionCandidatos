@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // Funcion para obtener la informacion detallada del candidato
-    async function fetchCandidateDetails(candidateId) {
+    async function fetchCandidateDetails(candidateId, idapplication) {
         try {
             const response = await fetch(`http://localhost:3000/api/application/application-details`, {
                 method: 'POST',
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
-                body: JSON.stringify({ id: candidateId })
+                body: JSON.stringify({ id: candidateId, idapplicacion: idapplication })
             });
             if (!response.ok) {
                 throw new Error(`Error fetching candidate details: ${response.status}`);
@@ -83,11 +83,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Funcion para mostrar los detalles del candidato en el modal
     function renderCandidateDetails(data, idestado, idapplication, comentario) {
-        const { candidateDetails, skills, references } = data;
+        const { candidateDetails, skills, references, evaluations } = data;
 
         // Nombre completo y edad
         const fullName = `${candidateDetails.primernombre} ${candidateDetails.segundonombre || ''} ${candidateDetails.apellidopaterno} ${candidateDetails.apellidomaterno || ''}`;
         const age = calculateAge(candidateDetails.fechanacimiento);
+
+        // Revisión de evaluaciones
+        evaluations.habilidades_tecnicas = evaluations.habilidades_tecnicas ?? 'No evaluado';
+        evaluations.habilidades_blandas = evaluations.habilidades_blandas ?? 'No evaluado';
+        evaluations.habilidades_liderazgo = evaluations.habilidades_liderazgo ?? 'No evaluado';
+        evaluations.Experiencia = evaluations.Experiencia ?? 'No evaluado';
 
         // Lista de Habilidades
         const skillsList = skills.map(skill => `<li>${skill.nombrehabilidad}</li>`).join('');
@@ -101,22 +107,30 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Contenido del Modal
         modalContent.innerHTML = `
-            <img src="${candidateDetails.imagenperfil || '../imagenes/Default_Profile.png'}" alt="Profile Picture">
-            <h3>${fullName}</h3>
-            <p><strong>Edad:</strong> ${age}</p>
-            <p><strong>Correo:</strong> ${candidateDetails.correo}</p>
-            <p><strong>Teléfono :</strong> ${candidateDetails.telefono}</p>
-            <p><strong>DNI:</strong> ${candidateDetails.dni}</p>
-            <p><strong>Género :</strong> ${candidateDetails.genero}</p>
-            <p><strong>Nivel Educativo:</strong> ${candidateDetails.niveleducativo}</p>
-            <button id="viewCurriculum" data-cv="${candidateDetails.curriculum}">Ver Currículo</button>
-            <h4>Habilidades:</h4>
-            ${skillsHTML}
-            <h4>Referencias:</h4>
-            ${referencesHTML}
-            <div id="ultimocomentario"></div>
-            <div id="applicationActions"></div>
-        `;
+        <img src="${candidateDetails.imagenperfil || '../imagenes/Default_Profile.png'}" alt="Profile Picture">
+        <h3>${fullName}</h3>
+        <p><strong>Edad:</strong> ${age}</p>
+        <p><strong>Correo:</strong> ${candidateDetails.correo}</p>
+        <p><strong>Teléfono :</strong> ${candidateDetails.telefono}</p>
+        <p><strong>DNI:</strong> ${candidateDetails.dni}</p>
+        <p><strong>Género :</strong> ${candidateDetails.genero}</p>
+        <p><strong>Nivel Educativo:</strong> ${candidateDetails.niveleducativo}</p>
+        <button id="viewCurriculum" data-cv="${candidateDetails.curriculum}">Ver Currículo</button>
+        <h4>Habilidades:</h4>
+        ${skillsHTML}
+        <h4>Referencias:</h4>
+        ${referencesHTML}
+        ${idestado === 8 ? `
+        <h4>Evaluaciones:</h4>
+        <ul>
+            <li><strong>Habilidades Técnicas:</strong> ${evaluations.habilidades_tecnicas}</li>
+            <li><strong>Habilidades Blandas:</strong> ${evaluations.habilidades_blandas}</li>
+            <li><strong>Habilidades de Liderazgo:</strong> ${evaluations.habilidades_liderazgo}</li>
+            <li><strong>Experiencia:</strong> ${evaluations.Experiencia}</li>
+        </ul>` : ''}
+        <div id="ultimocomentario"></div>
+        <div id="applicationActions"></div>
+    `;
 
         const applicationActions = document.getElementById('applicationActions');
         const ultimoComentario = document.getElementById('ultimocomentario');
@@ -197,7 +211,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Funcion para abrir el modal
     async function openModal(candidateId, idestado, idapplication, comentario) {
-        const candidateData = await fetchCandidateDetails(candidateId);
+        const candidateData = await fetchCandidateDetails(candidateId, idapplication);
         if (candidateData) {
             renderCandidateDetails(candidateData, idestado, idapplication, comentario);
         } else {

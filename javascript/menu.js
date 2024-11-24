@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 { text: 'Inicio', href: 'homeReclutador.html' },
                 { text: 'Empleos', href: 'vacantes.html' },
                 { text: 'Aplicaciones', href: 'aplicaciones.html' },
-                { text: 'Estadísticas', href: 'estadisticas.html' },
+                { text: 'Evaluaciones', href: 'evaluaciones.html' },
                 { id: 'navPerfil', text: 'Perfil', href: 'perfilReclutador.html' }
             ]);
         } else if (isUsuario) {

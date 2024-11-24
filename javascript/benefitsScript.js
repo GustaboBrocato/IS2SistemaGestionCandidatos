@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", async function() {
+document.addEventListener("DOMContentLoaded", async function () {
     const benefitCards = document.querySelectorAll(".benefit-card");
 
     benefitCards.forEach((card, index) => {
@@ -46,7 +46,7 @@ async function checkUserID(id) {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify({ usuarioID: id})
+            body: JSON.stringify({ usuarioID: id })
         });
 
         const data = await response.json();
@@ -81,11 +81,11 @@ async function loadVacancies() {
             vacancyCard.classList.add('vacancy-card');
             vacancyCard.setAttribute('data-id', vacancy.id);
             vacancyCard.onclick = () => openVacancyDetail(vacancy);
-            
 
-            if (vacancy.id_imagen == 1){
+
+            if (vacancy.id_imagen == 1) {
                 vacancyImage = "developer2.jpeg";
-            } else if (vacancy.id_imagen == 2){
+            } else if (vacancy.id_imagen == 2) {
                 vacancyImage = "developer.jpeg";
             } else {
                 vacancyImage = "3dartist.jpeg";
@@ -106,15 +106,24 @@ async function loadVacancies() {
 }
 
 async function openVacancyDetail(vacancy) {
-    const isReclutador = await checkUserRole("Reclutador");
-    const isUsuario = await checkUserRole("Usuario");
-    const isCreator = await checkUserID(vacancy.idusuario);
+    const loggedIn = await isUserLoggedIn();
+
+    if (loggedIn) {
+        const isReclutador = await checkUserRole("Reclutador");
+        const isUsuario = await checkUserRole("Usuario");
+        const isCreator = await checkUserID(vacancy.idusuario);
+    } else {
+        isReclutador = false;
+        isUsuario = false;
+        isCreator = false;
+    }
+
     const modal = document.getElementById('vacancyModal');
     vacancyImage = null;
 
-    if (vacancy.id_imagen == 1){
+    if (vacancy.id_imagen == 1) {
         vacancyImage = "developer2.jpeg";
-    } else if (vacancy.id_imagen == 2){
+    } else if (vacancy.id_imagen == 2) {
         vacancyImage = "developer.jpeg";
     } else {
         vacancyImage = "3dartist.jpeg";
@@ -137,7 +146,7 @@ async function openVacancyDetail(vacancy) {
         applyButton.style.display = 'none';
         removeButton.style.display = 'block';
         warning.style.display = 'none';
-    } else if(isReclutador && !isCreator){
+    } else if (isReclutador && !isCreator) {
         applyButton.style.display = 'none';
         removeButton.style.display = 'none';
         warning.style.display = 'block';
@@ -199,6 +208,43 @@ async function removeListing() {
         }
     } catch (error) {
         console.error('Error al cerrar la vacante:', error);
+    }
+}
+
+//Funcion para revisar si esta loggeado el usuario
+async function isUserLoggedIn() {
+    try {
+        // Obtiene el token del storage
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            // Si el token no existe el usuario no esta loggeado
+            return false;
+        }
+
+        const response = await fetch('http://localhost:3000/authenticate', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': 'true',
+                'Access-Control-Allow-Methods': 'GET,OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+            },
+        });
+
+        if (response.ok) {
+            // Usuario loggeado
+            const data = await response.json();
+
+            return data.loggedIn;  // true or false
+        } else {
+            return false;
+        }
+    } catch (error) {
+        console.error('Error al comprobar el estado de inicio de sesión:', error);
+        return false;
     }
 }
 
