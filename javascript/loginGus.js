@@ -40,7 +40,7 @@ form.addEventListener('submit', async (e) => {
                 window.location.href = redirectRoute;
             } catch (err) {
                 console.error('Error during redirection:', err);
-                window.location.href = '/IS2SistemaGestionCandidatos/html/index.html';
+                window.location.href = '/html/index.html';
             }
         }, 2000);
 
@@ -67,7 +67,7 @@ async function getRedirectRoute() {
 
     // Si no hay ningún token, redirigir a la pantalla de login
     if (!token) {
-        return '/IS2SistemaGestionCandidatos/html/login.html';
+        return '/html/login.html';
     }
 
     try {
@@ -78,18 +78,18 @@ async function getRedirectRoute() {
 
         // Determina la ruta basado en el rol
         if (isAdmin) {
-            return '/IS2SistemaGestionCandidatos/html/index.html';
+            return '/html/index.html';
         } else if (isReclutador) {
-            return '/IS2SistemaGestionCandidatos/html/homeReclutador.html';
+            return '/html/homeReclutador.html';
         } else if (isUsuario) {
-            return '/IS2SistemaGestionCandidatos/html/index.html';
+            return '/html/index.html';
         } else {
-            return '/IS2SistemaGestionCandidatos/html/index.html';
+            return '/html/index.html';
         }
 
     } catch (error) {
         console.error('Error checking role:', error);
-        return '/IS2SistemaGestionCandidatos/html/index.html';
+        return '/html/index.html';
     }
 }
 

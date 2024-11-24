@@ -34,6 +34,14 @@ body {
     background-size: cover;
 }
 
+.loginimg{
+    display: block;
+    margin: 0 auto;
+    max-width: 75%;
+    height: 75%;
+
+}
+
 /* Diseño aplicar a la clase login y formulario*/
 .login {
     position: absolute;
@@ -44,7 +52,7 @@ body {
     height: 300px;
 }
 
-.login h1 {
+.login h1, .signup h1 {
     color: #fff !important;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     letter-spacing: 1px;
@@ -53,7 +61,7 @@ body {
     border-top: none;
 }
 
-input {
+input, select {
     width: 100%;
     margin-bottom: 10px;
     background: rgba(0, 0, 0, 0.3);
