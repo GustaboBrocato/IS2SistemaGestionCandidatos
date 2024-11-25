@@ -10,7 +10,6 @@ body {
 /*Envoltura de contenido*/
 .main-content {
     flex: 1;
-    /* Para que tome el espacio que sobre */
     display: flex;
     justify-content: center;
     position: relative;

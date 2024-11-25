@@ -90,6 +90,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const age = calculateAge(candidateDetails.fechanacimiento);
 
         // Revisión de evaluaciones
+        console.log(evaluations.Experiencia);
         evaluations.habilidades_tecnicas = evaluations.habilidades_tecnicas ?? 'No evaluado';
         evaluations.habilidades_blandas = evaluations.habilidades_blandas ?? 'No evaluado';
         evaluations.habilidades_liderazgo = evaluations.habilidades_liderazgo ?? 'No evaluado';
