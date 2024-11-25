@@ -131,7 +131,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // Construir el contenido de la tarjeta
                 let buttonGroup = '';
-                if (interview.idestado !== 12) {
+                
+                if (interview.idestado !== 12 && interview.idestado !== 7) {
                     buttonGroup = `
                     <div class="button-group">
                         <button class="btn-cancelar">Cancelar</button>
@@ -151,10 +152,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             `;
 
                 // Agregar eventos a los botones solo si los botones están visibles
-                if (interview.idestado !== 12) {
+                if (interview.idestado !== 12 && interview.idestado !== 7) {
                     card.querySelector('.btn-cancelar').addEventListener('click', () => cancelInterview(interview.id, id_aplicacion));
                     card.querySelector('.btn-reprogramar').addEventListener('click', () => reprogramInterview(interview, id_aplicacion, correo));
-                    card.querySelector('.btn-finalizar').addEventListener('click', () => finalizeInterview(interview.id));
+                    card.querySelector('.btn-finalizar').addEventListener('click', () => finalizeInterview(interview.id, id_aplicacion));
                 }
 
                 interviewList.appendChild(card);
@@ -273,6 +274,38 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
+    // Función para finalizar una entrevista
+    async function finalizeInterview(idInterview, idAplicacion) {
+        // Mostrar confirmación antes de finalizar
+        const confirmCancel = confirm("¿Está seguro que desea finalizar esta entrevista?");
+
+        if (!confirmCancel) {
+            // Si el usuario selecciona "Cancelar", salir de la función
+            return;
+        }
+
+        try {
+            const res = await fetch("http://localhost:3000/api/interviews/finalizeInterview", {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem('token')}`,
+                },
+                body: JSON.stringify({ idinterview: idInterview, idaplicacion: idAplicacion })
+            });
+
+            if (res.ok) {
+                alert("¡La entrevista ha sido finalizada!");
+                window.location.reload();
+            } else {
+                alert("No se pudo finalizar la entrevista.");
+            }
+        } catch (error) {
+            console.error('Error al finalizar la entrevista:', error);
+            alert("Ocurrió un error al intentar finalizar la entrevista.");
+        }
+    }
+
     // Abrir modal para reprogramar entrevista
     function openReprogramModal(interview, id_aplicacion, correo) {
         const reprogramModal = document.getElementById("reprogram-modal");
@@ -333,7 +366,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (res.ok) {
                 alert("¡Entrevista reprogramada con éxito!");
                 document.getElementById("reprogram-modal").style.display = "none";
-                // Refresh the interviews list to reflect the change
                 loadInterviews(reprogramData.candidateId, reprogramData.applicationId);
             } else {
                 alert("No se pudo reprogramar la entrevista.");
@@ -345,7 +377,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-    // Check User Login Status
+    // Revisar el estado de session
     async function isUserLoggedIn() {
         try {
             const token = localStorage.getItem('token');

@@ -40,7 +40,7 @@ form.addEventListener('submit', async (e) => {
                 window.location.href = redirectRoute;
             } catch (err) {
                 console.error('Error during redirection:', err);
-                window.location.href = '/html/index.html';
+                window.location.href = 'index.html';
             }
         }, 2000);
 
@@ -78,18 +78,18 @@ async function getRedirectRoute() {
 
         // Determina la ruta basado en el rol
         if (isAdmin) {
-            return '/html/index.html';
+            return 'index.html';
         } else if (isReclutador) {
-            return '/html/homeReclutador.html';
+            return 'homeReclutador.html';
         } else if (isUsuario) {
-            return '/html/index.html';
+            return 'index.html';
         } else {
-            return '/html/index.html';
+            return 'index.html';
         }
 
     } catch (error) {
         console.error('Error checking role:', error);
-        return '/html/index.html';
+        return 'index.html';
     }
 }
 
