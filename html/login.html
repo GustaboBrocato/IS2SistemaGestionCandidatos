@@ -15,20 +15,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="../Imagenes/faviconit/favicon-60.png">
+    <link rel="icon" type="image/png" href="../imagenes/faviconit/favicon-60.png">
     <link rel="stylesheet" type="text/css" href="../css/proyectos.css">
     <link rel="stylesheet" type="text/css" href="../css/cssLogin.css">
     <link rel="stylesheet" type="text/css" href="../css/cssPrincipal.css">
 
 <body>
     <a href="index.html" class="btn-close" target="_self">X</a>
+    <section class="loginimg">
+
+    </section>
+    
     <section class="bckground">
         <section class="login">
-            <h1>Login</h1>
-
+            <!--h1>Login</h1-->
+            <img src="/imagenes/gaming_plus_logo.png" alt="logo" class="loginimg">            
             <form id="loginForm">
                 <input type="text" id="user" name="user" placeholder="Usuario" required="required" />
-                <input type="password" id="passwd" name="passwd" placeholder="Contraseña" required="required" />
+                <input type="password" id="passwd" name="passwd" placeholder="Contraseña" required="required" autocomplete="off" />
                 <div id="contenedor-error"></div>
                 <button type="submit" class="btn btn-primary btn-block btn-large">Iniciar Sesion</button>
                 <a href="signup.html" target="_self" class="btn btn-block btn-signup btn-large ">Crear una Cuenta</a>

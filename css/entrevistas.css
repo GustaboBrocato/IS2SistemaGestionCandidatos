@@ -1,0 +1,376 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 0;
+    background-color: rgba(7, 52, 94, 1);
+}
+
+section {
+    flex: 1;
+    margin: 0 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+#vacancies-section {
+    flex: 1;
+    padding: 20px;
+    z-index: 0;
+    position: relative;
+    background-color: black;
+    border: solid 1px rgba(225, 76, 7, 1);
+}
+
+#vacancies-section::before {
+    content: "";
+    background-image: url(../imagenes/backgroundVacancies1.jpeg);
+    background-size: contain;
+    background-position: center;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+#candidates-section {
+    flex: 1;
+    padding: 20px;
+    z-index: 0;
+    position: relative;
+    background-color: black;
+    border: solid 1px rgba(225, 76, 7, 1);
+}
+
+#candidates-section::before {
+    content: "";
+    background-image: url(../imagenes/backgroundApplications.jpeg);
+    background-size: contain;
+    background-position: center;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+#interviews-section {
+    flex: 1;
+    padding: 20px;
+    z-index: 0;
+    position: relative;
+    background-color: black;
+    border: solid 1px rgba(225, 76, 7, 1);
+}
+
+#interviews-section::before {
+    content: "";
+    background-image: url(../imagenes/backgroundInterviews.jpeg);
+    background-size: contain;
+    background-position: center;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+#vacancies-section h2, #candidates-section h2, #interviews-section h2 {
+    text-align: center;
+    font-size: 1.2vw;
+    color: whitesmoke;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    background-color: rgba(2, 18, 38, 1);
+    border: solid rgba(225, 76, 7, 1);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 0;
+}
+
+#vacancies-section h2::before, #candidates-section h2::before, #interviews-section h2::before {
+    content: '';
+    background-image: url(../imagenes/gaming2.png);
+    background-size: auto;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+#vacancy-list, #candidate-cards, #interview-list {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+
+#vacancy-list {
+    list-style: none;
+    padding: 0;
+}
+
+#vacancy-list li {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #eee;
+    cursor: pointer;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+#vacancy-list li:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+#candidate-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#interview-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    height: 150px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid rgba(225, 76, 7, 1);
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+#interview-list .card{
+    height: 200px;
+}
+
+.card img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+
+.card h3 {
+    font-size: 18px;
+}
+
+.card p {
+    font-size: 14px;
+}
+
+.card:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Styles */
+.modal-content {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    text-align: left;
+}
+
+/* Modal de reprogramacion */
+#reprogram-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+#reprogram-modal .modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px; /* Restrict modal width */
+    box-sizing: border-box; /* Include padding in width */
+    text-align: left; /* Align text inside */
+}
+
+.modal-content h2{
+    font-size: 1.5vw;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.modal-content div {
+    margin-bottom: 10px;
+}
+
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 12px;
+    background-color: rgba(225, 76, 7, 1);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+
+#profile-image {
+    display: block;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+}
+
+
+.close {
+    float: right;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+.interview-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 10px;
+    background-color: rgba(225, 76, 7, 1);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+
+.interview-btn:hover, button[type="submit"]:hover, .btn-cancelar:hover {
+    background-color: #c33b05;
+}
+
+button:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.button-group button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-cancelar {
+    background-color: rgba(225, 76, 7, 1);
+    color: #fff;
+}
+
+.btn-reprogramar {
+    background-color: #f1c40f;
+    color: #fff;
+}
+
+.btn-reprogramar:hover {
+    background-color: #FFA726;
+    color: white;
+}
+
+.btn-finalizar {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.btn-finalizar:hover {
+    background-color: #66BB6A;
+    color: white;
+}
+
+.estado {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+}

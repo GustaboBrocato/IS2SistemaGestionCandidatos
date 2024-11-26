@@ -2,22 +2,23 @@
 <html lang="en">
 
 <head>
-    <title>Contratación de Talento - Gaming Plus</title>
+    <title>Evaluaciones</title>
     <meta charset="UTF-8">
     <meta name="Description"
         content="Proyecto para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos para Recursos Humanos.">
     <meta name="Author"
         content="Gustavo Brocato #202010030250, Enil Lopez Cruz #201610070128, Sarahy Espinal Colindres #202120060225, Jair Jared Duron Hernandez #201910060039">
     <meta name="keyword" content="HR, Gestion Candidatos, Recursos Humanos, UTH, Ingenieria Software">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../imagenes/faviconit/favicon-60.png">
-    <link rel="stylesheet" type="text/css" href="../css/paginaPrincipal.css">
+    <link rel="stylesheet" type="text/css" href="../css/evaluaciones.css">
     <link rel="stylesheet" type="text/css" href="../css/cssPrincipal.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -52,19 +53,71 @@
         </ul>
     </div>
 
-    <div class="filler">
-        <h2>Únete a Nuestro Equipo de Gaming Plus</h2>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Vacantes Activas</h2>
+            <ul id="vacancyList"></ul>
+        </div>
+        <div class="content">
+            <h2>Candidatos</h2>
+            <div id="candidateCards" class="cards"></div>
+            <h2>Gráficos de Comparación</h2>
+            <div id="charts" class="charts">
+                <canvas id="comparisonChart"></canvas>
+            </div>
+        </div>
     </div>
 
-    <div class="banner">
-        <img src="../imagenes/bannerhijo.png">
-        <div class="bannerHijo">
-            <h2>Construye el Futuro de los Videojuegos</h2>
-            <p>En nuestra empresa, estamos buscando a los mejores talentos para unirse a nuestro equipo creativo y apasionado. Si eres un desarrollador, artista o diseñador con ganas de innovar y llevar los videojuegos al siguiente nivel, ¡este es tu lugar!</p>
-            <p>Ofrecemos un ambiente de trabajo dinámico, proyectos emocionantes y oportunidades de crecimiento profesional. No pierdas la oportunidad de ser parte de nuestra misión de crear experiencias de juego inolvidables.</p>
+    <!-- Modal para evaluaciones -->
+    <div id="evaluationModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2>Evaluación del Candidato</h2>
+
+            <!-- Imagen de Candidato y Nombre -->
+            <div id="candidateInfo" class="candidate-info">
+                <img id="candidateImage" src="" alt="Candidate Image" class="candidate-image">
+                <h3 id="candidateName"></h3>
+            </div>
+
+            <!-- Formulario de evaluacion -->
+            <form id="evaluationForm">
+                <!-- Habilidades Tecnicas -->
+                <div class="evaluation-section">
+                    <label for="technicalSkills">Habilidades Técnicas (1-10):</label>
+                    <input type="number" id="technicalSkills" name="technicalSkills" min="0" max="10" required>
+                </div>
+
+                <!-- Habilidades Blandas -->
+                <div class="evaluation-section">
+                    <label for="softSkills">Habilidades Blandas (1-10):</label>
+                    <input type="number" id="softSkills" name="softSkills" min="0" max="10" required>
+                </div>
+
+                <!-- Liderazgo -->
+                <div class="evaluation-section">
+                    <label for="leadershipSkills">Habilidades de Liderazgo y Gestión (1-10):</label>
+                    <input type="number" id="leadershipSkills" name="leadershipSkills" min="0" max="10" required>
+                </div>
+
+                <!-- Experiencia -->
+                <div class="evaluation-section">
+                    <label for="experience">Experiencia (1-10):</label>
+                    <input type="number" id="experience" name="experience" min="0" max="10" required>
+                </div>
+
+                <button type="button" id="updateEvaluation">Guardar Evaluación</button>
+            </form>
         </div>
-        <img src="../imagenes/fondobannerhijo.png">
     </div>
+
+    <div id="chartModal" class="chartModal">
+        <div class="chartModal-content">
+            <span class="closeChart">&times;</span>
+            <canvas id="modalChart"></canvas>
+        </div>
+    </div>
+
 
     <div class="toast" id="toastMessage"></div>
 
@@ -86,6 +139,7 @@
         </div>
     </footer>
 
+    <script src="../javascript/evaluaciones.js"></script>
 </body>
 
 </html>

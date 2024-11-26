@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="../Imagenes/faviconit/favicon-60.png">
+    <link rel="icon" type="image/png" href="../imagenes/faviconit/favicon-60.png">
     <link rel="stylesheet" type="text/css" href="../css/perfilReclutador.css">
     <link rel="stylesheet" type="text/css" href="../css/cssPrincipal.css">
 </head>
@@ -23,7 +23,7 @@
 <body>
     <!-- Menu -->
     <div class="menu" style="border-bottom: solid rgba(225,76,7, 1);">
-        <img src="../Imagenes/gaming_plus_logo.png">
+        <img src="../imagenes/gaming_plus_logo.png">
         <ul class="menu">
             <li><a id="navHome" href="index.html" target="_self">Inicio</a></li>
             <li><a id="navHistoria" href="historia.html" target="_self">Historia</a></li>
@@ -57,7 +57,8 @@
         <div class="profile-container">
             <div class="profile-card">
                 <div class="profile-picture-container">
-                    <img id="recruiterProfilePicture" src="../imagenes/Default_Profile.png" alt="Recruiter Profile Picture">
+                    <img id="recruiterProfilePicture" src="../imagenes/Default_Profile.png"
+                        alt="Recruiter Profile Picture">
                     <button id="changePictureButton" title="Cambiar Foto">
                         <img src="../imagenes/cambiarImagen.png" alt="Edit Icon">
                     </button>
@@ -76,6 +77,40 @@
         </div>
     </main>
 
+    <!-- Popup para verificar el password -->
+    <div id="passwordPopup" class="popup">
+        <h3>Verificación de Contraseña</h3>
+        <input type="password" id="passwordInput" placeholder="Ingrese su contraseña" required>
+        <button id="verifyPasswordButton">Verificar</button>
+        <button id="closePasswordPopup">Cancelar</button>
+    </div>
+
+    <!-- Popup para ingresar el nuevo correo electronico -->
+    <div id="emailPopup" class="popup">
+        <h3>Nuevo Correo Electrónico</h3>
+        <input type="email" id="newEmailInput" placeholder="Ingrese el nuevo correo" required>
+        <button id="sendVerificationCodeButton">Enviar Código</button>
+        <button id="closeEmailPopup">Cancelar</button>
+    </div>
+
+    <!-- Popup para ingresar el codigo de verificacion -->
+    <div id="codePopup" class="popup">
+        <h3>Ingrese el Código de Verificación</h3>
+        <input type="text" id="verificationCodeInput" placeholder="Código de Verificación" required>
+        <button id="confirmEmailButton">Confirmar</button>
+        <button id="closeCodePopup">Cancelar</button>
+    </div>
+
+    <!-- Popup para cambiar contraseña -->
+    <div id="changePasswordPopup" class="popup">
+        <h3>Cambiar Contraseña</h3>
+        <input type="password" id="oldPasswordInput" placeholder="Ingrese su contraseña actual" required>
+        <input type="password" id="newPasswordInput" placeholder="Ingrese su nueva contraseña" required>
+        <input type="password" id="confirmNewPasswordInput" placeholder="Confirme su nueva contraseña" required>
+        <button id="submitChangePasswordButton">Cambiar Contraseña</button>
+        <button id="closeChangePasswordPopup">Cancelar</button>
+    </div>
+
     <div class="toast" id="toastMessage"></div>
     <script src="../javascript/menu.js"></script>
     <script src="../javascript/upload_image.js"></script>
@@ -86,7 +121,7 @@
         <div class="footer">
             <div class="footerHijo">
                 <p>Diseñado por el grupo #1 de la clase Ingeniería de Software 2.</p>
-                <img src="../Imagenes/Logo_UTH_2009.png">
+                <img src="../imagenes/Logo_UTH_2009.png">
                 <p>Proyecto Estudiantil para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos para
                     Recursos Humanos.</p>
             </div>

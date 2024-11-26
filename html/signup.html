@@ -14,20 +14,67 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-        <link rel="icon" type="image/png" href="../Imagenes/faviconit/favicon-60.png">
+        <link rel="icon" type="image/png" href="../imagenes/faviconit/favicon-60.png">
         <link rel="stylesheet" type="text/css" href="../css/proyectos.css">
         <link rel="stylesheet" type="text/css" href="../css/cssLogin.css">
-<body>
+        <link rel="stylesheet" type="text/css" href="../css/cssSignup.css">
+
+        <body>
     <a href="index.html" class="btn-close" target="_self">X</a>
         <section class="bckground">
-            <section class="login">
-                <h1>Login</h1>
+            <section class="signup">
+                <h1>Registro Cuenta</h1>
                 
                     <form method="post">
-                        <input type="text" name="user" placeholder="Usuario" required="required"/>
-                        <input type="password" name="passwd" placeholder="Contraseña" required="required"/>
-                        <button type="submit" class="btn btn-primary btn-block btn-large">Iniciar Sesion</button>
-                        <a href="signup.html" target="_self" class="btn btn-block btn-signup btn-large ">Crear una Cuenta</a>
+
+                    <div class="column1">
+                        <label for="nombre1"> Primer Nombre</label><br>
+                        <input type="text" id="nombre1" name="nombre1" placeholder="Primer Nombre" required="required"/>
+                        
+                        <label for="nombre2">Segundo Nombre</label><br>
+                        <input type="text" id="nombre2" name="nombre2" placeholder="Segundo Nombre"/>
+
+                        <label for="apellido1">Primer Apellido</label><br>
+                        <input type="text" id="apellido1" name="apellido1" placeholder="Primer Apellido" required="required"/>
+
+                        <label for="apellido2">Segundo Apellido</label><br>
+                        <input type="text" id="apellido22" name="apellido2" placeholder="Segundo Apellido" required="required"/>
+
+                        <label for="fechaNac">Fecha Nacimiento</label><br>
+                        <input type="date" id="fechaNac" name="fechaNac" placeholder="Fecha Nacimiento" required="required" />
+
+                        <label for="dni">DNI</label><br>
+                        <input type="text" id="dni" name="dni" placeholder="DNI" required="required" />
+
+                    </div>
+                    <div class="column2">
+                        <label for="correo">Correo Electronico</label><br>
+                        <input type="email" id="correo" name="correo" placeholder="Correo Electronico" required="required"/>
+
+                        <label for="passwd1">Contraseña</label><br>
+                        <input type="password" id="passwd1" name="passwd1" placeholder="Contraseña" required="required"/>
+
+                        <label for="passwd2">Confirmar Contraseña</label><br>
+                        <input type="password" id="passwd2" name="passwd2" placeholder="Contraseña" required="required"/>
+
+                        <label for="telefono">Telefono</label><br>
+                        <input type="text" id="telefono" name="telefono" placeholder="Telefono" required="required"/>
+
+                        <label for="genero">Genero</label><br>
+                        <select id="genero" name="genero" required="required">
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Otros">Otros</option>
+                        </select>
+
+                        <label for="educacion">Nivel Educativo</label><br>
+                        <select id="educacion" name="educacion" required="required" >
+                            <option value=""></option>
+                            <option value=""></option>
+                        </select>
+                    </div>
+
+                        <button type="submit" class="btn btn-primary btn-block btn-large">Crear</button>
                     </form>
             </section>
     </section>

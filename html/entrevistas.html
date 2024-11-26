@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Entrevistas</title>
+    <meta charset="UTF-8">
+    <meta name="Description"
+        content="Proyecto para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos para Recursos Humanos.">
+    <meta name="Author"
+        content="Gustavo Brocato #202010030250, Enil Lopez Cruz #201610070128, Sarahy Espinal Colindres #202120060225, Jair Jared Duron Hernandez #201910060039">
+    <meta name="keyword" content="HR, Gestion Candidatos, Recursos Humanos, UTH, Ingenieria Software">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../imagenes/faviconit/favicon-60.png">
+    <link rel="stylesheet" type="text/css" href="../css/entrevistas.css">
+    <link rel="stylesheet" type="text/css" href="../css/cssPrincipal.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- Menu -->
+    <div class="menu" style="border-bottom: solid rgba(225,76,7, 1);">
+        <img src="../imagenes/gaming_plus_logo.png">
+        <ul class="menu">
+            <li><a id="navHome" href="index.html" target="_self">Inicio</a></li>
+            <li><a id="navHistoria" href="historia.html" target="_self">Historia</a></li>
+            <li><a id="navProyectos" href="proyectos.html" target="_self">Portafolio</a></li>
+            <li><a id="navVacantes" href="vacantes.html" target="_self">Empleos</a></li>
+            <li id="userDropdown" style="display: none;">
+                <a href="#" id="profileDropdownLink">
+                    <div class="profile-pictureMenu">
+                        <img id="profilePicture" src="../imagenes/Default_Profile.png" alt="Profile Picture">
+                        <figcaption id="caption" name="caption"></figcaption>
+                        <div class="dropdown-menu">
+                            <ul class="dropDownMenu" id="profileDropdown">
+                                <li><a id="navPerfil" href="profile.html">Perfil</a></li>
+                                <li><a href="#" id="logoutButton">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li id="loginSignupButtons">
+                <a href="login.html"><input name="botLoginMenu" id="botLoginMenu" type="button" title="LOGIN"
+                        value="LOGIN"></a>
+                <a href="signup.html"><input name="botSignupMenu" id="botSignupMenu" type="button" title="SIGNUP"
+                        value="SIGNUP"></a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main class="content">
+        <section id="vacancies-section">
+            <h2>Vacantes</h2>
+            <div id="vacancy-list"></div>
+        </section>
+
+        <section id="candidates-section">
+            <h2>Candidatos</h2>
+            <div id="candidate-cards"></div>
+        </section>
+
+        <section id="interviews-section">
+            <h2>Entrevistas</h2>
+            <div id="interview-list"></div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="interview-modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h3>Programar entrevista para <span id="candidate-name"></span></h3>
+            <img id="profile-image" src="" alt="Candidate Profile"
+                style="width: 100px; height: auto; display: block; margin: 10px 0;">
+
+            <form id="interview-form">
+                <!-- Hidden Inputs for Data -->
+                <input type="hidden" name="candidate-id">
+                <input type="hidden" name="application-id">
+                <input type="hidden" name="vacancy-id">
+                <input type="hidden" name="correo">
+
+                <!-- Form Fields -->
+                <div class="form-group">
+                    <label for="interview-date">Fecha:</label>
+                    <input type="date" id="interview-date" name="interview-date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="interview-time">Hora:</label>
+                    <input type="time" id="interview-time" name="interview-time" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="interview-medium">Medio:</label>
+                    <select id="interview-medium" name="interview-medium" required>
+                        <option value="in-person">En persona</option>
+                        <option value="virtual">Virtual</option>
+                        <option value="phone">Teléfono</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="interview-location">Ubicación/Enlace:</label>
+                    <input type="text" id="interview-location" name="interview-location"
+                        placeholder="Ubicación o enlace de reunión" required>
+                </div>
+
+                <button type="submit" style="margin-top: 10px;">Guardar Entrevista</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Reprogramar -->
+    <div id="reprogram-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-reprogram-modal" class="close">&times;</span>
+            <h2>Reprogramar Entrevista</h2>
+            <form id="reprogram-form">
+                <input type="hidden" name="interview-id">
+                <input type="hidden" name="application-id">
+                <input type="hidden" name="correo">
+                <div>
+                    <label for="reprogram-date">Fecha:</label>
+                    <input type="date" id="reprogram-date" name="reprogram-date" required>
+                </div>
+                <div>
+                    <label for="reprogram-time">Hora:</label>
+                    <input type="time" id="reprogram-time" name="reprogram-time" required>
+                </div>
+                <div>
+                    <label for="reprogram-medium">Medio:</label>
+                    <select id="reprogram-medium" name="reprogram-medium" required>
+                        <option value="Presencial">Presencial</option>
+                        <option value="Virtual">Virtual</option>
+                        <option value="Teléfono">Teléfono</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="reprogram-location">Ubicación/Enlace:</label>
+                    <input type="text" id="reprogram-location" name="reprogram-location" required>
+                </div>
+                <button type="submit">Reprogramar Entrevista</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Toast -->
+    <div class="toast" id="toastMessage"></div>
+
+    <script src="../javascript/menu.js"></script>
+    <script src="../javascript/entrevistas.js"></script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer">
+            <div class="footerHijo">
+                <p>
+                    Diseñado por el grupo #1 de la clase Ingeniería de Software 2.
+
+                </p>
+                <img src="../imagenes/Logo_UTH_2009.png">
+                <p>
+                    Proyecto Estudiantil para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos
+                    para Recursos Humanos.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
