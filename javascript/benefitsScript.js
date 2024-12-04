@@ -21,18 +21,14 @@ async function checkUserRole(requiredRole) {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
             },
         });
 
         const data = await response.json();
         return data.exists;
     } catch (error) {
-        console.error('Error checking role:', error);
-        throw new Error('Error checking role. Please try again later.');
+        console.error('Función de comprobación de errores:', error);
+        throw new Error('Rol de comprobación de errores. Por favor inténtalo de nuevo más tarde..');
     }
 }
 
@@ -107,11 +103,14 @@ async function loadVacancies() {
 
 async function openVacancyDetail(vacancy) {
     const loggedIn = await isUserLoggedIn();
+    let isReclutador = false;
+    let isUsuario = false;
+    let isCreator = false;
 
     if (loggedIn) {
-        const isReclutador = await checkUserRole("Reclutador");
-        const isUsuario = await checkUserRole("Usuario");
-        const isCreator = await checkUserID(vacancy.idusuario);
+        isReclutador = await checkUserRole("Reclutador");
+        isUsuario = await checkUserRole("Usuario");
+        isCreator = await checkUserID(vacancy.idusuario);
     } else {
         isReclutador = false;
         isUsuario = false;
@@ -119,7 +118,7 @@ async function openVacancyDetail(vacancy) {
     }
 
     const modal = document.getElementById('vacancyModal');
-    vacancyImage = null;
+    let vacancyImage = null;
 
     if (vacancy.id_imagen == 1) {
         vacancyImage = "developer2.jpeg";
@@ -155,6 +154,14 @@ async function openVacancyDetail(vacancy) {
         applyButton.style.display = 'block';
         removeButton.style.display = 'none';
         warning.style.display = 'none';
+        // Verifique si el usuario ya postuló para esta vacante
+        const alreadyApplied = await checkIfUserApplied(vacancy.id, vacancy.idusuario);
+        if (alreadyApplied) {
+            applyButton.disabled = true;
+            applyButton.style.display = 'none';
+            warning.style.display = 'block';
+            warning.textContent = '¡Ya has aplicado para esta vacante!';
+        }
     } else {
         applyButton.style.display = 'none';
         removeButton.style.display = 'none';
@@ -162,18 +169,115 @@ async function openVacancyDetail(vacancy) {
         warning.textContent = '¡Por favor inicia sesión o inscríbete para poder aplicar a la vacante!';
     }
 
-    // Store vacancy ID for removal action
+    // Almacenar el ID de vacante para la acción de eliminación
     removeButton.dataset.vacancyId = vacancy.id;
+
+    // Agregar oyentes para botones
+    applyButton.onclick = async () => {
+        if (isUsuario) {
+            try {
+                const token = localStorage.getItem('token');
+                let userId = vacancy.idusuario;
+                let vacanteId = vacancy.id;
+
+                const response = await fetch(`http://localhost:3000/api/application/addApplication`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-type': 'application/json',
+                    },
+                    body: JSON.stringify({ userId, vacanteId }),
+                });
+
+                if (!response.ok) {
+                    alert('Hubo un problema al aplicar a la vacante.');
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Error al enviar la aplicación.');
+                }
+
+                alert('¡Aplicación enviada exitosamente!');
+                location.reload();
+            } catch (error) {
+                console.error('Error en la solicitud de aplicación:', error);
+                throw error;
+            }
+        }
+    };
+
+    removeButton.onclick = async () => {
+        if (isReclutador && isCreator) {
+            const confirmDelete = confirm('¿Estás seguro de que deseas eliminar esta vacante?');
+            if (confirmDelete) {
+                try {
+                    const response = await removeVacancy(vacancy.id);
+                    if (response.success) {
+                        alert('¡Vacante eliminada exitosamente!');
+                        modal.style.display = 'none';
+                    } else {
+                        alert('Hubo un problema al eliminar la vacante.');
+                    }
+                } catch (error) {
+                    console.error('Error al eliminar:', error);
+                    alert('Error al eliminar la vacante.');
+                }
+            }
+        }
+    };
 
     modal.style.display = 'flex';
 }
+
+// Función para comprobar si el usuario ya postuló para la vacante
+async function checkIfUserApplied(vacanteId, userId) {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`http://localhost:3000/api/application/checkIfApplied`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify({ vacanteId, userId }),
+        });
+
+        const data = await response.json();
+        return data.applied;
+    } catch (error) {
+        console.error('Error al verificar si el usuario ya aplicó:', error);
+        return false;
+    }
+}
+
+
 
 function closeVacancyDetail() {
     document.getElementById('vacancyModal').style.display = 'none';
 }
 
-function redirectToApply() {
-    alert('Redirecting to apply/signup page.');
+async function applyToVacancy(vacanteId, userId) {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`http://localhost:3000/api/application/addApplication`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify({ userId, vacanteId }),
+        });
+
+        if (!response.ok) {
+            // Handle HTTP errors (e.g., 4xx or 5xx)
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Error al enviar la aplicación.');
+        }
+
+        const data = await response.json();
+        return response.ok;
+    } catch (error) {
+        console.error('Error en la solicitud de aplicación:', error);
+        throw error; // Let the caller handle this error
+    }
 }
 
 // Funcion para cerrar una vacante (solo para Reclutadores)

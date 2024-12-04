@@ -58,13 +58,17 @@ async function loadCandidates(vacancyId) {
 
     // Muestra las tarjetas de los candidatos
     applicants.forEach((cand) => {
+        let imgSrc = "../imagenes/Default_Profile.png";
+        if(cand.imagen){
+            imgSrc = cand.imagen;
+        };
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
-        <img src="../imagenes/Default_Profile.png">
+        <img src="${cand.imagen || '../imagenes/Default_Profile.png'}" alt="Profile Picture">
         <h3>${cand.primernombre} ${cand.apellidopaterno}</h3>
         <p>DNI: ${cand.dni}</p>`;
-        card.onclick = () => openModal(cand.idcandidato, cand.primernombre, cand.apellidopaterno, "../imagenes/Default_Profile.png", cand.id, cand.idvacante);
+        card.onclick = () => openModal(cand.idcandidato, cand.primernombre, cand.apellidopaterno, imgSrc, cand.id, cand.idvacante);
         candidateCards.appendChild(card);
     });
 

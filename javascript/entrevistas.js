@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const card = document.createElement("div");
                 card.className = "card";
                 card.innerHTML = `
-                <img src="../imagenes/Default_Profile.png" alt="Profile">
+                <img src="${cand.imagen || '../imagenes/Default_Profile.png'}" alt="Profile Picture">
                 <h3>${cand.primernombre} ${cand.apellidopaterno}</h3>
                 <p>DNI: ${cand.dni}</p>
                 <button class="interview-btn">Ver Entrevistas</button>

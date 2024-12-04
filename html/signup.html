@@ -1,82 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>SignUp</title>
-        <meta charset="UTF-8">
-        <meta name="Description"
-            content="Proyecto para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos para Recursos Humanos.">
-        <meta name="Author"
-            content="Gustavo Brocato #202010030250, Enil Lopez Cruz #201610070128, Sarahy Espinal Colindres #202120060225, Jair Jared Duron Hernandez #201910060039">
-        <meta name="keyword" content="HR, Gestion Candidatos, Recursos Humanos, UTH, Ingenieria Software">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-        <link rel="icon" type="image/png" href="../imagenes/faviconit/favicon-60.png">
-        <link rel="stylesheet" type="text/css" href="../css/proyectos.css">
-        <link rel="stylesheet" type="text/css" href="../css/cssLogin.css">
-        <link rel="stylesheet" type="text/css" href="../css/cssSignup.css">
 
-        <body>
-    <a href="index.html" class="btn-close" target="_self">X</a>
-        <section class="bckground">
-            <section class="signup">
-                <h1>Registro Cuenta</h1>
-                
-                    <form method="post">
+<head>
+    <title>Registro Cuenta</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Sistema de gestión de Candidatos para Recursos Humanos.">
+    <meta name="author" content="Team Info">
+    <meta name="keywords" content="HR, Gestion Candidatos, Recursos Humanos, UTH, Ingenieria Software">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/cssSignup.css">
+    <link rel="stylesheet" href="../css/cssPrincipal.css">
+    <link rel="icon" type="image/png" href="../imagenes/favicon.ico">
+</head>
 
-                    <div class="column1">
-                        <label for="nombre1"> Primer Nombre</label><br>
-                        <input type="text" id="nombre1" name="nombre1" placeholder="Primer Nombre" required="required"/>
-                        
-                        <label for="nombre2">Segundo Nombre</label><br>
-                        <input type="text" id="nombre2" name="nombre2" placeholder="Segundo Nombre"/>
+<body>
+    <a href="index.html" class="btn-close">X</a>
+    <section class="background">
+        <div class="signup-container" id="signup-container">
+            <h1>Registro Cuenta</h1>
+            <form method="post" class="signup-form" id="signup-form">
+                <div class="form-column">
+                    <label for="nombre1">Primer Nombre</label>
+                    <input type="text" id="nombre1" name="nombre1" placeholder="Primer Nombre" required />
 
-                        <label for="apellido1">Primer Apellido</label><br>
-                        <input type="text" id="apellido1" name="apellido1" placeholder="Primer Apellido" required="required"/>
+                    <label for="nombre2">Segundo Nombre</label>
+                    <input type="text" id="nombre2" name="nombre2" placeholder="Segundo Nombre" />
 
-                        <label for="apellido2">Segundo Apellido</label><br>
-                        <input type="text" id="apellido22" name="apellido2" placeholder="Segundo Apellido" required="required"/>
+                    <label for="apellido1">Primer Apellido</label>
+                    <input type="text" id="apellido1" name="apellido1" placeholder="Primer Apellido" required />
 
-                        <label for="fechaNac">Fecha Nacimiento</label><br>
-                        <input type="date" id="fechaNac" name="fechaNac" placeholder="Fecha Nacimiento" required="required" />
+                    <label for="apellido2">Segundo Apellido</label>
+                    <input type="text" id="apellido2" name="apellido2" placeholder="Segundo Apellido" required />
 
-                        <label for="dni">DNI</label><br>
-                        <input type="text" id="dni" name="dni" placeholder="DNI" required="required" />
+                    <label for="fechaNac">Fecha de Nacimiento</label>
+                    <input type="date" id="fechaNac" name="fechaNac" required />
 
-                    </div>
-                    <div class="column2">
-                        <label for="correo">Correo Electronico</label><br>
-                        <input type="email" id="correo" name="correo" placeholder="Correo Electronico" required="required"/>
+                    <label for="dni">DNI</label>
+                    <input type="text" id="dni" name="dni" placeholder="DNI" required="required" maxlength="13"
+                        oninput="validateDNI(this)" />
+                    <small id="dniError" style="color: red; display: none;">El DNI debe tener exactamente 13
+                        caracteres.</small>
+                </div>
+                <div class="form-column">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="email" id="correo" name="correo" placeholder="Correo Electrónico" required="required"
+                        oninput="validateEmail(this)" />
+                    <small id="emailError" style="color: red; display: none;">Por favor ingresa un correo
+                        válido.</small>
 
-                        <label for="passwd1">Contraseña</label><br>
-                        <input type="password" id="passwd1" name="passwd1" placeholder="Contraseña" required="required"/>
+                    <label for="passwd1">Contraseña</label>
+                    <input type="password" id="passwd1" name="passwd1" placeholder="Contraseña" required="required"
+                        autocomplete="off" oninput="validatePasswordStrength()" />
+                    <small id="passwordStrengthError" style="display: none;">La contraseña debe tener al menos 8
+                        caracteres, una letra y un número.</small>
 
-                        <label for="passwd2">Confirmar Contraseña</label><br>
-                        <input type="password" id="passwd2" name="passwd2" placeholder="Contraseña" required="required"/>
+                    <label for="passwd2">Confirmar Contraseña</label>
+                    <input type="password" id="passwd2" name="passwd2" placeholder="Confirmar Contraseña"
+                        required="required" autocomplete="off" oninput="validatePasswordMatch()" />
+                    <small id="passwordMatchError" style="display: none;">Las contraseñas no coinciden.</small>
 
-                        <label for="telefono">Telefono</label><br>
-                        <input type="text" id="telefono" name="telefono" placeholder="Telefono" required="required"/>
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" id="telefono" name="telefono" placeholder="Teléfono" required />
 
-                        <label for="genero">Genero</label><br>
-                        <select id="genero" name="genero" required="required">
-                            <option value="Masculino">Masculino</option>
-                            <option value="Femenino">Femenino</option>
-                            <option value="Otros">Otros</option>
-                        </select>
+                    <label for="genero">Género</label>
+                    <select id="genero" name="genero" required>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otros">Otros</option>
+                    </select>
 
-                        <label for="educacion">Nivel Educativo</label><br>
-                        <select id="educacion" name="educacion" required="required" >
-                            <option value=""></option>
-                            <option value=""></option>
-                        </select>
-                    </div>
-
-                        <button type="submit" class="btn btn-primary btn-block btn-large">Crear</button>
-                    </form>
-            </section>
+                    <label for="educacion">Nivel Educativo</label>
+                    <select id="educacion" name="educacion" required>
+                        <option value="" disabled selected>Seleccione...</option>
+                        <!-- Aqui se agregan las opciones -->
+                    </select>
+                    <small id="educacionError" style="display: none; color: red;">Error al cargar los niveles
+                        educativos.</small>
+                </div>
+                <button type="submit" id="submitButton">Crear Cuenta</button>
+            </form>
+        </div>
     </section>
+
+    <div id="email-confirmation" style="display: none;">
+        <p>Se ha enviado un código de verificación a tu correo.</p>
+        <input type="text" id="confirmation-code" placeholder="Ingresa el código de verificación" maxlength="6" required />
+        <button id="verify-code-btn">Verificar</button>
+        <button id="resend-code-btn" disabled>Reenviar código</button>
+        <small id="resend-message" style="display: none; color: gray;">Puedes reenviar el código después de 60 segundos.</small>
+    </div>
+
+    <div class="toast" id="toastMessage"></div>
+
+    <script src="../javascript/signup.js"></script>
+    <script src="../javascript/menu.js"></script>
 </body>
+
 </html>

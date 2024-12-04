@@ -30,7 +30,7 @@ async function isUserLoggedIn() {
             return false;
         }
     } catch (error) {
-        console.error('Error checking login status:', error);
+        console.error('Error al comprobar el estado de inicio de sesión:', error);
         return false;
     }
 }
@@ -56,8 +56,8 @@ async function checkRole(requiredRole) {
         const data = await response.json();
         return data.exists;
     } catch (error) {
-        console.error('Error checking role:', error);
-        throw new Error('Error checking role. Please try again later.');
+        console.error('Función de comprobación de errores:', error);
+        throw new Error('Rol de comprobación de errores. Inténtelo de nuevo más tarde.');
     }
 }
 
@@ -74,8 +74,6 @@ function showDropdownMenu() {
     // muestra el menu en cascada
     userDropdown.style.display = 'block';
 
-
-
     // Coloca el enlace a la pagina de perfil
     profileDropdownLink.href = 'profile.html';
 }
@@ -86,7 +84,7 @@ async function logout() {
         const token = localStorage.getItem('token');
 
         if (!token) {
-            console.error('No token found in localStorage');
+            console.error('No se encontró ningún token en localStorage');
             return;
         }
 
@@ -112,10 +110,10 @@ async function logout() {
         } else {
             // Handle the error response
             const errorMessage = await response.json();
-            console.error('Failed to logout:', errorMessage.error);
+            console.error('No se pudo cerrar sesión:', errorMessage.error);
         }
     } catch (error) {
-        console.error('An error occurred during logout:', error);
+        console.error('Se produjo un error al cerrar sesión.:', error);
     }
 }
 
@@ -136,8 +134,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Revisa los roles del usuario
         const isAdmin = await checkRole('Admin');
-        const isReclutador = isAdmin ? false : await checkRole('Reclutador'); // Only check if not Admin
-        const isUsuario = !isAdmin && !isReclutador; // Default to User if not Admin or Recruiter
+        const isReclutador = isAdmin ? false : await checkRole('Reclutador');
+        const isUsuario = !isAdmin && !isReclutador; // Valor predeterminado para el usuario si no es administrador o reclutador
 
         // Actualiza los enlaces de navegacion
         const mainNavLinks = [
@@ -173,7 +171,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 { text: 'Historia', href: 'historia.html' },
                 { text: 'Portafolio', href: 'proyectos.html' },
                 { text: 'Empleos', href: 'vacantes.html' },
-                { id: 'navPerfil', text: 'Perfil', href: 'perfil.html' }
+                { id: 'navPerfil', text: 'Perfil', href: 'perfilCandidato.html' }
             ]);
         }
 
@@ -216,12 +214,22 @@ function showToast(message) {
 //Funcion para obtener la imagen de perfil
 const setProfileImage = async () => {
     try {
+        
+        const isAdmin = await checkRole('Admin');
+        const isReclutador = isAdmin ? false : await checkRole('Reclutador');
+        const isUsuario = !isAdmin && !isReclutador;
+        let url = 'http://localhost:3000/api/images/getImage';
+
+        if(isUsuario){
+            url = 'http://localhost:3000/api/images/getImageCandidato';
+        };
+
         const menuProfilePicture = document.getElementById('profilePicture');
-        const token = localStorage.getItem('token'); // Get the JWT token from localStorage
-        const response = await fetch('http://localhost:3000/api/images/getImage', {
+        const token = localStorage.getItem('token'); 
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${token}` // Send the token in the Authorization header
+                'Authorization': `Bearer ${token}`
             }
         });
 
@@ -233,9 +241,9 @@ const setProfileImage = async () => {
             menuProfilePicture.src = imageObjectUrl;
         } else {
             menuProfilePicture.src = '../imagenes/Default_Profile.png';
-            console.error('Failed to fetch image: ', response.statusText);
+            console.error('No se pudo recuperar la imagen: ', response.statusText);
         }
     } catch (error) {
-        console.error('Error fetching image:', error);
+        console.error('Error al obtener la imagen:', error);
     }
 };

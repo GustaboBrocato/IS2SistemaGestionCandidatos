@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Perfil del Candidato</title>
+    <meta charset="UTF-8">
+    <meta name="Description"
+        content="Proyecto para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos para Recursos Humanos.">
+    <meta name="Author"
+        content="Gustavo Brocato #202010030250, Enil Lopez Cruz #201610070128, Sarahy Espinal Colindres #202120060225, Jair Jared Duron Hernandez #201910060039">
+    <meta name="keyword" content="HR, Gestion Candidatos, Recursos Humanos, UTH, Ingenieria Software">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../imagenes/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../css/perfilCandidato.css">
+    <link rel="stylesheet" type="text/css" href="../css/cssPrincipal.css">
+</head>
+
+<body>
+    <!-- Menu -->
+    <div class="menu" style="border-bottom: solid rgba(225,76,7, 1);">
+        <img src="../imagenes/gaming_plus_logo.png">
+        <ul class="menu">
+            <li><a id="navHome" href="index.html" target="_self">Inicio</a></li>
+            <li><a id="navHistoria" href="historia.html" target="_self">Historia</a></li>
+            <li><a id="navProyectos" href="proyectos.html" target="_self">Portafolio</a></li>
+            <li><a id="navVacantes" href="vacantes.html" target="_self">Empleos</a></li>
+            <li id="userDropdown" style="display: none;">
+                <a href="#" id="profileDropdownLink">
+                    <div class="profile-pictureMenu">
+                        <img id="profilePicture" src="../imagenes/Default_Profile.png" alt="Profile Picture">
+                        <figcaption id="caption" name="caption"></figcaption>
+                        <div class="dropdown-menu">
+                            <ul class="dropDownMenu" id="profileDropdown">
+                                <li><a id="navPerfil" href="profile.html">Perfil</a></li>
+                                <li><a href="#" id="logoutButton">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li id="loginSignupButtons">
+                <a href="login.html"><input name="botLoginMenu" id="botLoginMenu" type="button" title="LOGIN"
+                        value="LOGIN"></a>
+                <a href="signup.html"><input name="botSignupMenu" id="botSignupMenu" type="button" title="SIGNUP"
+                        value="SIGNUP"></a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Perfil de Candidato -->
+    <main class="main-content">
+        <div class="profile-container">
+            <div class="profile-card">
+                <!-- Profile Picture -->
+                <div class="profile-picture-container">
+                    <img id="candidateProfilePicture" src="../imagenes/Default_Profile.png" alt="Profile Picture">
+                    <button id="changePictureButton" title="Cambiar Foto">
+                        <img src="../imagenes/cambiarImagen.png" alt="Edit Icon">
+                    </button>
+                    <input type="file" id="uploadPictureInput" accept="image/*" style="display:none;">
+                </div>
+
+                <!-- Profile Information -->
+                <div class="profile-info">
+                    <h2 id="candidateName">Nombre del Candidato</h2>
+                    <p id="candidateDNI">ID de Candidato: #54321</p>
+                    <div class="profile-email">
+                        <p id="candidateEmail">Correo: candidato@example.com</p>
+                        <button class="edit-button" id="editEmailButton">
+                            <svg class="edit-svgIcon" viewBox="0 0 512 512">
+                                <path
+                                    d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="profile-phone">
+                        <p id="candidatePhone">Teléfono: <span>(No registrado)</span></p>
+                        <button class="edit-button" id="editPhoneButton">
+                            <svg class="edit-svgIcon" viewBox="0 0 512 512">
+                                <path
+                                    d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                    <button id="changePasswordButton" class="btn-primary">Cambiar Contraseña</button>
+                </div>
+            </div>
+
+            <!-- Informacion Adicional -->
+            <div class="additional-info">
+                <div class="curriculum-section">
+                    <h3>Currículo</h3>
+                    <input type="file" id="uploadCVInput" accept="application/pdf" style="display: none;" />
+                    <div class="curriculum-buttons">
+                        <button class="buttonSubir" id="uploadCVButton">
+                            <svg class="w-6 h-6" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+                                    stroke-linejoin="round" stroke-linecap="round"></path>
+                            </svg>
+                            <span class="text">
+                                Subir Currículo
+                            </span>
+                        </button>
+                        <button class="open-file" id="viewCVButton">
+                            <span class="file-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 71 67">
+                                    <path stroke-width="5" stroke="black"
+                                        d="M41.7322 11.7678L42.4645 12.5H43.5H68.5V64.5H2.5V2.5H32.4645L41.7322 11.7678Z">
+                                    </path>
+                                </svg>
+                                <span class="file-front"></span>
+                            </span>
+                            Ver Currículo
+                        </button>
+                    </div>
+
+                    <p id="cvAlert" style="color: red;">* No se ha subido ningún curriculum.</p>
+                </div>
+
+                <div class="skills-section">
+                    <h3>Habilidades</h3>
+                    <button type="button" class="button" id="addSkillButton">
+                        <span class="button__text">Agregar Habilidad</span>
+                        <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+                                stroke="currentColor" height="24" fill="none" class="svg">
+                                <line y2="19" y1="5" x2="12" x1="12"></line>
+                                <line y2="12" y1="12" x2="19" x1="5"></line>
+                            </svg></span>
+                    </button>
+                    <ul id="skillsList">
+                    </ul>
+                </div>
+
+                <div class="references-section">
+                    <h3>Referencias Laborales</h3>
+                    <button type="button" class="button" id="addReferenceButton">
+                        <span class="button__text">Agregar Referencia</span>
+                        <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+                                stroke="currentColor" height="24" fill="none" class="svg">
+                                <line y2="19" y1="5" x2="12" x1="12"></line>
+                                <line y2="12" y1="12" x2="19" x1="5"></line>
+                            </svg></span>
+                    </button>
+                    <ul id="referencesList">
+                        <strong>Nombre</strong>
+                        <strong>Teléfono</strong>
+                        <strong>Relación</strong>
+                        <strong>Acciones</strong>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Popup para ingresar el nuevo correo electronico -->
+    <div id="emailPopup" class="popup">
+        <h3>Nuevo Correo Electrónico</h3>
+        <input type="email" id="newEmailInput" placeholder="Ingrese el nuevo correo" required>
+        <button id="sendVerificationCodeButton">Enviar Código</button>
+        <button id="closeEmailPopup">Cancelar</button>
+    </div>
+
+    <!-- Popup para ingresar el nuevo correo electronico -->
+    <div id="telefonoPopup" class="popup">
+        <h3>Nuevo Número de Teléfono</h3>
+        <input type="text" id="newTelefono" placeholder="Ingrese el nuevo número de teléfono" required>
+        <button id="confirmTelefonoButton">Actualizar</button>
+        <button id="closeTelefonoPopup">Cancelar</button>
+    </div>
+
+    <!-- Popup para ingresar el codigo de verificacion -->
+    <div id="codePopup" class="popup">
+        <h3>Ingrese el Código de Verificación</h3>
+        <input type="text" id="verificationCodeInput" placeholder="Código de Verificación" required>
+        <button id="confirmEmailButton">Confirmar</button>
+        <button id="closeCodePopup">Cancelar</button>
+    </div>
+
+    <!-- Popup para cambiar contraseña -->
+    <div id="changePasswordPopup" class="popup">
+        <h3>Cambiar Contraseña</h3>
+        <input type="password" id="oldPasswordInput" placeholder="Ingrese su contraseña actual" required>
+        <input type="password" id="newPasswordInput" placeholder="Ingrese su nueva contraseña" required>
+        <input type="password" id="confirmNewPasswordInput" placeholder="Confirme su nueva contraseña" required>
+        <button id="submitChangePasswordButton">Cambiar Contraseña</button>
+        <button id="closeChangePasswordPopup">Cancelar</button>
+    </div>
+
+    <!-- Popup para verificar el password -->
+    <div id="passwordPopup" class="popup">
+        <h3>Verificación de Contraseña</h3>
+        <input type="password" id="passwordInput" placeholder="Ingrese su contraseña" required>
+        <button id="verifyPasswordButton">Verificar</button>
+        <button id="closePasswordPopup">Cancelar</button>
+    </div>
+
+    <!-- Modal para habilidades -->
+    <div class="modal-overlay" id="skillModalOverlay"></div>
+    <div class="modal" id="skillModal">
+        <h3>Seleccionar Habilidad</h3>
+        <select id="skillSelector">
+
+        </select>
+        <button id="confirmAddSkillButton" class="btn-small">Agregar</button>
+        <button id="cancelSkillModalButton" class="btn-small">Cancelar</button>
+    </div>
+
+    <!-- Modal para referencias -->
+    <div class="modal-overlay" id="referenceModalOverlay"></div>
+    <div class="modal" id="referenceModal">
+        <h3>Agregar Referencia Laboral</h3>
+        <form id="referenceForm">
+            <label for="refName">Nombre:</label>
+            <input type="text" id="refName" name="refName" maxlength="100" required />
+
+            <label for="refContact">Contacto:</label>
+            <input type="text" id="refContact" name="refContact" maxlength="50" required />
+
+            <label for="refRelacion">Relación:</label>
+            <input type="text" id="refRelacion" name="refRelacion" maxlength="100" required />
+
+            <div class="modal-buttons">
+                <button type="submit" class="btn-small">Guardar</button>
+                <button type="button" id="cancelReferenceModalButton" class="btn-small">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="toast" id="toastMessage"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer">
+            <div class="footerHijo">
+                <p>Diseñado por el grupo #1 de la clase Ingeniería de Software 2.</p>
+                <img src="../imagenes/Logo_UTH_2009.png">
+                <p>Proyecto Estudiantil para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos para
+                    Recursos Humanos.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../javascript/menu.js"></script>
+    <script src="../javascript/upload_image.js"></script>
+    <script src="../javascript/perfilCandidato.js"></script>
+</body>
+
+</html>
