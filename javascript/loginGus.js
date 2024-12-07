@@ -36,10 +36,6 @@ form.addEventListener('submit', async (e) => {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods': 'POST,PATCH,OPTIONS',
-                "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With"
             },
             body: JSON.stringify({ username, password })
         });
@@ -125,10 +121,6 @@ async function checkRole(requiredRole) {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
             },
         });
 

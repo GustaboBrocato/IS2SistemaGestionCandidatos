@@ -16,10 +16,6 @@ async function isUserLoggedIn() {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
             },
         });
 
@@ -50,10 +46,6 @@ async function checkRole(requiredRole) {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
             },
         });
 
