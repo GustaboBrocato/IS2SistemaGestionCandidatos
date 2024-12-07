@@ -58,7 +58,7 @@ async function checkRole(requiredRole) {
 }
 
 // Funcion para mostrar el segundo menu y foto de perfil
-function showDropdownMenu() {
+function showDropdownMenu(user) {
     const loginSignupButtons = document.getElementById('loginSignupButtons');
     const userDropdown = document.getElementById('userDropdown');
     const profilePicture = document.getElementById('profilePicture');
@@ -71,7 +71,7 @@ function showDropdownMenu() {
     userDropdown.style.display = 'block';
 
     // Coloca el enlace a la pagina de perfil
-    profileDropdownLink.href = 'profile.html';
+    profileDropdownLink.href = 'index.html';
 }
 
 // Funcion para logout y cambiar el menu
