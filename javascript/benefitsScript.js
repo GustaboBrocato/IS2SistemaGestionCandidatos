@@ -42,6 +42,7 @@ async function checkUserRole(requiredRole) {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
             },
+            mode: 'cors',
         });
 
         const data = await response.json();
@@ -64,7 +65,8 @@ async function checkUserID(id) {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify({ usuarioID: id })
+            body: JSON.stringify({ usuarioID: id }),
+            mode: 'cors',
         });
 
         const data = await response.json();
@@ -91,6 +93,7 @@ async function loadVacancies() {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
             },
+            mode: 'cors',
         });
         const vacancies = await response.json();
 
@@ -213,6 +216,7 @@ async function openVacancyDetail(vacancy) {
                         'Content-type': 'application/json',
                     },
                     body: JSON.stringify({ userId, vacanteId }),
+                    mode: 'cors',
                 });
 
                 if (!response.ok) {
@@ -292,6 +296,7 @@ async function applyToVacancy(vacanteId, userId) {
                 'Content-type': 'application/json',
             },
             body: JSON.stringify({ userId, vacanteId }),
+            mode: 'cors',
         });
 
         if (!response.ok) {
@@ -330,6 +335,7 @@ async function removeListing() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ id: id }),
+            mode: 'cors',
         });
 
         if (response.ok) {
@@ -368,6 +374,7 @@ async function isUserLoggedIn() {
                 'Access-Control-Allow-Methods': 'GET,OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
             },
+            mode: 'cors',
         });
 
         if (response.ok) {
