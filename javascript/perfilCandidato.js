@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('token');
 
     if (!loggedIn) {
-        window.location.href = '/IS2SistemaGestionCandidatos/html/login.html';
+        //window.location.href = '/IS2SistemaGestionCandidatos/html/login.html';
     }
 
     const cvAlert = document.getElementById("cvAlert");
