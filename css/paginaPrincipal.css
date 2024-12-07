@@ -45,7 +45,7 @@
     align-items: center;
     width: 100%;
     content: '';
-    background-image: url(../Imagenes/fondojuego.png);
+    background-image: url(../imagenes/fondojuego.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
