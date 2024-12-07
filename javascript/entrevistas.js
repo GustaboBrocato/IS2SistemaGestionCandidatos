@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         cand.idcandidato,
                         cand.primernombre,
                         cand.apellidopaterno,
-                        "../imagenes/Default_Profile.png",
+                        cand.imagen || "../imagenes/Default_Profile.png",
                         cand.id,
                         cand.idvacante,
                         cand.correo
@@ -266,6 +266,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (res.ok) {
                 alert("¡Entrevista programada con éxito!");
                 modal.style.display = "none";
+                clearInterviewFields();
             } else {
                 alert("No se pudo programar la entrevista.");
             }
@@ -450,5 +451,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 timeInput.min = minTime;
             }
         }
+    }
+
+    //Funcion para limpiar campos de entrevista
+    function clearInterviewFields() {
+        // Clear the input fields by selecting them by their IDs or names
+        document.getElementById("interview-date").value = "";
+        document.getElementById("interview-time").value = "";
+        document.getElementById("interview-medium").value = "";
+        document.getElementById("interview-location").value = "";
     }
 });

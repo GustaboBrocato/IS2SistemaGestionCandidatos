@@ -48,5 +48,96 @@ p2, p3 {
     text-align: justify;
 }
 
+.banner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin: auto;
+    background-color: rgba(7, 52, 94, 1);
+    align-items: center;
+    position: relative;
+    z-index: 0;
+    border-bottom: solid rgba(176, 23, 31, 0.7);
+}
+
+.banner::before {
+    content: '';
+    background-image: url(../imagenes/gaming2.png);
+    background-size: auto;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.banner h1 {
+    font-size: 4vw;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 0 rgba(225, 76, 7, 0.7), -2px 0 rgba(225, 76, 7, 0.4), 0 2px rgba(225, 76, 7, 0.7), 0 -2px rgba(225, 76, 7, 0.4);
+    color: whitesmoke;
+    background-color: transparent;
+    border: none;
+}
+
+.banner p {
+    font-size: 1.5em;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+}
+
+.card {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 45%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.team-section {
+    margin-top: 50px;
+}
+
+.team-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.team-card {
+    text-align: center;
+    width: 200px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.team-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.team-card:hover {
+    transform: scale(1.1);
+}
+
 
 

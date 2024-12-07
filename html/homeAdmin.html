@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Panel de Admin</title>
+    <meta charset="UTF-8">
+    <meta name="Description"
+        content="Proyecto para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos para Recursos Humanos.">
+    <meta name="Author"
+        content="Gustavo Brocato #202010030250, Enil Lopez Cruz #201610070128, Sarahy Espinal Colindres #202120060225, Jair Jared Duron Hernandez #201910060039">
+    <meta name="keyword" content="HR, Gestion Candidatos, Recursos Humanos, UTH, Ingenieria Software">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../imagenes/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../css/homeReclutador.css">
+    <link rel="stylesheet" type="text/css" href="../css/cssPrincipal.css">
+</head>
+
+<body>
+    <!-- Menu -->
+    <div class="menu" style="border-bottom: solid rgba(225,76,7, 1);">
+        <img src="../imagenes/gaming_plus_logo.png">
+        <ul class="menu">
+            <li><a id="navHome" href="index.html" target="_self">Inicio</a></li>
+            <li><a id="navHistoria" href="historia.html" target="_self">Historia</a></li>
+            <li><a id="navProyectos" href="proyectos.html" target="_self">Portafolio</a></li>
+            <li><a id="navVacantes" href="vacantes.html" target="_self">Empleos</a></li>
+            <li id="userDropdown" style="display: none;">
+                <a href="#" id="profileDropdownLink">
+                    <div class="profile-pictureMenu">
+                        <img id="profilePicture" src="../imagenes/Default_Profile.png" alt="Profile Picture">
+                        <figcaption id="caption" name="caption"></figcaption>
+                        <div class="dropdown-menu">
+                            <ul class="dropDownMenu" id="profileDropdown">
+                                <li><a id="navPerfil" href="profile.html">Perfil</a></li>
+                                <li><a href="#" id="logoutButton">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li id="loginSignupButtons">
+                <a href="login.html"><input name="botLoginMenu" id="botLoginMenu" type="button" title="LOGIN"
+                        value="LOGIN"></a>
+                <a href="signup.html"><input name="botSignupMenu" id="botSignupMenu" type="button" title="SIGNUP"
+                        value="SIGNUP"></a>
+            </li>
+        </ul>
+    </div>
+
+    <main class="main-content">
+        <!-- Dashboard/Panel de Reclutador -->
+        <div class="dashboard-container">
+            <h1>Panel de Reclutador</h1>
+            <div class="dashboard-section">
+                <div class="dashboard-card">
+                    <h2>Perfil</h2>
+                    <p>Accede y edita tu información de perfil.</p>
+                    <a href="perfilReclutador.html" class="dashboard-link">Ir a Perfil</a>
+                </div>
+                <div class="dashboard-card">
+                    <h2>Agregar Reclutador</h2>
+                    <p>Crea y administra usuarios de reclutador.</p>
+                    <a href="gestionReclutador.html" class="dashboard-link">Gestionar</a>
+                </div>
+                <div class="dashboard-card">
+                    <h2>Buscar Candidatos</h2>
+                    <p>Buscar candidatos en la base de datos.</p>
+                    <a href="search.html" class="dashboard-link">Buscar Candidatos</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="toast" id="toastMessage"></div>
+    <script src="../javascript/menu.js"></script>
+    <script src="../javascript/homeReclutador.js"></script>
+
+
+    <footer>
+        <div class="footer">
+            <div class="footerHijo">
+                <p>
+                    Diseñado por el grupo #1 de la clase Ingeniería de Software 2.
+
+                </p>
+                <img src="../imagenes/Logo_UTH_2009.png">
+                <p>
+                    Proyecto Estudiantil para la clase de Ingeniería de Software 2, Sistema de gestión de Candidatos
+                    para Recursos Humanos.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

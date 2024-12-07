@@ -202,14 +202,13 @@ body {
 }
 
 /* Estilo de botones */
-#verifyPasswordButton,
 #sendVerificationCodeButton,
 #confirmEmailButton {
     background-color: #3498db;
     color: #fff;
 }
 
-#verifyPasswordButton:hover,
+
 #sendVerificationCodeButton:hover,
 #confirmEmailButton:hover {
     background-color: #2980b9;
@@ -306,6 +305,115 @@ body {
     transform: translateY(0px);
     transition-duration: 0.3s;
 }
+
+/*Boton Cancelar*/
+/* From Uiverse.io by cssbuttons-io */
+.noselect {
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: red;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    background: #e62222;
+}
+
+.noselect,
+.noselect span {
+    transition: 200ms;
+}
+
+.noselect .text {
+    transform: translateX(90px);
+    color: white;
+    font-weight: bold;
+}
+
+.noselect .icon {
+    position: absolute;
+    border-left: 1px solid #c41b1b;
+    transform: translateX(240px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.noselect svg {
+    width: 15px;
+    fill: #eee;
+}
+
+.noselect:hover {
+    background: #ff3636;
+}
+
+.noselect:hover .text {
+    color: transparent;
+}
+
+.noselect:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(40%);
+}
+
+.noselect:focus {
+    outline: none;
+}
+
+.noselect:active .icon svg {
+    transform: scale(0.8);
+}
+
+/*Continue Button*/
+/* From Uiverse.io by ZacharyCrespin */
+.continueButton {
+    cursor: pointer;
+    font-weight: 700;
+    font-family: Helvetica, "sans-serif";
+    transition: all .2s;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: rgba(2, 18, 38, 1);
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    color: whitesmoke;
+}
+
+.continueButton .text{
+    transform: translateX(90px);
+}
+
+.continueButton .icon {
+    transform: translateX(140px);
+}
+
+.continueButton:hover {
+    background: rgba(2, 18, 38, 0.9);
+}
+
+.continueButton>svg {
+    width: 34px;
+    margin-left: 10px;
+    transition: transform .3s ease-in-out;
+    fill: rgba(2, 18, 38, 1);
+}
+
+.continueButton:hover svg {
+    transform: translateX(170px);
+}
+
+.continueButton:active {
+    transform: scale(0.95);
+}
+
 
 /**/
 

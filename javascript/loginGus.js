@@ -3,6 +3,24 @@ const form = document.getElementById('loginForm');
 const usernameInput = document.getElementById('user');
 const passwordInput = document.getElementById('passwd');
 const contenedorError = document.getElementById('contenedor-error');
+const emailPopup = document.getElementById("emailPopup");
+const codePopup = document.getElementById("codePopup");
+let email = "";
+
+//botones
+const sendVerificationCodeButton = document.getElementById("sendVerificationCodeButton");
+const closeEmailButton = document.getElementById("closeEmailPopup");
+const closeCodeButton = document.getElementById("closeCodePopup");
+const confirmCodeButton = document.getElementById("confirmEmailButton");
+
+//input
+const newEmailInput = document.getElementById("newEmailInput");
+const codeInput = document.getElementById("verificationCodeInput");
+
+//eventos
+//Eventos de cierre de popup
+closeEmailButton.addEventListener("click", closePopup);
+closeCodeButton.addEventListener("click", closePopup);
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -78,11 +96,11 @@ async function getRedirectRoute() {
 
         // Determina la ruta basado en el rol
         if (isAdmin) {
-            return 'index.html';
+            return 'homeAdmin.html';
         } else if (isReclutador) {
             return 'homeReclutador.html';
         } else if (isUsuario) {
-            return 'index.html';
+            return 'perfilCandidato.html';
         } else {
             return 'index.html';
         }
@@ -117,3 +135,77 @@ async function checkRole(requiredRole) {
     }
 }
 
+document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // Show the email input popup
+    emailPopup.style.display = "block";
+
+});
+
+// Handle the sendVerificationCodeButton event to send the verification request
+sendVerificationCodeButton.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    email = newEmailInput.value.trim();
+
+    if (!email) {
+        alert("Debe ingresar un correo electrónico antes de enviar el código.");
+        return;
+    }
+
+    try {
+        // Send a request to initiate the password reset process
+        const response = await fetch('http://localhost:3000/api/candidatos/forgotPassword', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            emailPopup.style.display = "none"; // Hide the email popup
+            codePopup.style.display = "block"; // Show the code popup for verification
+        } else {
+            alert("Error: " + result.message);
+        }
+    } catch (error) {
+        console.error("Error al enviar la solicitud de restablecimiento de contraseña:", error);
+        alert("Hubo un error al procesar su solicitud. Por favor, intente de nuevo más tarde.");
+    }
+});
+
+// Confirmar Codigo
+confirmEmailButton.addEventListener("click", async () => {
+    const resetCode = document.getElementById("verificationCodeInput").value;
+    const email = document.getElementById("newEmailInput").value;
+
+    const response = await fetch('http://localhost:3000/api/candidatos/confirmCode', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, resetCode })
+    });
+
+    if (response.ok) {
+        alert("Contraseña reestablecida, revise su correo");
+        location.reload();
+    } else {
+        alert("Código incorrecto o expirado");
+    }
+});
+
+function closePopup() {
+    emailPopup.style.display = "none";
+    codePopup.style.display = "none";
+    clearAllFields();
+}
+
+function clearAllFields() {
+    newEmailInput.value = "";
+    codeInput.value = "";
+}

@@ -149,8 +149,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (isAdmin) {
             // Menu personalizado para administrador
             updateMainNav(mainNavLinks, [
-                { text: 'Admin Dashboard', href: '/admin-dashboard.html' },
-                { text: 'Company History', href: '/admin-history.html' },
+                { text: 'Inicio', href: 'homeAdmin.html' },
+                { text: 'Reclutadores', href: '/admin-history.html' },
                 { text: 'Manage Projects', href: '/admin-projects.html' },
                 { text: 'Manage Vacancies', href: '/admin-vacancies.html' },
                 { id: 'navPerfil', text: 'Perfil', href: 'perfil.html' }

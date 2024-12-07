@@ -1,0 +1,445 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+    /* Para que tome el espacio que sobre */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 0;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - 100px);
+    /* Adjust for menu and footer */
+}
+
+.sidebar {
+    width: 30%;
+    padding: 20px;
+    background-color: rgba(7, 52, 94, 1);
+    border-right: 1px solid #ddd;
+}
+
+.sidebar h2 {
+    text-align: center;
+    font-size: 1.5em;
+    color: whitesmoke;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    background-color: rgba(2, 18, 38, 1);
+    border: solid rgba(225, 76, 7, 1);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 0;
+}
+
+.sidebar h2::before {
+    content: '';
+    background-image: url(../imagenes/gaming2.png);
+    background-size: auto;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.sidebar button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1em;
+    color: white;
+    background-color: #eee;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bolder;
+    color: black;
+}
+
+.sidebar button:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+.shown-content {
+    flex: 1;
+    width: 75%;
+    padding: 20px;
+    max-height: 100%;
+    overflow-y: auto;
+    background-color: black;
+    background-image: url(../imagenes/backgroundEvaluations.jpeg);
+    opacity: 0.9;
+    position: relative;
+    z-index: 0;
+}
+
+.shown-content h2 {
+    text-align: center;
+    font-size: 1.5em;
+    color: whitesmoke;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    background-color: rgba(2, 18, 38, 1);
+    border: solid rgba(225, 76, 7, 1);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 0;
+}
+
+.shown-content h2::before {
+    content: '';
+    background-image: url(../imagenes/gaming2.png);
+    background-size: auto;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 15px;
+    background-color: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.vacancy-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.vacancy-form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.vacancy-form-container label {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.vacancy-form-container input,
+.vacancy-form-container select,
+.vacancy-form-container textarea {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 90%;
+}
+
+.vacancy-form-container button {
+    background-color: rgba(225, 76, 7, 1);
+    color: white;
+    padding: 10px;
+    font-size: 1em;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.vacancy-form-container button:hover {
+    background-color: rgba(225, 76, 7, 0.8);
+}
+
+/*CSS cards*/
+/* CSS */
+.recruiters-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns, each taking equal space */
+    gap: 20px;
+    /* Space between cards */
+    margin-top: 20px;
+}
+
+.recruiter-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.recruiter-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.recruiter-info h3 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.recruiter-info p {
+    font-size: 14px;
+    color: #555;
+}
+
+/**/
+
+/*Boton Agregar*/
+/* From Uiverse.io by andrew-demchenk0 */
+.button {
+    position: relative;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(225, 76, 7, 1);
+    background-color: rgba(225, 76, 7, 1);
+    margin: 0 auto;
+}
+
+.button,
+.button__icon,
+.button__text {
+    transition: all 0.3s;
+}
+
+.button .button__text {
+    transform: translateX(30px);
+    color: #fff;
+    font-weight: 600;
+}
+
+.button .button__icon {
+    position: absolute;
+    transform: translateX(115px);
+    height: 100%;
+    width: 39px;
+    background-color: rgba(225, 76, 7, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button .svg {
+    width: 30px;
+    stroke: #fff;
+}
+
+.button:hover {
+    background: rgba(225, 76, 7, 1);
+}
+
+.button:hover .button__text {
+    color: transparent;
+}
+
+.button:hover .button__icon {
+    width: 148px;
+    transform: translateX(0);
+}
+
+.button:active .button__icon {
+    background-color: rgba(225, 76, 7, 1);
+}
+
+.button:active {
+    border: 1px solid rgba(225, 76, 7, 1);
+}
+
+/**/
+
+/*Tarjetas*/
+
+.card {
+    --font-color: #fefefe;
+    --font-color-sub: lightgray;
+    --bg-color: rgba(2, 18, 38, 1);
+    --main-color: rgba(225, 76, 7, 1);
+    width: 200px;
+    height: 254px;
+    background: var(--bg-color);
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-photo img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    text-align: center;
+    color: var(--font-color);
+    font-size: 20px;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.card-title span {
+    font-size: 15px;
+    color: var(--font-color-sub);
+}
+
+.card-socials {
+    display: flex;
+    height: 0;
+    opacity: 0;
+    margin-top: 20px;
+    gap: 20px;
+    transition: 0.5s;
+}
+
+.closeButton {
+    width: 25px;
+    height: 25px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.card:hover>.card-socials {
+    opacity: 1;
+    height: 35px;
+}
+
+.closeButton:hover {
+    transform: translateY(-5px);
+    transition: all 0.15s;
+}
+
+.card-photo:hover {
+    transition: 0.3s;
+    transform: scale(0.4);
+}
+
+/**/
+
+/*Boton eliminar usuario*/
+/* From Uiverse.io by javierBarroso */
+.closeButton {
+    position: relative;
+    width: 3em;
+    height: 3em;
+    border: none;
+    background: rgba(180, 83, 107, 0.11);
+    border-radius: 5px;
+    transition: background 0.5s;
+}
+
+.X {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2em;
+    height: 1.5px;
+    background-color: rgb(255, 255, 255);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.Y {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2em;
+    height: 1.5px;
+    background-color: #fff;
+    transform: translateX(-50%) rotate(-45deg);
+}
+
+.close {
+    position: absolute;
+    display: flex;
+    padding: 0.8rem 1.5rem;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-50%);
+    top: -70%;
+    left: 50%;
+    width: 3em;
+    height: 1.7em;
+    font-size: 12px;
+    background-color: rgb(19, 22, 24);
+    color: rgb(187, 229, 236);
+    border: none;
+    border-radius: 3px;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.closeButton:hover {
+    background-color: rgb(211, 21, 21);
+}
+
+.closeButton:active {
+    background-color: rgb(130, 0, 0);
+}
+
+.closeButton:hover>.close {
+    animation: close 0.2s forwards 0.25s;
+}
+
+@keyframes close {
+    100% {
+        opacity: 1;
+    }
+}
+
+/**/
