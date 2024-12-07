@@ -364,6 +364,7 @@ async function isUserLoggedIn() {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
             },
+            credentials: 'include',
         });
 
         if (response.ok) {
