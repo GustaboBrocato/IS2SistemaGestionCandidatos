@@ -145,6 +145,136 @@ img {
     background-color: rgba(176, 23, 31, 1);  
 }
 
+/*Estilo del contenedor Perfil*/
+.modalContainer-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 999;
+    visibility: hidden;
+}
+
+.modalContainer-profile.show-modal {
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.9); 
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 50%; 
+    max-width: 400px;  
+    text-align: left; 
+    display: flex;
+    flex-direction: column;
+}
+
+.close-modal-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.close-modal-btn:hover {
+    background-color: rgba(176, 23, 31, 1);  
+}
+
+/*Estilo del contenerdor buscar usuarios*/
+.modalContainer-searchUsers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 999;
+    visibility: hidden;
+}
+
+.modalContainer-searchUsers.show-modal {
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.9); 
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 50%; 
+    max-width: 400px;  
+    text-align: left; 
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content {
+    font-size: 12px;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.brown-btn {
+    background-color: rgb(28, 5, 92);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.brown-btn:hover {
+    background-color: #073261;
+}
+
+
+
+
+/*Estilo del contenedor bitacora */
+.modalContainer-log {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 999;
+    visibility: hidden;
+}
+
+.modalContainer-log.show-modal {
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.9); 
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 50%; 
+    max-width: 400px;  
+    text-align: left; 
+    display: flex;
+    flex-direction: column;
+}
+
+
+
 
 
 img {

@@ -63,20 +63,28 @@
                 <h2>AJUSTES</h2>
             </center> 
             <ul>
+
                 <li>
-                    <label for="create-btn">Crear Rol</label>
+                    <label for="create-btn">Crear cuenta de Reclutador</label>
                     <button class="change-setting-btn" id="create-btn">Crear</button>
                 </li>
-                <!---<li>
-                    <label for="manage-btn">Administrar Roles</label>
-                    <button class="change-setting-btn" id="manage-btn">Adminitrar</button>
-                </li>-->
+
                 <li>
-                    <label for="update-btn">Adminitrar Usuario</label>
-                    <button class="change-setting-btn" id="update-btn">Administrar</button>
+                    <label for="search-btn">Búsqueda de Usuarios</label>
+                    <button class="change-setting-btn" id="search-btn">Buscar</button>
                 </li>
-                <!-- Add more settings tags and buttons here as needed -->
-            </ul>
+
+                <li>
+                    <label for="profile-btn">Perfil</label>
+                    <button class="change-setting-btn" id="profile-btn">Ver Perfil</button>
+                </li>
+                
+                <!--
+                <li>
+                    <label for="log-btn">Bitácora</label>
+                    <button class="change-setting-btn" id="log-btn">Ver Bitácora</button>
+                </li>
+                -->
         </div>
 
 
@@ -105,9 +113,44 @@
         </div>
     </div>
 
-    
+    <!--modal para el perfil-->
+    <div class="modalContainer-profile" id="modalContainer-profile">
+        <div class="modal-content">
+            <h2>Perfil del Usuario</h2>
+            <p>Nombre: [Nombre del Usuario]</p>
+            <p>Correo: [Correo del Usuario]</p>
+            <p>Rol: [Rol del Usuario]</p>
+            <button id="closeProfileModal" class="close-modal-btn">Cerrar</button>
+        </div>
+    </div>
 
+    <!--modal para buscar usuarios-->  
+    <div class="modalContainer-searchUsers" id="modalContainer-searchUsers">
+        <div class="modal-content">
+            <h2>Búsqueda de Usuarios</h2>
+            <label for="searchInput">Buscar por Nombre o Correo:</label>
+            <input type="text" id="searchInput" placeholder="Ingrese un nombre o correo">
+            <button id="searchUsersBtn" class="brown-btn">Buscar</button>
+            <div id="searchResults">
+                <!-- Aquí se mostrarán los resultados -->
+            </div>
+            <button id="closeSearchModal" class="close-modal-btn">Cerrar</button>
+        </div>
+    </div>
 
+    <!--Modal de bitacora
+    <div class="modalContainer-log" id="modalContainer-log">
+        <div class="modal-content">
+            <h2>Bitácora</h2>
+            <ul id="logList">
+                <li>Evento 1: </li>
+                <li>Evento 2: </li>
+                <li>Evento 3: </li>
+            </ul>
+            <button id="closeLogModal" class="close-modal-btn">Cerrar</button>
+        </div>
+    </div>
+    -->
 
         <script src="../javascript/ajustes.js"></script>
 </body>
