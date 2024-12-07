@@ -41,12 +41,7 @@ async function checkUserRole(requiredRole) {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
             },
-            mode: 'cors',
         });
 
         const data = await response.json();
@@ -68,13 +63,8 @@ async function checkUserID(id) {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
             },
             body: JSON.stringify({ usuarioID: id }),
-            mode: 'cors',
         });
 
         const data = await response.json();
@@ -100,10 +90,6 @@ async function loadVacancies() {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
             },
             mode: 'cors',
         });
@@ -226,13 +212,8 @@ async function openVacancyDetail(vacancy) {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-type': 'application/json',
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Credentials': 'true',
-                        'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                        'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
                     },
                     body: JSON.stringify({ userId, vacanteId }),
-                    mode: 'cors',
                 });
 
                 if (!response.ok) {
@@ -284,10 +265,6 @@ async function checkIfUserApplied(vacanteId, userId) {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
             },
             body: JSON.stringify({ vacanteId, userId }),
         });
@@ -314,13 +291,8 @@ async function applyToVacancy(vacanteId, userId) {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
             },
             body: JSON.stringify({ userId, vacanteId }),
-            mode: 'cors',
         });
 
         if (!response.ok) {
@@ -357,13 +329,8 @@ async function removeListing() {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
             },
             body: JSON.stringify({ id: id }),
-            mode: 'cors',
         });
 
         if (response.ok) {
@@ -397,12 +364,7 @@ async function isUserLoggedIn() {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
             },
-            mode: 'cors',
         });
 
         if (response.ok) {
