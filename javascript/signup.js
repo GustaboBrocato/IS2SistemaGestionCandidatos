@@ -240,6 +240,16 @@ async function proceedToCreateAccount() {
     }
 }
 
+// Show a toast message
+function showToast(message) {
+    const toastMessage = document.getElementById('toastMessage');
+    toastMessage.innerText = message;
+    toastMessage.style.display = 'block';
+    setTimeout(() => {
+        toastMessage.style.display = 'none';
+    }, 2000);
+}
+
 
 //Listener para reenviar codigo
 document.getElementById('resend-code-btn').addEventListener('click', () => {
