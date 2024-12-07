@@ -1,3 +1,5 @@
+import BASE_URL from '../javascript/config.js';
+
 document.addEventListener("DOMContentLoaded", async () => {
     const loggedIn = await isUserLoggedIn();
 
@@ -17,15 +19,13 @@ async function isUserLoggedIn() {
             return false;
         }
 
-        const response = await fetch('http://localhost:3000/authenticate', {
+        const endpoint = "/authenticate";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
             },
         });
 

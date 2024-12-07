@@ -1,9 +1,18 @@
+import BASE_URL from '../javascript/config.js';
 // Variables
 let isEmailValid = false;
 let isPasswordValid = false;
 let confirmationCode = null;
 let resendTimeout = null;
 
+document.getElementById("correo").addEventListener("input", function () {
+    validateEmail(this);
+});
+document.getElementById("passwd1").addEventListener("input", validatePasswordStrength);
+document.getElementById("passwd2").addEventListener("input", validatePasswordMatch);
+document.getElementById("dni").addEventListener("input", function () {
+    validateDNI(this);
+});
 
 //Funcion para validar el DNI
 function validateDNI(input) {
@@ -81,7 +90,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const educacionError = document.getElementById('educacionError');
 
     try {
-        const response = await fetch('http://localhost:3000/api/niveles/getNiveles');
+        const endpoint = "/api/niveles/getNiveles";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error('Error en la respuesta del servidor');
         }
@@ -153,7 +164,9 @@ document.getElementById('submitButton').addEventListener('click', async (e) => {
 
     // Enviar código de confirmación
     confirmationCode = Math.floor(100000 + Math.random() * 900000); // Generate a 6-digit code
-    const response = await fetch('http://localhost:3000/sendCode', {
+    const endpoint = "/sendCode";
+    const url = `${BASE_URL}${endpoint}`;
+    const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -201,7 +214,9 @@ async function proceedToCreateAccount() {
     };
 
     try {
-        const response = await fetch('http://localhost:3000/signup', {
+        const endpoint = "/signup";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -214,7 +229,7 @@ async function proceedToCreateAccount() {
             showToast('¡Cuentra Creada! Redirigiendo…');
 
             setTimeout(async () => {
-                    window.location.href = "login.html";       
+                window.location.href = "login.html";
             }, 2000);
         } else {
             alert(`Error al crear cuenta: ${result.error}`);

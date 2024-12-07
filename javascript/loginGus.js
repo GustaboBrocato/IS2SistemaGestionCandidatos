@@ -1,4 +1,5 @@
 // Select the form and input fields
+import BASE_URL from '../javascript/config.js';
 const form = document.getElementById('loginForm');
 const usernameInput = document.getElementById('user');
 const passwordInput = document.getElementById('passwd');
@@ -29,7 +30,9 @@ form.addEventListener('submit', async (e) => {
     const password = passwordInput.value;
 
     try {
-        const response = await fetch('http://localhost:3000/login', {
+        const endpoint = "/login";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -115,7 +118,9 @@ async function getRedirectRoute() {
 async function checkRole(requiredRole) {
     try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:3000/api/roles/checkRole?requiredRole=${requiredRole}`, {
+        const endpoint = "";
+        const url = `${BASE_URL}/api/roles/checkRole?requiredRole=${requiredRole}`;
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -156,7 +161,9 @@ sendVerificationCodeButton.addEventListener('click', async (e) => {
 
     try {
         // Send a request to initiate the password reset process
-        const response = await fetch('http://localhost:3000/api/candidatos/forgotPassword', {
+        const endpoint = "/api/candidatos/forgotPassword";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -183,7 +190,9 @@ confirmEmailButton.addEventListener("click", async () => {
     const resetCode = document.getElementById("verificationCodeInput").value;
     const email = document.getElementById("newEmailInput").value;
 
-    const response = await fetch('http://localhost:3000/api/candidatos/confirmCode', {
+    const endpoint = "/api/candidatos/confirmCode";
+    const url = `${BASE_URL}${endpoint}`;
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

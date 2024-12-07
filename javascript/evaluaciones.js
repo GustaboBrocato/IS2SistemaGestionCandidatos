@@ -1,3 +1,4 @@
+import BASE_URL from '../javascript/config.js';
 const vacancyList = document.getElementById("vacancyList");
 const candidateCards = document.getElementById("candidateCards");
 const evaluationModal = document.getElementById("evaluationModal");
@@ -27,7 +28,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 // Cargar Vacantes
 async function loadVacancies() {
-    const res = await fetch("http://localhost:3000/api/vacancy/available-recruiter", {
+    const endpoint = "/api/vacancy/available-recruiter";
+    const url = `${BASE_URL}${endpoint}`;
+    const res = await fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -46,7 +49,9 @@ async function loadVacancies() {
 // Cargar Candidates
 async function loadCandidates(vacancyId) {
     candidateCards.innerHTML = "";
-    const res = await fetch(`http://localhost:3000/api/application/get-applicants`, {
+    const endpoint = "/api/application/get-applicants";
+    const url = `${BASE_URL}${endpoint}`;
+    const res = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -130,7 +135,9 @@ async function openModal(candidateId, firstName, lastName, imageSrc, idAplicacio
     candidateName.textContent = `${firstName} ${lastName}`;
 
     try {
-        const res = await fetch(`http://localhost:3000/api/evaluation/getEvaluation`, {
+        const endpoint = "/api/evaluation/getEvaluation";
+        const url = `${BASE_URL}${endpoint}`;
+        const res = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -194,7 +201,9 @@ async function updateEvaluation(candidateId, idAplicacion, vacancyId) {
     };
 
     try {
-        const res = await fetch(`http://localhost:3000/api/evaluation/updateEvaluation`, {
+        const endpoint = "/api/evaluation/updateEvaluation";
+        const url = `${BASE_URL}${endpoint}`;
+        const res = await fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -222,7 +231,9 @@ async function updateEvaluation(candidateId, idAplicacion, vacancyId) {
 async function refreshChart(vacancyId) {
     try {
         // Obtiene la informacion para las graficas
-        const evaluationRes = await fetch(`http://localhost:3000/api/evaluation/getEvaluations`, {
+        const endpoint = "/api/evaluation/getEvaluations";
+        const url = `${BASE_URL}${endpoint}`;
+        const evaluationRes = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -307,7 +318,9 @@ async function isUserLoggedIn() {
             return false;
         }
 
-        const response = await fetch('http://localhost:3000/authenticate', {
+        const endpoint = "/authenticate";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

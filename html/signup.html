@@ -47,20 +47,20 @@
                 </div>
                 <div class="form-column">
                     <label for="correo">Correo Electrónico</label>
-                    <input type="email" id="correo" name="correo" placeholder="Correo Electrónico" required="required"
-                        oninput="validateEmail(this)" />
+                    <input type="email" id="correo" name="correo" placeholder="Correo Electrónico"
+                        required="required" />
                     <small id="emailError" style="color: red; display: none;">Por favor ingresa un correo
                         válido.</small>
 
                     <label for="passwd1">Contraseña</label>
                     <input type="password" id="passwd1" name="passwd1" placeholder="Contraseña" required="required"
-                        autocomplete="off" oninput="validatePasswordStrength()" />
+                        autocomplete="off" />
                     <small id="passwordStrengthError" style="display: none;">La contraseña debe tener al menos 8
                         caracteres, una letra y un número.</small>
 
                     <label for="passwd2">Confirmar Contraseña</label>
                     <input type="password" id="passwd2" name="passwd2" placeholder="Confirmar Contraseña"
-                        required="required" autocomplete="off" oninput="validatePasswordMatch()" />
+                        required="required" autocomplete="off" />
                     <small id="passwordMatchError" style="display: none;">Las contraseñas no coinciden.</small>
 
                     <label for="telefono">Teléfono</label>
@@ -81,6 +81,7 @@
                     <small id="educacionError" style="display: none; color: red;">Error al cargar los niveles
                         educativos.</small>
                 </div>
+
                 <button type="submit" id="submitButton">Crear Cuenta</button>
             </form>
         </div>
@@ -88,16 +89,17 @@
 
     <div id="email-confirmation" style="display: none;">
         <p>Se ha enviado un código de verificación a tu correo.</p>
-        <input type="text" id="confirmation-code" placeholder="Ingresa el código de verificación" maxlength="6" required />
+        <input type="text" id="confirmation-code" placeholder="Ingresa el código de verificación" maxlength="6"
+            required />
         <button id="verify-code-btn">Verificar</button>
         <button id="resend-code-btn" disabled>Reenviar código</button>
-        <small id="resend-message" style="display: none; color: gray;">Puedes reenviar el código después de 60 segundos.</small>
+        <small id="resend-message" style="display: none; color: gray;">Puedes reenviar el código después de 60
+            segundos.</small>
     </div>
 
     <div class="toast" id="toastMessage"></div>
 
-    <script src="../javascript/signup.js"></script>
-    <script src="../javascript/menu.js"></script>
+    <script type="module" src="../javascript/signup.js"></script>
 </body>
 
 </html>

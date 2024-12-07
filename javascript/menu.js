@@ -1,3 +1,4 @@
+import BASE_URL from '../javascript/config.js';
 //Funcion para revisar si esta loggeado el usuario
 async function isUserLoggedIn() {
     try {
@@ -8,8 +9,9 @@ async function isUserLoggedIn() {
             // Si el token no existe el usuario no esta loggeado
             return false;
         }
-
-        const response = await fetch('http://localhost:3000/authenticate', {
+        const endpoint = "/authenticate";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -41,7 +43,9 @@ async function isUserLoggedIn() {
 async function checkRole(requiredRole) {
     try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:3000/api/roles/checkRole?requiredRole=${requiredRole}`, {
+        const endpoint = "";
+        const url = `${BASE_URL}/api/roles/checkRole?requiredRole=${requiredRole}`;
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -89,7 +93,9 @@ async function logout() {
         }
 
         // Controla la desautorizacion del token a nivel de servidor
-        const response = await fetch('http://localhost:3000/signout', {
+        const endpoint = "/signout";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -150,7 +156,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Menu personalizado para administrador
             updateMainNav(mainNavLinks, [
                 { text: 'Inicio', href: 'homeAdmin.html' },
-                { text: 'Reclutadores', href: '/admin-history.html' },
+                { text: 'Reclutadores', href: 'gestionReclutador.html' },
                 { text: 'Manage Projects', href: '/admin-projects.html' },
                 { text: 'Manage Vacancies', href: '/admin-vacancies.html' },
                 { id: 'navPerfil', text: 'Perfil', href: 'perfil.html' }
@@ -218,10 +224,12 @@ const setProfileImage = async () => {
         const isAdmin = await checkRole('Admin');
         const isReclutador = isAdmin ? false : await checkRole('Reclutador');
         const isUsuario = !isAdmin && !isReclutador;
-        let url = 'http://localhost:3000/api/images/getImage';
+        let endpoint = "/api/images/getImage";
+        let url = `${BASE_URL}${endpoint}`;
 
         if(isUsuario){
-            url = 'http://localhost:3000/api/images/getImageCandidato';
+            endpoint = "/api/images/getImageCandidato";
+            url = `${BASE_URL}${endpoint}`;
         };
 
         const menuProfilePicture = document.getElementById('profilePicture');

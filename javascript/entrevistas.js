@@ -1,3 +1,5 @@
+import BASE_URL from '../javascript/config.js';
+
 document.addEventListener("DOMContentLoaded", async () => {
     const vacancyList = document.getElementById("vacancy-list");
     const candidateCards = document.getElementById("candidate-cards");
@@ -19,7 +21,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Funcion para cargar las vacantes
     async function loadVacancies() {
         try {
-            const res = await fetch("http://localhost:3000/api/vacancy/available-recruiter", {
+            const endpoint = "/api/vacancy/available-recruiter";
+            const url = `${BASE_URL}${endpoint}`;
+            const res = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,7 +47,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function loadCandidates(vacancyId) {
         try {
             candidateCards.innerHTML = "";
-            const res = await fetch(`http://localhost:3000/api/application/get-applicants`, {
+            const endpoint = "/api/application/get-applicants";
+            const url = `${BASE_URL}${endpoint}`;
+            const res = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -97,7 +103,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function loadInterviews(id_candidato, id_aplicacion, correo) {
         try {
             interviewList.innerHTML = "";
-            const res = await fetch(`http://localhost:3000/api/interviews/getInterviews`, {
+            const endpoint = "/api/interviews/getInterviews";
+            const url = `${BASE_URL}${endpoint}`;
+            const res = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -177,7 +185,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         try {
-            const res = await fetch("http://localhost:3000/api/interviews/cancelInterview", {
+            const endpoint = "/api/interviews/cancelInterview";
+            const url = `${BASE_URL}${endpoint}`;
+            const res = await fetch(url, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -254,7 +264,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
 
         try {
-            const res = await fetch("http://localhost:3000/api/interviews/saveInterview", {
+            const endpoint = "/api/interviews/saveInterview";
+            const url = `${BASE_URL}${endpoint}`;
+            const res = await fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -286,7 +298,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         try {
-            const res = await fetch("http://localhost:3000/api/interviews/finalizeInterview", {
+            const endpoint = "/api/interviews/finalizeInterview";
+            const url = `${BASE_URL}${endpoint}`;
+            const res = await fetch(url, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -355,7 +369,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
 
         try {
-            const res = await fetch("http://localhost:3000/api/interviews/updateInterview", {
+            const endpoint = "/api/interviews/updateInterview";
+            const url = `${BASE_URL}${endpoint}`;
+            const res = await fetch(url, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -384,7 +400,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             const token = localStorage.getItem('token');
             if (!token) return false;
 
-            const response = await fetch('http://localhost:3000/authenticate', {
+            const endpoint = "/authenticate";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,

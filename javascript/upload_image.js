@@ -1,3 +1,4 @@
+import BASE_URL from '../javascript/config.js';
 const changePictureButton = document.getElementById('changePictureButton');
 const uploadPictureInput = document.getElementById('uploadPictureInput');
 const recruiterProfilePicture = document.getElementById('recruiterProfilePicture');
@@ -18,7 +19,9 @@ uploadPictureInput.addEventListener('change', async (event) => {
         const token = localStorage.getItem('token');
 
         try {
-            const response = await fetch('http://localhost:3000/api/images/uploadCandidato', {
+            const endpoint = "/api/images/uploadCandidato";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: 'POST',
                 body: formData,
                 headers: {

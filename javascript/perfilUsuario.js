@@ -1,3 +1,4 @@
+import BASE_URL from '../javascript/config.js';
 // Obtener informacion de perfil de usuario
 const token = localStorage.getItem('token');
 
@@ -63,7 +64,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 //Funcion para obtener informacion de perfil
 const getUserInfo = async () => {
     try {
-        const response = await fetch('http://localhost:3000/api/users/profileUsuario', {
+        const endpoint = "/api/users/profileUsuario";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -91,7 +94,9 @@ const getUserInfo = async () => {
 const getProfileImage = async () => {
     try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:3000/api/images/getImage', {
+        const endpoint = "/api/images/getImage";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -116,7 +121,9 @@ const getProfileImage = async () => {
 // Verificacion de Password
 verifyPasswordButton.addEventListener("click", async () => {
     const password = document.getElementById("passwordInput").value;
-    const response = await fetch('http://localhost:3000/api/users/verify-password', {
+    const endpoint = "/api/users/verify-password";
+    const url = `${BASE_URL}${endpoint}`;
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -136,7 +143,9 @@ verifyPasswordButton.addEventListener("click", async () => {
 // Send Verification Code
 sendVerificationCodeButton.addEventListener("click", async () => {
     const newEmail = document.getElementById("newEmailInput").value;
-    const response = await fetch('http://localhost:3000/api/users/send-verification-code', {
+    const endpoint = "/api/users/send-verification-code";
+    const url = `${BASE_URL}${endpoint}`;
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -158,7 +167,9 @@ confirmEmailButton.addEventListener("click", async () => {
     const code = document.getElementById("verificationCodeInput").value;
     const newEmail = document.getElementById("newEmailInput").value;
 
-    const response = await fetch('http://localhost:3000/api/users/confirm-email', {
+    const endpoint = "/api/users/confirm-email";
+    const url = `${BASE_URL}${endpoint}`;
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -201,7 +212,9 @@ submitChangePasswordButton.addEventListener("click", async () => {
     }
 
     try {
-        const response = await fetch('http://localhost:3000/api/users/change-password', {
+        const endpoint = "/api/users/change-password";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -250,7 +263,9 @@ async function isUserLoggedIn() {
             return false;
         }
 
-        const response = await fetch('http://localhost:3000/authenticate', {
+        const endpoint = "/authenticate";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

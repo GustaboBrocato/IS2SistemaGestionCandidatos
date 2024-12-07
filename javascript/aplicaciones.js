@@ -1,3 +1,5 @@
+import BASE_URL from '../javascript/config.js';
+
 document.addEventListener("DOMContentLoaded", async () => {
     const loggedIn = await isUserLoggedIn();
 
@@ -15,7 +17,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function fetchApplications() {
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch('http://localhost:3000/api/application/get-applications', {
+            const endpoint = "/api/application/get-applications";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -51,7 +55,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Funcion para obtener la informacion detallada del candidato
     async function fetchCandidateDetails(candidateId, idapplication) {
         try {
-            const response = await fetch(`http://localhost:3000/api/application/application-details`, {
+            const endpoint = "/api/application/application-details";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -84,7 +90,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Funcion para mostrar los detalles del candidato en el modal
     function renderCandidateDetails(data, idestado, idapplication, comentario, imagen) {
         const token = localStorage.getItem('token');
-        const { candidateDetails, skills, references, evaluations } = data;
+        const { candidateDetails, skills, references, evaluations, interviews } = data;
 
         // Nombre completo y edad
         const fullName = `${candidateDetails.primernombre} ${candidateDetails.segundonombre || ''} ${candidateDetails.apellidopaterno} ${candidateDetails.apellidomaterno || ''}`;
@@ -105,6 +111,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             `<li><strong>${ref.nombrereferencia}</strong>: ${ref.telefonoreferencia} (${ref.relacionreferencia})</li>`
         ).join('');
         const referencesHTML = referencesList ? `<ul>${referencesList}</ul>` : '<p>No hay referencias disponibles</p>';
+
+        // Lista de Entrevistas
+        const interviewsList = interviews.map(ref =>
+            `<li><strong>${formatDate(ref.fecha_entrevista)}</strong>: ${formatTo12Hour(ref.hora_entrevista)} (${ref.nombreestado})</li>`
+        ).join('');
+        const interviewsHTML = interviewsList ? `<ul>${interviewsList}</ul>` : '<p>No hay entrevistas disponibles</p>';
 
         // Contenido del Modal
         modalContent.innerHTML = `
@@ -134,6 +146,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             <li><strong>Habilidades de Liderazgo:</strong> ${evaluations.habilidades_liderazgo}</li>
             <li><strong>Experiencia:</strong> ${evaluations.Experiencia}</li>
         </ul>` : ''}
+        <h4>Entrevistas:</h4>
+        ${interviewsHTML}
         <div id="ultimocomentario"></div>
         <div id="applicationActions"></div>
     `;
@@ -148,7 +162,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         `;
             const startProcessButton = document.getElementById('startProcessButton');
             startProcessButton.addEventListener('click', async () => {
-                const response = await fetch(`http://localhost:3000/api/application/application-start`, {
+                const endpoint = "/api/application/application-start";
+                const url = `${BASE_URL}${endpoint}`;
+                const response = await fetch(url, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
                     body: JSON.stringify({
@@ -168,7 +184,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             let verCurriculumBtn = document.getElementById('viewCurriculum');
 
             verCurriculumBtn.addEventListener("click", () => {
-                viewCurriculum(candidateDetails.id);  // Call the function with the candidate id
+                viewCurriculum(candidateDetails.id);
             });
 
         } else if (idestado === 8) { // En Proceso
@@ -204,7 +220,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             updateCommentButton.addEventListener('click', async () => {
                 const newComment = commentField.value.trim();
                 if (newComment) {
-                    const response = await fetch(`http://localhost:3000/api/application/application-comment`, {
+                    const endpoint = "/api/application/application-comment";
+                    const url = `${BASE_URL}${endpoint}`;
+                    const response = await fetch(url, {
                         method: 'PUT',
                         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
                         body: JSON.stringify({
@@ -238,12 +256,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     //Funcion para ver curriculo
     async function viewCurriculum(candidateId) {
         try {
-            const response = await fetch("http://localhost:3000/api/curriculum/view", {
+            const endpoint = "/api/curriculum/view";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
                 body: JSON.stringify({ id: candidateId }),
             });
-    
+
             if (response.ok) {
                 const blob = await response.blob();
                 const url = URL.createObjectURL(blob);
@@ -329,6 +349,29 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        if (isNaN(date.getTime())) {
+            return "Fecha inválida";
+        }
+        return date.toLocaleString("es-HN", {
+            timeZone: "America/Tegucigalpa",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        });
+    }
+
+    function formatTo12Hour(timeString) {
+        const [hour, minute] = timeString.split(':').map(Number);
+
+        const period = hour >= 12 ? 'PM' : 'AM';
+
+        const hour12 = hour % 12 || 12;
+
+        return `${hour12}:${minute.toString().padStart(2, '0')} ${period}`;
+    }
+
     initialize();
 });
 
@@ -343,7 +386,9 @@ async function isUserLoggedIn() {
             return false;
         }
 
-        const response = await fetch('http://localhost:3000/authenticate', {
+        const endpoint = "/authenticate";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

@@ -1,9 +1,11 @@
+import BASE_URL from '../javascript/config.js';
+
 document.addEventListener("DOMContentLoaded", async () => {
     const loggedIn = await isUserLoggedIn();
 
     if (!loggedIn) {
         window.location.href = '/IS2SistemaGestionCandidatos/html/login.html';
-        return; // Prevent further execution
+        return;
     }
 
     const addRecruiterBtn = document.getElementById("addRecruiterBtn");
@@ -54,7 +56,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             const correo = document.getElementById("correo").value;
 
             try {
-                const response = await fetch('http://localhost:3000/api/users/saveRecruiter', {
+                const endpoint = "/api/users/saveRecruiter";
+                const url = `${BASE_URL}${endpoint}`;
+                const response = await fetch(url, {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -81,7 +85,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     // View Recruiters
     viewRecruitersBtn.addEventListener("click", async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/users/recruiters', {
+            const endpoint = "/api/users/recruiters";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -137,7 +143,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                         }
 
                         try {
-                            const response = await fetch(`http://localhost:3000/api/users/deleteUsuario`, {
+                            const endpoint = "/api/users/deleteUsuario";
+                            const url = `${BASE_URL}${endpoint}`;
+                            const response = await fetch(url, {
                                 method: 'PUT',
                                 headers: {
                                     'Authorization': `Bearer ${token}`,
@@ -174,7 +182,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             const token = localStorage.getItem('token');
             if (!token) return false;
 
-            const response = await fetch('http://localhost:3000/authenticate', {
+            const endpoint = "/authenticate";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,

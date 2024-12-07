@@ -1,3 +1,5 @@
+import BASE_URL from '../javascript/config.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     const sentApplications = document.getElementById('sentApplications');
     const applicationModal = document.getElementById('applicationModal');
@@ -8,7 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchApplications() {
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch('http://localhost:3000/api/application/getApplicantApplications', {
+            const endpoint = "/api/application/getApplicantApplications";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -30,7 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Funcion para obtener la informacion detallada del candidato
     async function fetchCandidateDetails(candidateId, idapplication) {
         try {
-            const response = await fetch(`http://localhost:3000/api/application/application-details2`, {
+            const endpoint = "/api/application/application-details2";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,17 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Funcion para mostrar los detalles del candidato en el modal
     function renderCandidateDetails(data, idestado, idapplication, comentario, vacancy) {
         const token = localStorage.getItem('token');
-        const { candidateDetails, skills, references, evaluations } = data;
+        const { candidateDetails, skills, references, evaluations, interviews } = data;
 
         // Nombre completo y edad
         const fullName = `${candidateDetails.primernombre} ${candidateDetails.segundonombre || ''} ${candidateDetails.apellidopaterno} ${candidateDetails.apellidomaterno || ''}`;
         const age = calculateAge(candidateDetails.fechanacimiento);
-
-        // Revisión de evaluaciones
-        evaluations.habilidades_tecnicas = evaluations.habilidades_tecnicas ?? 'No evaluado';
-        evaluations.habilidades_blandas = evaluations.habilidades_blandas ?? 'No evaluado';
-        evaluations.habilidades_liderazgo = evaluations.habilidades_liderazgo ?? 'No evaluado';
-        evaluations.Experiencia = evaluations.Experiencia ?? 'No evaluado';
 
         // Lista de Habilidades
         const skillsList = skills.map(skill => `<li>${skill.nombrehabilidad}</li>`).join('');
@@ -91,6 +91,12 @@ document.addEventListener('DOMContentLoaded', () => {
             `<li><strong>${ref.nombrereferencia}</strong>: ${ref.telefonoreferencia} (${ref.relacionreferencia})</li>`
         ).join('');
         const referencesHTML = referencesList ? `<ul>${referencesList}</ul>` : '<p>No hay referencias disponibles</p>';
+        
+        // Lista de Entrevistas
+        const interviewsList = interviews.map(ref =>
+            `<li><strong>${formatDate(ref.fecha_entrevista)}</strong>: ${formatTo12Hour(ref.hora_entrevista)} (${ref.nombreestado})</li>`
+        ).join('');
+        const interviewsHTML = interviewsList ? `<ul>${interviewsList}</ul>` : '<p>No hay entrevistas disponibles</p>';
 
         // Contenido del Modal
         modalContent.innerHTML = `
@@ -112,6 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ${skillsHTML}
         <h4>Referencias:</h4>
         ${referencesHTML}
+        <h4>Entrevistas:</h4>
+        ${interviewsHTML}
         <div id="ultimocomentario"></div>
         <div id="applicationActions"></div>
     `;
@@ -179,7 +187,9 @@ document.addEventListener('DOMContentLoaded', () => {
     //Funcion para ver curriculo
     async function viewCurriculum(candidateId) {
         try {
-            const response = await fetch("http://localhost:3000/api/curriculum/view", {
+            const endpoint = "/api/curriculum/view";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
                 body: JSON.stringify({ id: candidateId }),
@@ -212,4 +222,14 @@ function formatDate(dateString) {
         month: "long",
         day: "numeric",
     });
+}
+
+function formatTo12Hour(timeString) {
+    const [hour, minute] = timeString.split(':').map(Number);
+
+    const period = hour >= 12 ? 'PM' : 'AM';
+
+    const hour12 = hour % 12 || 12;
+
+    return `${hour12}:${minute.toString().padStart(2, '0')} ${period}`;
 }

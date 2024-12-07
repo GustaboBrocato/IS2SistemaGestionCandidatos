@@ -1,3 +1,4 @@
+import BASE_URL from '../javascript/config.js';
 // Obtener informacion de perfil de usuario
 const token = localStorage.getItem('token');
 
@@ -79,7 +80,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Comprobar si existe un plan de estudios
     const checkCurriculum = async () => {
         try {
-            const response = await fetch("http://localhost:3000/api/curriculum/check", {
+            const endpoint = "/api/curriculum/check";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: "GET",
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -116,7 +119,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         formData.append("file", file);
 
         try {
-            const response = await fetch("http://localhost:3000/api/curriculum/upload", {
+            const endpoint = "/api/curriculum/upload";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`, // Keep the Authorization header
@@ -144,7 +149,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     viewCVButton.addEventListener("click", async () => {
         try {
-            const response = await fetch("http://localhost:3000/api/curriculum/view", {
+            const endpoint = "/api/curriculum/view";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -175,7 +182,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return false;
             }
 
-            const response = await fetch('http://localhost:3000/authenticate', {
+            const endpoint = "/authenticate";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -200,7 +209,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Cargar lista de habilidades
     async function loadSkills() {
         try {
-            const response = await fetch(`http://localhost:3000/api/candidatos/getSkills`, {
+            const endpoint = "/api/candidatos/getSkills";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -257,7 +268,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Borrar habilidad
     async function deleteSkill(skillId) {
         try {
-            const response = await fetch(`http://localhost:3000/api/candidatos/deleteSkill`, {
+            const endpoint = "/api/candidatos/deleteSkill";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -280,7 +293,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Cargar lista de habilidades
     async function loadReferences() {
         try {
-            const response = await fetch(`http://localhost:3000/api/candidatos/getReferences`, {
+            const endpoint = "/api/candidatos/getReferences";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -340,7 +355,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Borrar habilidad
         async function deleteReference(referenceId) {
             try {
-                const response = await fetch(`http://localhost:3000/api/candidatos/deleteReference`, {
+                const endpoint = "/api/candidatos/deleteReference";
+                const url = `${BASE_URL}${endpoint}`;
+                const response = await fetch(url, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -422,7 +439,9 @@ confirmAddSkillButton.addEventListener("click", async () => {
     const selectedSkill = skillSelector.value;
     if (selectedSkill) {
         try {
-            const response = await fetch(`http://localhost:3000/api/candidatos/addSkill`, {
+            const endpoint = "/api/candidatos/addSkill";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -456,7 +475,9 @@ referenceForm.addEventListener("submit", async (event) => {
     };
 
     try {
-        const response = await fetch(`http://localhost:3000/api/candidatos/addReference`, {
+        const endpoint = "/api/candidatos/addReference";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -487,7 +508,9 @@ referenceForm.addEventListener("submit", async (event) => {
 //Funcion para obtener informacion de perfil
 const getUserInfo = async () => {
     try {
-        const response = await fetch('http://localhost:3000/api/candidatos/profileCandidato', {
+        const endpoint = "/api/candidatos/profileCandidato";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -514,7 +537,9 @@ const getUserInfo = async () => {
 const getProfileImage = async () => {
     try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:3000/api/images/getImageCandidato', {
+        const endpoint = "/api/images/getImageCandidato";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -540,7 +565,9 @@ const getProfileImage = async () => {
 // Verificacion de Password
 verifyPasswordButton.addEventListener("click", async () => {
     const password = document.getElementById("passwordInput").value;
-    const response = await fetch('http://localhost:3000/api/candidatos/verify-password', {
+    const endpoint = "/api/candidatos/verify-password";
+    const url = `${BASE_URL}${endpoint}`;
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -560,7 +587,9 @@ verifyPasswordButton.addEventListener("click", async () => {
 // Send Verification Code
 sendVerificationCodeButton.addEventListener("click", async () => {
     const newEmail = document.getElementById("newEmailInput").value;
-    const response = await fetch('http://localhost:3000/api/candidatos/send-verification-code', {
+    const endpoint = "/api/candidatos/send-verification-code";
+    const url = `${BASE_URL}${endpoint}`;
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -582,7 +611,9 @@ confirmEmailButton.addEventListener("click", async () => {
     const code = document.getElementById("verificationCodeInput").value;
     const newEmail = document.getElementById("newEmailInput").value;
 
-    const response = await fetch('http://localhost:3000/api/candidatos/confirm-email', {
+    const endpoint = "/api/candidatos/confirm-email";
+    const url = `${BASE_URL}${endpoint}`;
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -603,7 +634,9 @@ confirmEmailButton.addEventListener("click", async () => {
 confirmTelefonoButton.addEventListener("click", async () => {
     const newTelefono = document.getElementById("newTelefono").value;
 
-    const response = await fetch('http://localhost:3000/api/candidatos/update-telefono', {
+    const endpoint = "/api/candidatos/update-telefono";
+    const url = `${BASE_URL}${endpoint}`;
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -646,7 +679,9 @@ submitChangePasswordButton.addEventListener("click", async () => {
     }
 
     try {
-        const response = await fetch('http://localhost:3000/api/candidatos/change-password', {
+        const endpoint = "/api/candidatos/change-password";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -735,7 +770,9 @@ async function isUserLoggedIn() {
             return false;
         }
 
-        const response = await fetch('http://localhost:3000/authenticate', {
+        const endpoint = "/authenticate";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

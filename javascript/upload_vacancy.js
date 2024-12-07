@@ -1,3 +1,4 @@
+import BASE_URL from '../javascript/config.js';
 document.addEventListener('DOMContentLoaded', async() => {
     const loggedIn = await isUserLoggedIn();
 
@@ -39,7 +40,9 @@ document.addEventListener('DOMContentLoaded', async() => {
         };
 
         try {
-            const response = await fetch('http://localhost:3000/api/vacancy/add-vacancy', {
+            const endpoint = "/api/vacancy/add-vacancy";
+            const url = `${BASE_URL}${endpoint}`;
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -74,7 +77,9 @@ async function isUserLoggedIn() {
             return false;
         }
 
-        const response = await fetch('http://localhost:3000/authenticate', {
+        const endpoint = "/authenticate";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

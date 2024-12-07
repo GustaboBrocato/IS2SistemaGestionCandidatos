@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", async function () {
+import BASE_URL from '../javascript/config.js';
+
+document.addEventListener("DOMContentLoaded", async function () {  
     const benefitCards = document.querySelectorAll(".benefit-card");
 
     benefitCards.forEach((card, index) => {
@@ -6,6 +8,22 @@ document.addEventListener("DOMContentLoaded", async function () {
             card.style.transform = "translateY(0)";
             card.style.opacity = "1";
         }, index * 100); // Delay en cascada
+    });
+
+    const closeBtn = document.getElementById('closeButton');
+    const applyBtn = document.getElementById('apply-button');
+    const removeBtn = document.getElementById('remove-button');
+
+    closeBtn.addEventListener("click", () => {
+        closeVacancyDetail();
+    });
+
+    applyBtn.addEventListener("click", () => {
+        applyToVacancy();
+    });
+
+    removeBtn.addEventListener("click", () => {
+        removeListing();
     });
 
     // Load vacancies on page load
@@ -16,7 +34,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 async function checkUserRole(requiredRole) {
     try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:3000/api/roles/checkRole?requiredRole=${requiredRole}`, {
+        const endpoint = "";
+        const url = `${BASE_URL}/api/roles/checkRole?requiredRole=${requiredRole}`;
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -36,7 +56,9 @@ async function checkUserRole(requiredRole) {
 async function checkUserID(id) {
     try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:3000/api/vacancy/checkUserID`, {
+        const endpoint = "/api/vacancy/checkUserID";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -58,10 +80,12 @@ async function checkUserID(id) {
 async function loadVacancies() {
     const vacanciesContainer = document.getElementById('vacanciesContainer');
     const token = localStorage.getItem('token');
-    vacancyImage = null;
+    let vacancyImage = null;
 
     try {
-        const response = await fetch('http://localhost:3000/api/vacancy/available-auth', {
+        const endpoint = "/api/vacancy/available-auth";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -97,7 +121,7 @@ async function loadVacancies() {
             vacanciesContainer.appendChild(vacancyCard);
         });
     } catch (error) {
-        console.error('Error loading vacancies:', error);
+        console.error('Error al cargar las vacantes:', error);
     }
 }
 
@@ -180,7 +204,9 @@ async function openVacancyDetail(vacancy) {
                 let userId = vacancy.idusuario;
                 let vacanteId = vacancy.id;
 
-                const response = await fetch(`http://localhost:3000/api/application/addApplication`, {
+                const endpoint = "/api/application/addApplication";
+                const url = `${BASE_URL}${endpoint}`;
+                const response = await fetch(url, {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -230,8 +256,10 @@ async function openVacancyDetail(vacancy) {
 // Función para comprobar si el usuario ya postuló para la vacante
 async function checkIfUserApplied(vacanteId, userId) {
     try {
+        const endpoint = "/api/application/checkIfApplied";
+        const url = `${BASE_URL}${endpoint}`;
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:3000/api/application/checkIfApplied`, {
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -248,16 +276,16 @@ async function checkIfUserApplied(vacanteId, userId) {
     }
 }
 
-
-
 function closeVacancyDetail() {
     document.getElementById('vacancyModal').style.display = 'none';
 }
 
 async function applyToVacancy(vacanteId, userId) {
     try {
+        const endpoint = "/api/application/addApplication";
+        const url = `${BASE_URL}${endpoint}`;
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:3000/api/application/addApplication`, {
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -293,7 +321,9 @@ async function removeListing() {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/api/vacancy/delete`, {
+        const endpoint = "/api/vacancy/delete";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -326,7 +356,9 @@ async function isUserLoggedIn() {
             return false;
         }
 
-        const response = await fetch('http://localhost:3000/authenticate', {
+        const endpoint = "/authenticate";
+        const url = `${BASE_URL}${endpoint}`;
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
