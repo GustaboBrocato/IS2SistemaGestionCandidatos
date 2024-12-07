@@ -42,7 +42,6 @@ async function checkUserRole(requiredRole) {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
             },
-            mode: 'no-cors',
         });
 
         const data = await response.json();
@@ -66,7 +65,6 @@ async function checkUserID(id) {
                 'Content-type': 'application/json',
             },
             body: JSON.stringify({ usuarioID: id }),
-            mode: 'no-cors',
         });
 
         const data = await response.json();
@@ -93,7 +91,6 @@ async function loadVacancies() {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
             },
-            mode: 'no-cors',
         });
         const vacancies = await response.json();
 
@@ -216,7 +213,6 @@ async function openVacancyDetail(vacancy) {
                         'Content-type': 'application/json',
                     },
                     body: JSON.stringify({ userId, vacanteId }),
-                    mode: 'no-cors',
                 });
 
                 if (!response.ok) {
@@ -270,7 +266,6 @@ async function checkIfUserApplied(vacanteId, userId) {
                 'Content-type': 'application/json',
             },
             body: JSON.stringify({ vacanteId, userId }),
-            mode: 'no-cors',
         });
 
         const data = await response.json();
@@ -297,7 +292,6 @@ async function applyToVacancy(vacanteId, userId) {
                 'Content-type': 'application/json',
             },
             body: JSON.stringify({ userId, vacanteId }),
-            mode: 'no-cors',
         });
 
         if (!response.ok) {
@@ -336,7 +330,6 @@ async function removeListing() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ id: id }),
-            mode: 'no-cors',
         });
 
         if (response.ok) {
@@ -371,7 +364,6 @@ async function isUserLoggedIn() {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
             },
-            mode: 'no-cors',
         });
 
         if (response.ok) {
