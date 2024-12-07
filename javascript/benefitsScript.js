@@ -11,15 +11,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
 
     const closeBtn = document.getElementById('closeButton');
-    const applyBtn = document.getElementById('apply-button');
     const removeBtn = document.getElementById('remove-button');
 
     closeBtn.addEventListener("click", () => {
         closeVacancyDetail();
-    });
-
-    applyBtn.addEventListener("click", () => {
-        applyToVacancy();
     });
 
     removeBtn.addEventListener("click", () => {
@@ -175,11 +170,12 @@ async function openVacancyDetail(vacancy) {
         warning.style.display = 'block';
         warning.textContent = '¡Esta vacante fue creada por otro reclutador o reclutadora!';
     } else if (isUsuario) {
+        applyButton.disabled = false;
         applyButton.style.display = 'block';
         removeButton.style.display = 'none';
         warning.style.display = 'none';
         // Verifique si el usuario ya postuló para esta vacante
-        const alreadyApplied = await checkIfUserApplied(vacancy.id, vacancy.idusuario);
+        const alreadyApplied = await checkIfUserApplied(vacancy.id);
         if (alreadyApplied) {
             applyButton.disabled = true;
             applyButton.style.display = 'none';
@@ -195,6 +191,26 @@ async function openVacancyDetail(vacancy) {
 
     // Almacenar el ID de vacante para la acción de eliminación
     removeButton.dataset.vacancyId = vacancy.id;
+
+    removeButton.onclick = async () => {
+        if (isReclutador && isCreator) {
+            const confirmDelete = confirm('¿Estás seguro de que deseas eliminar esta vacante?');
+            if (confirmDelete) {
+                try {
+                    const response = await removeVacancy(vacancy.id);
+                    if (response.success) {
+                        alert('¡Vacante eliminada exitosamente!');
+                        modal.style.display = 'none';
+                    } else {
+                        alert('Hubo un problema al eliminar la vacante.');
+                    }
+                } catch (error) {
+                    console.error('Error al eliminar:', error);
+                    alert('Error al eliminar la vacante.');
+                }
+            }
+        }
+    };
 
     // Agregar oyentes para botones
     applyButton.onclick = async () => {
@@ -230,31 +246,13 @@ async function openVacancyDetail(vacancy) {
         }
     };
 
-    removeButton.onclick = async () => {
-        if (isReclutador && isCreator) {
-            const confirmDelete = confirm('¿Estás seguro de que deseas eliminar esta vacante?');
-            if (confirmDelete) {
-                try {
-                    const response = await removeVacancy(vacancy.id);
-                    if (response.success) {
-                        alert('¡Vacante eliminada exitosamente!');
-                        modal.style.display = 'none';
-                    } else {
-                        alert('Hubo un problema al eliminar la vacante.');
-                    }
-                } catch (error) {
-                    console.error('Error al eliminar:', error);
-                    alert('Error al eliminar la vacante.');
-                }
-            }
-        }
-    };
-
     modal.style.display = 'flex';
 }
 
+
+
 // Función para comprobar si el usuario ya postuló para la vacante
-async function checkIfUserApplied(vacanteId, userId) {
+async function checkIfUserApplied(vacanteId) {
     try {
         const endpoint = "/api/application/checkIfApplied";
         const url = `${BASE_URL}${endpoint}`;
@@ -265,7 +263,7 @@ async function checkIfUserApplied(vacanteId, userId) {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify({ vacanteId, userId }),
+            body: JSON.stringify({ vacanteId }),
         });
 
         const data = await response.json();
@@ -278,34 +276,6 @@ async function checkIfUserApplied(vacanteId, userId) {
 
 function closeVacancyDetail() {
     document.getElementById('vacancyModal').style.display = 'none';
-}
-
-async function applyToVacancy(vacanteId, userId) {
-    try {
-        const endpoint = "/api/application/addApplication";
-        const url = `${BASE_URL}${endpoint}`;
-        const token = localStorage.getItem('token');
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify({ userId, vacanteId }),
-        });
-
-        if (!response.ok) {
-            // Handle HTTP errors (e.g., 4xx or 5xx)
-            const errorData = await response.json();
-            throw new Error(errorData.message || 'Error al enviar la aplicación.');
-        }
-
-        const data = await response.json();
-        return response.ok;
-    } catch (error) {
-        console.error('Error en la solicitud de aplicación:', error);
-        throw error; // Let the caller handle this error
-    }
 }
 
 // Funcion para cerrar una vacante (solo para Reclutadores)
@@ -345,6 +315,8 @@ async function removeListing() {
     }
 }
 
+
+
 //Funcion para revisar si esta loggeado el usuario
 async function isUserLoggedIn() {
     try {
@@ -364,7 +336,6 @@ async function isUserLoggedIn() {
                 'Authorization': `Bearer ${token}`,
                 'Content-type': 'application/json',
             },
-            credentials: 'include',
         });
 
         if (response.ok) {
