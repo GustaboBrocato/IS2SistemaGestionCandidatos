@@ -1,10 +1,11 @@
 import BASE_URL from '../javascript/config.js';
+let usuario = false;
 //Funcion para revisar si esta loggeado el usuario
 async function isUserLoggedIn() {
     try {
         // Obtiene el token del storage
         const token = localStorage.getItem('token');
-        
+
         if (!token) {
             // Si el token no existe el usuario no esta loggeado
             return false;
@@ -22,7 +23,7 @@ async function isUserLoggedIn() {
         if (response.ok) {
             // Usuario loggeado
             const data = await response.json();
-            
+
             return data.loggedIn;  // true or false
         } else {
             return false;
@@ -63,6 +64,7 @@ function showDropdownMenu(user) {
     const userDropdown = document.getElementById('userDropdown');
     const profilePicture = document.getElementById('profilePicture');
     const profileDropdownLink = document.getElementById('profileDropdownLink');
+    const navAplicaciones = document.getElementById('navAplicaciones');
 
     // Esconde los botones de login y signup
     loginSignupButtons.style.display = 'none';
@@ -72,6 +74,13 @@ function showDropdownMenu(user) {
 
     // Coloca el enlace a la pagina de perfil
     profileDropdownLink.href = 'index.html';
+
+    // Show or hide 'Aplicaciones' based on user truthiness
+    if (user) {
+        navAplicaciones.style.display = 'block'; // Show 'Aplicaciones' if user exists
+    } else {
+        navAplicaciones.style.display = 'none'; // Hide 'Aplicaciones' if no user
+    }
 }
 
 // Funcion para logout y cambiar el menu
@@ -120,19 +129,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     const loggedIn = await isUserLoggedIn();
     const loginSignupButtons = document.getElementById('loginSignupButtons');
     const userDropdown = document.getElementById('userDropdown');
-    
+
     if (loggedIn) {
         // Esconde los botones de login signup
         loginSignupButtons.style.display = 'none';
-        showDropdownMenu();
-
-        //Carga imagen de perfil
-        await setProfileImage();
 
         // Revisa los roles del usuario
         const isAdmin = await checkRole('Admin');
         const isReclutador = isAdmin ? false : await checkRole('Reclutador');
         const isUsuario = !isAdmin && !isReclutador; // Valor predeterminado para el usuario si no es administrador o reclutador
+
+        showDropdownMenu(isUsuario);
+
+        //Carga imagen de perfil
+        await setProfileImage();
 
         // Actualiza los enlaces de navegacion
         const mainNavLinks = [
@@ -211,20 +221,20 @@ function showToast(message) {
 //Funcion para obtener la imagen de perfil
 const setProfileImage = async () => {
     try {
-        
+
         const isAdmin = await checkRole('Admin');
         const isReclutador = isAdmin ? false : await checkRole('Reclutador');
         const isUsuario = !isAdmin && !isReclutador;
         let endpoint = "/api/images/getImage";
         let url = `${BASE_URL}${endpoint}`;
 
-        if(isUsuario){
+        if (isUsuario) {
             endpoint = "/api/images/getImageCandidato";
             url = `${BASE_URL}${endpoint}`;
         };
 
         const menuProfilePicture = document.getElementById('profilePicture');
-        const token = localStorage.getItem('token'); 
+        const token = localStorage.getItem('token');
         const response = await fetch(url, {
             method: 'GET',
             headers: {
